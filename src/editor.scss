@@ -1,0 +1,63 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-makeiteasy-popup {
+	&.wp-block-makeiteasy-popup {
+		visibility: visible;
+		opacity: 1;
+		z-index: auto;
+	}
+
+	/* block element classes */
+
+	&.is-hidden {
+		display: none;
+	}
+
+	&.wp-block-makeiteasy-popup {
+		position: relative;
+	}
+
+	&.popup-floating {
+		.makeiteasy-popup-overlay {
+			position: unset;
+			display: block;
+		}
+
+		&,
+		.makeiteasy-popup-overlay {
+			bottom: unset;
+			top: unset;
+			left: unset;
+			right: unset;
+		}
+	}
+
+	&.popup-position-relative .makeiteasy-popup-wrapper {
+		position: unset;
+	}
+
+	/* end of block element classes */
+
+	.makeiteasy-popup-close {
+		position: static;
+	}
+
+	.makeiteasy-popup-wrapper {
+		display: flex;
+	}
+
+	.makeiteasy-popup-content-wrapper {
+		flex: 1 0;
+	}
+}
+
+/*
+ * Plugin Sidebar
+ */
+.mie-popup-plugin-panel.is-opened {
+	padding-top: 32px;
+}

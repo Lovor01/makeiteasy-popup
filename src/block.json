@@ -1,0 +1,72 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "makeiteasy/popup",
+	"version": "0.1.0",
+	"title": "Makeiteasy Popup",
+	"category": "widgets",
+	"icon": "edit-page",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"textdomain": "makeiteasy-popup",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./popup-modal.js",
+	"supports": {
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"align": true,
+		"layout": {
+			"default": {
+				"type": "constrained"
+			},
+			"allowJustification": true
+		}
+	},
+	"attributes": {
+		"save_id": {
+			"type": "string"
+		},
+		"openType": {
+			"enum": [
+				"on timer",
+				"on scroll",
+				"on click",
+				"custom"
+			],
+			"default": "on scroll"
+		},
+		"openSelector": {
+			"type": "string"
+		},
+		"layoutType": {
+			"enum": [
+				"floating",
+				"fixed"
+			],
+			"default": "floating"
+		},
+		"modalityType": {
+			"enum": [
+				"modal",
+				"modeless"
+			],
+			"default": "modal"
+		},
+		"position": {
+			"enum": [
+				"central",
+				"aside",
+				"relative"
+			],
+			"default": "central"
+		},
+		"hasCloseButton": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

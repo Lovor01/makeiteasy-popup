@@ -1,0 +1,56 @@
+.wp-block-makeiteasy-popup {
+
+	visibility: hidden;
+
+	&.is-open {
+		visibility: visible;
+	}
+
+	.makeiteasy-popup-close {
+		background: none;
+		border: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		cursor: pointer;
+
+		svg {
+			fill: var(--wp--preset--color--black, #000);
+			pointer-events: none;
+		}
+	}
+
+	&.popup-fixed {
+		position: fixed;
+		max-width: none;
+
+		.makeiteasy-popup-overlay {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&,
+		.makeiteasy-popup-overlay {
+			bottom: 0;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+	}
+
+	.makeiteasy-popup-wrapper {
+		position: relative;
+	}
+
+	&.popup-position-relative .makeiteasy-popup-wrapper {
+		position: absolute;
+	}
+
+
+}
+
+body.has-floating-popup {
+	overflow: hidden;
+}
