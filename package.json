@@ -16,7 +16,8 @@
 		"start:hot": "wp-scripts start --hot"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.17.0"
+		"@wordpress/scripts": "^27.0.0",
+		"dotenv": "^16.3.2"
 	},
 	"dependencies": {
 		"micromodal": "^0.4.10",
