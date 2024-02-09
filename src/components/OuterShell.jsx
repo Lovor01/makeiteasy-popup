@@ -1,3 +1,7 @@
+/**
+ * Popup markup which Micromodal.js requires is delegated
+ */
+
 /* eslint-disable camelcase */
 import { ReactComponent as CloseX } from '../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
@@ -80,7 +84,7 @@ export const wrapperClass = (
 			'on timer': 'open-on-timer',
 			'on scroll': 'open-on-scroll',
 			'on click': 'open-on-click',
-			custom: 'open-custom',
+			'on hover': 'open-on-hover',
 		}[ openType ] +
 		' ' +
 		{

@@ -1,6 +1,8 @@
+/* eslint-disable no-shadow */
 // @see https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inspector-controls
 
 import { InspectorControls } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 
 import {
 	PanelBody,
@@ -8,6 +10,8 @@ import {
 	RadioControl,
 	TextControl,
 	ToggleControl,
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 
 export default ( {
@@ -18,45 +22,77 @@ export default ( {
 		modalityType,
 		position,
 		hasCloseButton,
+		openingTime,
 	},
 	setAttributes,
 } ) => (
 	<InspectorControls>
 		<PanelBody
-			title="Popup Settings"
-			// eslint-disable-next-line no-undef
-			icon="admin-settings"
+			title={ __( 'Popup Settings', 'makeiteasy-popup' ) }
+			icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
 			initialOpen={ true }
 		>
 			<PanelRow>
 				<RadioControl
-					label="Popup type"
-					help="The way popup appears"
+					label={ __( 'Opens on:', 'makeiteasy-popup' ) }
+					help={ __( 'What triggers opening.', 'makeiteasy-popup' ) }
 					selected={ openType }
 					options={ [
-						{ label: 'On timer', value: 'on timer' },
-						{ label: 'On scroll', value: 'on scroll' },
-						{ label: 'On click', value: 'on click' },
-						{ label: 'Custom', value: 'custom' },
+						{
+							label: __( 'On timer', 'makeiteasy-popup' ),
+							value: 'on timer',
+						},
+						{
+							label: __( 'On scroll', 'makeiteasy-popup' ),
+							value: 'on scroll',
+						},
+						{
+							label: __( 'On click', 'makeiteasy-popup' ),
+							value: 'on click',
+						},
+						{
+							label: __( 'On hover', 'makeiteasy-popup' ),
+							value: 'on hover',
+						},
 					] }
-					// eslint-disable-next-line no-shadow
 					onChange={ ( openType ) => {
 						setAttributes( { openType } );
 					} }
 				/>
 			</PanelRow>
 			<PanelRow>
-				{ ( openType === 'on click' || openType === 'on scroll' ) && (
+				{ [ 'on click', 'on scroll', 'on hover' ].includes(
+					openType
+				) && (
 					<TextControl
 						label="CSS selector"
 						help="CSS selector of element to open popup"
 						value={ openSelector }
-						// eslint-disable-next-line no-shadow
 						onChange={ ( openSelector ) =>
 							setAttributes( { openSelector } )
 						}
-						__next40pxDefaultSize
-						__nextHasNoMarginBottom
+					/>
+				) }
+				{ openType === 'on timer' && (
+					<UnitControl
+						onChange={ ( openingTime ) => {
+							setAttributes( { openingTime } );
+						} }
+						value={ openingTime }
+						units={ [
+							{
+								a11yLabel: 'Seconds',
+								label: 's',
+								step: 1,
+								value: 's',
+							},
+							{
+								a11yLabel: 'Milliseconds',
+								label: 'ms',
+								step: 100,
+								value: 'ms',
+							},
+						] }
 					/>
 				) }
 			</PanelRow>
@@ -68,7 +104,6 @@ export default ( {
 						{ label: 'floating', value: 'floating' },
 						{ label: 'fixed', value: 'fixed' },
 					] }
-					// eslint-disable-next-line no-shadow
 					onChange={ ( layoutType ) => {
 						setAttributes( { layoutType } );
 					} }
@@ -82,7 +117,6 @@ export default ( {
 						{ label: 'modal', value: 'modal' },
 						{ label: 'modeless', value: 'modeless' },
 					] }
-					// eslint-disable-next-line no-shadow
 					onChange={ ( modalityType ) => {
 						setAttributes( { modalityType } );
 					} }
@@ -97,7 +131,6 @@ export default ( {
 						{ label: 'aside', value: 'aside' },
 						{ label: 'relative', value: 'relative' },
 					] }
-					// eslint-disable-next-line no-shadow
 					onChange={ ( position ) => {
 						setAttributes( { position } );
 					} }
@@ -107,7 +140,6 @@ export default ( {
 				<ToggleControl
 					label="Has close button"
 					checked={ hasCloseButton }
-					// eslint-disable-next-line no-shadow
 					onChange={ ( hasCloseButton ) =>
 						setAttributes( { hasCloseButton } )
 					}

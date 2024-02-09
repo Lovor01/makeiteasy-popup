@@ -20,31 +20,15 @@ function setUp() {
 		// set if opens on click
 		const elementClassList = selector.classList;
 
-		if ( elementClassList.contains( 'open-on-click' ) )
-			setOpenEventOnElements( selector );
 		if ( elementClassList.contains( 'open-on-timer' ) )
 			setOpenOnTimer( selector );
-		if ( elementClassList.contains( 'open-on-scroll' ) )
+		else if ( elementClassList.contains( 'open-on-click' ) )
+			setOpenEventOnElements( selector, 'click' );
+		else if ( elementClassList.contains( 'open-on-hover' ) )
+			setOpenEventOnElements( selector, 'pointerover' );
+		else if ( elementClassList.contains( 'open-on-scroll' ) )
 			setOpenOnScroll( selector );
 	}
-
-	/* banner */
-	// const promoOfferPopup = document.querySelector( '.promo-offer-popup' ).id;
-	// // fix clicking on svg path
-	// document
-	// 	.querySelectorAll( '.makeiteasy-popup-close svg path' )
-	// 	.forEach( ( el ) =>
-	// 		el.addEventListener( 'click', () => {
-	// 			MicroModal.close(
-	// 				el.closest( '.wp-block-makeiteasy-popup' ).id
-	// 			);
-	// 		} )
-	// 	);
-	// const promoStar = document.querySelector( '.promo-star' );
-	// promoStar.addEventListener( 'click', () => {
-	// 	showModal( promoOfferPopup );
-	// } );
-	/* end banner */
 
 	function showModal( id ) {
 		MicroModal.show( id, {
@@ -60,8 +44,6 @@ function setUp() {
 			},
 			onClose: () => {
 				document.body.classList.remove( 'has-floating-popup' );
-				// if ( modal.classList.contains( 'banner' ) )
-				// 	promoStar.classList.add( 'is-visible' );
 				refreshOpenPopups( 2 );
 			},
 		} );
@@ -70,13 +52,16 @@ function setUp() {
 	/**
 	 * Set up opening and adjusting for floating popups
 	 *
-	 * @param {HTMLElement} element .wp-block-makeiteasy-popup
+	 * @param {HTMLElement} element   .wp-block-makeiteasy-popup
+	 * @param {string}      eventType
 	 */
-	function setOpenEventOnElements( element ) {
+	function setOpenEventOnElements( element, eventType ) {
 		for ( const opener of document.querySelectorAll(
 			element.dataset.openSelector
 		) ) {
-			opener.addEventListener( 'click', ( event ) => {
+			opener.addEventListener( eventType, ( event ) => {
+				if ( event.currentTarget.classList.contains( 'is-open' ) )
+					return;
 				element.querySelector( '.makeiteasy-popup-wrapper' ).opener =
 					event.currentTarget;
 				showModal( element.id );
@@ -89,10 +74,13 @@ function setUp() {
 	 * @param {HTMLElement} element
 	 */
 	function setOpenOnTimer( element ) {
-		const timer = element.dataset.timer;
+		const timer = element.dataset.openingTime;
+		let numberPart = parseInt( timer );
+		const unitPart = timer.replace( numberPart, '' );
+		if ( unitPart === 's' ) numberPart = numberPart * 1000;
 		setTimeout( () => {
 			showModal( element.id );
-		}, timer );
+		}, numberPart );
 	}
 
 	/**
@@ -123,5 +111,4 @@ function setUp() {
 			}
 		}
 	}
-	// adjustRelativePopups();
 }

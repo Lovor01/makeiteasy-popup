@@ -1,4 +1,18 @@
 .wp-block-makeiteasy-popup {
+	&.popup-modal {
+		position: fixed;
+		inset: 0;
+		max-width: none;
+
+		.makeiteasy-popup-overlay {
+			width: 100%;
+			height: 100%;
+			background: #2227;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
 
 	visibility: hidden;
 
@@ -9,10 +23,11 @@
 	.makeiteasy-popup-close {
 		background: none;
 		border: none;
-		position: absolute;
-		top: 0;
-		right: 0;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 2px 4px;
+		margin: 0 0 0 auto;
 
 		svg {
 			fill: var(--wp--preset--color--black, #000);
@@ -42,13 +57,13 @@
 
 	.makeiteasy-popup-wrapper {
 		position: relative;
+		background: #d6d6d6;
+		display: flex;
 	}
 
 	&.popup-position-relative .makeiteasy-popup-wrapper {
 		position: absolute;
 	}
-
-
 }
 
 body.has-floating-popup {
