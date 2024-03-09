@@ -21,14 +21,17 @@ export default ( {
 		layoutType,
 		modalityType,
 		position,
+		relativeElement,
 		hasCloseButton,
 		openingTime,
+		waitingTimeAfterClosing,
+		enabled,
 	},
 	setAttributes,
 } ) => (
 	<InspectorControls>
 		<PanelBody
-			title={ __( 'Popup Settings', 'makeiteasy-popup' ) }
+			title={ __( 'Opening', 'makeiteasy-popup' ) }
 			icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
 			initialOpen={ true }
 		>
@@ -60,10 +63,8 @@ export default ( {
 					} }
 				/>
 			</PanelRow>
-			<PanelRow>
-				{ [ 'on click', 'on scroll', 'on hover' ].includes(
-					openType
-				) && (
+			{ [ 'on click', 'on scroll', 'on hover' ].includes( openType ) && (
+				<PanelRow>
 					<TextControl
 						label="CSS selector"
 						help="CSS selector of element to open popup"
@@ -72,30 +73,71 @@ export default ( {
 							setAttributes( { openSelector } )
 						}
 					/>
-				) }
-				{ openType === 'on timer' && (
+				</PanelRow>
+			) }
+			{ /*
+			 * on timer set time after which popup will be opened,
+			 * on hover set time after which popup will be opened again
+			 */ }
+			{ [ 'on timer', 'on hover' ].includes( openType ) && (
+				<PanelRow>
 					<UnitControl
 						onChange={ ( openingTime ) => {
-							setAttributes( { openingTime } );
+							setAttributes(
+								openType === 'on timer'
+									? { openingTime }
+									: { waitingTimeAfterClosing: openingTime }
+							);
 						} }
-						value={ openingTime }
-						units={ [
-							{
-								a11yLabel: 'Seconds',
-								label: 's',
-								step: 1,
-								value: 's',
-							},
-							{
-								a11yLabel: 'Milliseconds',
-								label: 'ms',
-								step: 100,
-								value: 'ms',
-							},
-						] }
+						label={
+							openType === 'on timer'
+								? __( 'Open after', 'makeiteasy-popup' )
+								: __( 'Time to open again', 'makeiteasy-popup' )
+						}
+						help={
+							openType === 'on hover'
+								? '-1 to open only once.'
+								: ''
+						}
+						value={
+							openType === 'on timer'
+								? openingTime
+								: waitingTimeAfterClosing
+						}
+						units={
+							openType === 'on timer'
+								? [
+										{
+											a11yLabel: 'Seconds',
+											label: 's',
+											step: 1,
+											value: 's',
+										},
+										{
+											a11yLabel: 'Milliseconds',
+											label: 'ms',
+											step: 100,
+											value: 'ms',
+										},
+								  ]
+								: [
+										{
+											a11yLabel: 'Seconds',
+											label: 's',
+											step: 1,
+											value: 's',
+										},
+								  ]
+						}
 					/>
-				) }
-			</PanelRow>
+				</PanelRow>
+			) }
+		</PanelBody>
+		<PanelBody
+			title={ __( 'Layout', 'makeiteasy-popup' ) }
+			icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+			initialOpen={ true }
+		>
 			<PanelRow>
 				<RadioControl
 					label="Layout type"
@@ -127,15 +169,32 @@ export default ( {
 					label="Position"
 					selected={ position }
 					options={ [
-						{ label: 'central', value: 'central' },
-						{ label: 'aside', value: 'aside' },
-						{ label: 'relative', value: 'relative' },
+						{ label: 'self-contained', value: 'self-contained' },
+						{ label: 'attached', value: 'attached' },
 					] }
 					onChange={ ( position ) => {
 						setAttributes( { position } );
 					} }
 				/>
 			</PanelRow>
+			{ position === 'attached' && (
+				<PanelRow>
+					<TextControl
+						label="CSS selector"
+						help="Element to which this one is attached"
+						value={ relativeElement }
+						onChange={ ( relativeElement ) =>
+							setAttributes( { relativeElement } )
+						}
+					/>
+				</PanelRow>
+			) }
+		</PanelBody>
+		<PanelBody
+			title={ __( 'Visibility', 'makeiteasy-popup' ) }
+			icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+			initialOpen={ true }
+		>
 			<PanelRow>
 				<ToggleControl
 					label="Has close button"
@@ -143,6 +202,14 @@ export default ( {
 					onChange={ ( hasCloseButton ) =>
 						setAttributes( { hasCloseButton } )
 					}
+				/>
+			</PanelRow>
+			<PanelRow>
+				<ToggleControl
+					label="Popup is enabled"
+					checked={ enabled }
+					onChange={ ( enabled ) => setAttributes( { enabled } ) }
+					help="Whether popup will show at all."
 				/>
 			</PanelRow>
 		</PanelBody>

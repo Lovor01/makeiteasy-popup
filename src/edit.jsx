@@ -11,7 +11,7 @@ import './editor.scss';
 /* eslint-disable camelcase */
 export default function Edit( {
 	attributes,
-	attributes: { save_id, openType, hasCloseButton },
+	attributes: { openType, hasCloseButton, anchor },
 	setAttributes,
 	clientId,
 } ) {
@@ -24,10 +24,14 @@ export default function Edit( {
 	);
 
 	useEffect( () => {
-		if ( idExists( save_id, blocks, clientId ) || ! save_id )
+		if ( idExists( anchor, blocks, clientId ) || ! anchor ) {
+			// eslint-disable-next-line no-unused-vars
+			const customId = customNanoId( blocks, clientId );
 			setAttributes( {
-				save_id: customNanoId( blocks, clientId ),
+				// save_id: customId,
+				anchor: customId,
 			} );
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [] );
 	return (
@@ -36,7 +40,7 @@ export default function Edit( {
 			<OuterShell
 				{ ...useBlockProps( wrapperClass( attributes, popupsOpen ) ) }
 				innerBlocks={ useInnerBlocksProps }
-				save_id={ save_id }
+				anchor={ anchor }
 				hasCloseButton={ hasCloseButton }
 			/>
 		</>

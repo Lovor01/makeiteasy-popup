@@ -1,6 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import MicroModal from 'micromodal';
-import { refreshOpenPopups } from './popup-variations/open-next-to';
+// import MicroModal from 'micromodal';
+import MicroModal from '../test/Micromodal/lib/src/index';
+import {
+	default as adjustRelativePopups,
+	refreshOpenPopups,
+} from './popup-variations/open-next-to';
 
 if ( document.readyState === 'loading' )
 	document.addEventListener( 'DOMContentLoaded', setUp );
@@ -30,8 +34,14 @@ function setUp() {
 			setOpenOnScroll( selector );
 	}
 
+	/**
+	 * Hook additional actions on show/close
+	 *
+	 * @param {string} id popup id
+	 */
 	function showModal( id ) {
 		MicroModal.show( id, {
+			// we have customized openers and closers
 			openTrigger: 'data-micromodal-open-' + id,
 			closeTrigger: 'data-micromodal-close-' + id,
 			onShow: ( modal ) => {
@@ -42,8 +52,10 @@ function setUp() {
 					document.body.classList.add( 'has-floating-popup' );
 				refreshOpenPopups( 1 );
 			},
-			onClose: () => {
+			onClose: ( modal ) => {
 				document.body.classList.remove( 'has-floating-popup' );
+				if ( modal.classList.contains( 'open-on-hover' ) )
+					cleaner( modal );
 				refreshOpenPopups( 2 );
 			},
 		} );
@@ -56,17 +68,46 @@ function setUp() {
 	 * @param {string}      eventType
 	 */
 	function setOpenEventOnElements( element, eventType ) {
+		if ( ! element.dataset.openSelector ) return;
 		for ( const opener of document.querySelectorAll(
 			element.dataset.openSelector
 		) ) {
-			opener.addEventListener( eventType, ( event ) => {
-				if ( event.currentTarget.classList.contains( 'is-open' ) )
-					return;
-				element.querySelector( '.makeiteasy-popup-wrapper' ).opener =
-					event.currentTarget;
-				showModal( element.id );
-			} );
+			opener.addEventListener( eventType, ( event ) =>
+				processEvent( event, element )
+			);
 		}
+
+		/**
+		 * set event
+		 *
+		 * @param {*} event
+		 * @param {*} popupElement popup element which is shown
+		 * @return {void}
+		 */
+		function processEvent( event, popupElement ) {
+			if (
+				popupElement.classList.contains( 'is-open' ) ||
+				popupElement.waitingTimerActive
+			)
+				return;
+			// if event is hover wait after pointer is removed before hovering again
+			if ( event.type === 'pointerover' ) {
+				popupElement.waitingTimerActive = true;
+			}
+			popupElement.querySelector( '.makeiteasy-popup-wrapper' ).opener =
+				event.currentTarget;
+			showModal( popupElement.id );
+		}
+	}
+
+	function cleaner( popupElement ) {
+		if ( popupElement.dataset.waitingTimeAfterClosing === '-1s' ) return;
+		setTimeout(
+			() => {
+				popupElement.waitingTimerActive = false;
+			},
+			parseInt( popupElement.dataset.waitingTimeAfterClosing ) * 1000
+		);
 	}
 
 	/**
@@ -88,6 +129,7 @@ function setUp() {
 	 * @param {HTMLElement} element
 	 */
 	function setOpenOnScroll( element ) {
+		if ( ! element.dataset.openSelector ) return;
 		const elementsToObserve = document.querySelectorAll(
 			element.dataset.openSelector
 		);
@@ -99,6 +141,7 @@ function setUp() {
 		for ( let i = 0; i < elementsToObserve.length; i++ ) {
 			new IntersectionObserver( handleIntersection, {
 				rootMargin: '0px 0px 0px 0px',
+				threshold: 1,
 			} ).observe( elementsToObserve[ i ] );
 		}
 
@@ -111,4 +154,6 @@ function setUp() {
 			}
 		}
 	}
+
+	adjustRelativePopups();
 }

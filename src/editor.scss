@@ -33,6 +33,10 @@
 			top: unset;
 			left: unset;
 			right: unset;
+			display: flex;
+			justify-content: center;
+			background: none;
+			width: auto;
 		}
 	}
 
@@ -46,9 +50,6 @@
 		position: static;
 	}
 
-	.makeiteasy-popup-content-wrapper {
-		flex: 1 0;
-	}
 }
 
 /*

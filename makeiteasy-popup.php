@@ -5,7 +5,7 @@
  *
  * Plugin Name:       Makeiteasy Popup block
  * Description:       Popup block solution aligned with block editor concept
- * Requires at least: 6.0
+ * Requires at least: 6.3
  * Requires PHP:      7.4
  * Version:           0.1.1
  * Author:            Lovro Hrust

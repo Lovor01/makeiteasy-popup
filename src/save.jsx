@@ -4,18 +4,27 @@ import { default as OuterShell, wrapperClass } from './components/OuterShell';
 /* eslint-disable camelcase */
 export default function save( {
 	attributes,
-	attributes: { save_id, openSelector, hasCloseButton, openingTime },
+	attributes: {
+		// NOTE: save_id was once atribute and was used for the outer shell id.
+
+		anchor,
+		hasCloseButton,
+		openSelector,
+		openingTime,
+		waitingTimeAfterClosing,
+	},
 } ) {
 	return (
 		<OuterShell
 			{ ...useBlockProps.save( {
 				...wrapperClass( attributes ),
-				id: save_id,
+				// id: save_id, - deprecated
 				'data-open-selector': openSelector,
 				'data-opening-time': openingTime,
+				'data-waiting-time-after-closing': waitingTimeAfterClosing,
 			} ) }
 			innerBlocks={ useInnerBlocksProps.save }
-			save_id={ save_id }
+			anchor={ anchor }
 			hasCloseButton={ hasCloseButton }
 		/>
 	);

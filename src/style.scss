@@ -53,12 +53,25 @@
 			left: 0;
 			right: 0;
 		}
+
+	}
+
+	.makeiteasy-popup-content-wrapper {
+		display: flex;
+		align-items: center;
+
+		/* blocks inside are normally centered due to margin left and right set to auto,
+		   change this */
+		> * {
+
+		}
 	}
 
 	.makeiteasy-popup-wrapper {
 		position: relative;
 		background: #d6d6d6;
 		display: flex;
+		padding: 3px 4px 3px 8px;
 	}
 
 	&.popup-position-relative .makeiteasy-popup-wrapper {

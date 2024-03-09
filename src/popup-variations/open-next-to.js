@@ -1,3 +1,6 @@
+/**
+ * Module to show popup anchored to element
+ */
 let openedRelativePopups, desktopBreakpoint, topMenu, adminBar, adminBarHeight;
 
 export default function () {
@@ -30,6 +33,11 @@ function adjustPopups( openPopup = 0 ) {
 		for ( const popup of openedRelativePopups ) {
 			const positionAboveClass = 'popup-position-above';
 			const openerSelected = 'opener-is-selected';
+			if ( ! popup.opener ) {
+				// eslint-disable-next-line no-console
+				console.warn( 'Make IT Easy popup: Opener element not found!' );
+				return;
+			}
 
 			// give class to opener to notify that it is selected
 			switch ( openPopup ) {

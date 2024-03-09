@@ -24,12 +24,14 @@
 				"type": "constrained"
 			},
 			"allowJustification": true
-		}
+		},
+		"anchor": true
+	},
+	"selectors": {
+		"root": ".makeiteasy-popup-wrapper",
+		"color": ".makeiteasy-popup-wrapper"
 	},
 	"attributes": {
-		"save_id": {
-			"type": "string"
-		},
 		"openType": {
 			"enum": [
 				"on timer",
@@ -45,6 +47,10 @@
 		"openingTime": {
 			"type": "string",
 			"default": "5s"
+		},
+		"waitingTimeAfterClosing": {
+			"type": "string",
+			"default": "-1s"
 		},
 		"layoutType": {
 			"enum": [
@@ -62,11 +68,13 @@
 		},
 		"position": {
 			"enum": [
-				"central",
-				"aside",
-				"relative"
+				"self-contained",
+				"attached"
 			],
-			"default": "central"
+			"default": "self-contained"
+		},
+		"relativeElement": {
+			"type": "string"
 		},
 		"hasCloseButton": {
 			"type": "boolean",

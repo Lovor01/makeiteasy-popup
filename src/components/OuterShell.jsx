@@ -7,7 +7,7 @@ import { ReactComponent as CloseX } from '../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 
 export default forwardRef( ( props, ref ) => {
-	const { innerBlocks, save_id, hasCloseButton = true, ...restProps } = props;
+	const { innerBlocks, anchor, hasCloseButton = true, ...restProps } = props;
 
 	/* move has- classses (block editor built-in classes) lower, on popup, while retaining the other stuff on most outer element */
 	// pick has- properties from classes
@@ -33,7 +33,7 @@ export default forwardRef( ( props, ref ) => {
 		return classesString !== '' ? { className: classesString } : null;
 	};
 
-	const dataModalCloseAttr = { [ 'data-micromodal-close-' + save_id ]: true };
+	const dataModalCloseAttr = { [ 'data-micromodal-close-' + anchor ]: true };
 
 	const closeButton = hasCloseButton ? (
 		<button
@@ -41,7 +41,7 @@ export default forwardRef( ( props, ref ) => {
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
 		>
-			<CloseX { ...dataModalCloseAttr } />
+			<CloseX />
 		</button>
 	) : null;
 
