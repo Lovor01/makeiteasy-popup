@@ -7,7 +7,13 @@ import { ReactComponent as CloseX } from '../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 
 export default forwardRef( ( props, ref ) => {
-	const { innerBlocks, anchor, hasCloseButton = true, ...restProps } = props;
+	const {
+		innerBlocks,
+		anchor,
+		hasCloseButton = true,
+		isModal,
+		...restProps
+	} = props;
 
 	/* move has- classses (block editor built-in classes) lower, on popup, while retaining the other stuff on most outer element */
 	// pick has- properties from classes
@@ -33,7 +39,9 @@ export default forwardRef( ( props, ref ) => {
 		return classesString !== '' ? { className: classesString } : null;
 	};
 
-	const dataModalCloseAttr = { [ 'data-micromodal-close-' + anchor ]: true };
+	const dataModalCloseAttr = anchor
+		? { [ 'data-micromodal-close-' + anchor ]: true }
+		: null;
 
 	const closeButton = hasCloseButton ? (
 		<button
@@ -58,7 +66,7 @@ export default forwardRef( ( props, ref ) => {
 			>
 				<div
 					role="dialog"
-					aria-modal="true"
+					aria-modal={ isModal }
 					aria-labelledby="modal-1-title"
 					{ ...classesWithHasString() }
 				>
@@ -75,7 +83,14 @@ export default forwardRef( ( props, ref ) => {
 } );
 
 export const wrapperClass = (
-	{ openType, layoutType, modalityType, position },
+	{
+		openType,
+		layoutType,
+		modalityType,
+		openSelector,
+		openingTime,
+		waitingAfterClosing,
+	},
 	// just for editor - class to hide popups
 	isShown = true
 ) => ( {
@@ -89,7 +104,8 @@ export const wrapperClass = (
 		' ' +
 		{
 			floating: 'popup-floating',
-			fixed: 'popup-fixed',
+			static: 'popup-static',
+			attached: 'popup-attached',
 		}[ layoutType ] +
 		' ' +
 		{
@@ -97,10 +113,9 @@ export const wrapperClass = (
 			modeless: 'popup-modeless',
 		}[ modalityType ] +
 		' ' +
-		{
-			central: 'popup-position-central',
-			aside: 'popup-position-aside',
-			relative: 'popup-position-relative',
-		}[ position ] +
 		( isShown ? '' : ' is-hidden' ),
+	// id: save_id, - deprecated
+	'data-open-selector': openSelector,
+	'data-opening-time': openingTime,
+	'data-waiting-after-closing': waitingAfterClosing,
 } );

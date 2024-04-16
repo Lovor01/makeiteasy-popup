@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-// import MicroModal from 'micromodal';
-import MicroModal from '../test/Micromodal/lib/src/index';
+import MicroModal from 'micromodal';
+// for testing purposes only
+// import MicroModal from '../test/Micromodal/lib/src/index';
 import {
 	default as adjustRelativePopups,
 	refreshOpenPopups,
@@ -45,10 +46,7 @@ function setUp() {
 			openTrigger: 'data-micromodal-open-' + id,
 			closeTrigger: 'data-micromodal-close-' + id,
 			onShow: ( modal ) => {
-				if (
-					modal.classList.contains( 'popup-floating' ) &&
-					! modal.classList.contains( 'popup-position-relative' )
-				)
+				if ( modal.classList.contains( 'popup-modal' ) )
 					document.body.classList.add( 'has-floating-popup' );
 				refreshOpenPopups( 1 );
 			},
@@ -101,12 +99,12 @@ function setUp() {
 	}
 
 	function cleaner( popupElement ) {
-		if ( popupElement.dataset.waitingTimeAfterClosing === '-1s' ) return;
+		if ( popupElement.dataset.waitingAfterClosing === '-1s' ) return;
 		setTimeout(
 			() => {
 				popupElement.waitingTimerActive = false;
 			},
-			parseInt( popupElement.dataset.waitingTimeAfterClosing ) * 1000
+			parseInt( popupElement.dataset.waitingAfterClosing ) * 1000
 		);
 	}
 

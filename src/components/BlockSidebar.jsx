@@ -20,11 +20,10 @@ export default ( {
 		openSelector,
 		layoutType,
 		modalityType,
-		position,
 		relativeElement,
 		hasCloseButton,
 		openingTime,
-		waitingTimeAfterClosing,
+		waitingAfterClosing,
 		enabled,
 	},
 	setAttributes,
@@ -86,7 +85,7 @@ export default ( {
 							setAttributes(
 								openType === 'on timer'
 									? { openingTime }
-									: { waitingTimeAfterClosing: openingTime }
+									: { waitingAfterClosing: openingTime }
 							);
 						} }
 						label={
@@ -102,7 +101,7 @@ export default ( {
 						value={
 							openType === 'on timer'
 								? openingTime
-								: waitingTimeAfterClosing
+								: waitingAfterClosing
 						}
 						units={
 							openType === 'on timer'
@@ -144,13 +143,26 @@ export default ( {
 					selected={ layoutType }
 					options={ [
 						{ label: 'floating', value: 'floating' },
-						{ label: 'fixed', value: 'fixed' },
+						{ label: 'static', value: 'static' },
+						{ label: 'attached', value: 'attached' },
 					] }
 					onChange={ ( layoutType ) => {
 						setAttributes( { layoutType } );
 					} }
 				/>
 			</PanelRow>
+			{ layoutType === 'attached' && (
+				<PanelRow>
+					<TextControl
+						label="CSS selector"
+						help="Element to which this one is attached"
+						value={ relativeElement }
+						onChange={ ( relativeElement ) =>
+							setAttributes( { relativeElement } )
+						}
+					/>
+				</PanelRow>
+			) }
 			<PanelRow>
 				<RadioControl
 					label="Modality type"
@@ -164,31 +176,6 @@ export default ( {
 					} }
 				/>
 			</PanelRow>
-			<PanelRow>
-				<RadioControl
-					label="Position"
-					selected={ position }
-					options={ [
-						{ label: 'self-contained', value: 'self-contained' },
-						{ label: 'attached', value: 'attached' },
-					] }
-					onChange={ ( position ) => {
-						setAttributes( { position } );
-					} }
-				/>
-			</PanelRow>
-			{ position === 'attached' && (
-				<PanelRow>
-					<TextControl
-						label="CSS selector"
-						help="Element to which this one is attached"
-						value={ relativeElement }
-						onChange={ ( relativeElement ) =>
-							setAttributes( { relativeElement } )
-						}
-					/>
-				</PanelRow>
-			) }
 		</PanelBody>
 		<PanelBody
 			title={ __( 'Visibility', 'makeiteasy-popup' ) }

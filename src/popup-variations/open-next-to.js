@@ -73,9 +73,11 @@ function adjustPopups( openPopup = 0 ) {
 			}
 
 			// there is a cached opener property, use it to adjust popup width
-			// may be just related to dancelib
+			// may be just related to special case
 			if ( isDesktop ) {
-				popup.style.width = popup.opener.offsetWidth + 'px';
+				// TODO: in next iteration give option to set width of popup the same as opener element
+				// popup.style.width = popup.opener.offsetWidth + 'px';
+				// popup.style.boxSizing = 'border-box';
 				popup.style.left = rect.left + 'px';
 			} else {
 				const sideClass = ( isLeft ) =>
@@ -102,7 +104,7 @@ function adjustPopups( openPopup = 0 ) {
 export function refreshOpenPopups( openPopup = 0 ) {
 	// filter just relative opened popups (actually just popup wrappers)
 	openedRelativePopups = document.querySelectorAll(
-		'.popup-position-relative.is-open .makeiteasy-popup-wrapper'
+		'.popup-attached.is-open .makeiteasy-popup-wrapper'
 	);
 	adjustPopups( openPopup );
 }

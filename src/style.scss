@@ -26,16 +26,20 @@
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		padding: 2px 4px;
-		margin: 0 0 0 auto;
+		padding: 2px 2px;
+		margin: 0 0 0 1ch;
 
 		svg {
 			fill: var(--wp--preset--color--black, #000);
 			pointer-events: none;
 		}
+
+		&:focus-visible {
+			outline: #000 2px outset;
+		}
 	}
 
-	&.popup-fixed {
+	&.popup-floating {
 		position: fixed;
 		max-width: none;
 
@@ -60,11 +64,6 @@
 		display: flex;
 		align-items: center;
 
-		/* blocks inside are normally centered due to margin left and right set to auto,
-		   change this */
-		> * {
-
-		}
 	}
 
 	.makeiteasy-popup-wrapper {
@@ -72,9 +71,39 @@
 		background: #d6d6d6;
 		display: flex;
 		padding: 3px 4px 3px 8px;
+
+		//  add chevron
+		// &::before {
+		// 	content: url("./assets/chevron.svg");
+		// 	display: block;
+		// 	position: absolute;
+		// 	top: -1.25rem;
+		// 	left: 50%;
+		// 	transform: translateX(-50%);
+		// }
+
+		&.popup-position-above::before {
+			top: auto;
+			bottom: -1.2rem;
+			transform: translateX(-50%) rotateX(180deg);
+		}
+
 	}
 
-	&.popup-position-relative .makeiteasy-popup-wrapper {
+	&.popup-attached {
+		margin-top: 0;
+		position: fixed;
+		inset: 0;
+		margin: 0 !important;
+		max-width: none;
+
+		.makeiteasy-popup-overlay {
+			position: absolute;
+			inset: 0;
+		}
+	}
+
+	&.popup-attached .makeiteasy-popup-wrapper {
 		position: absolute;
 	}
 }

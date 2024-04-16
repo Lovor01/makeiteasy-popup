@@ -9,20 +9,13 @@ export default function save( {
 
 		anchor,
 		hasCloseButton,
-		openSelector,
-		openingTime,
-		waitingTimeAfterClosing,
+		modalityType,
 	},
 } ) {
 	return (
 		<OuterShell
-			{ ...useBlockProps.save( {
-				...wrapperClass( attributes ),
-				// id: save_id, - deprecated
-				'data-open-selector': openSelector,
-				'data-opening-time': openingTime,
-				'data-waiting-time-after-closing': waitingTimeAfterClosing,
-			} ) }
+			{ ...useBlockProps.save( wrapperClass( attributes ) ) }
+			isModal={ modalityType === 'modal' }
 			innerBlocks={ useInnerBlocksProps.save }
 			anchor={ anchor }
 			hasCloseButton={ hasCloseButton }

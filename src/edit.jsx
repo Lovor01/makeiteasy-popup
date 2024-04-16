@@ -14,6 +14,7 @@ export default function Edit( {
 	attributes: { openType, hasCloseButton, anchor },
 	setAttributes,
 	clientId,
+	modalityType,
 } ) {
 	// Get all blocks
 	const blocks = useSelect( ( select ) =>
@@ -24,7 +25,7 @@ export default function Edit( {
 	);
 
 	useEffect( () => {
-		if ( idExists( anchor, blocks, clientId ) || ! anchor ) {
+		if ( ! anchor || idExists( anchor, blocks, clientId ) ) {
 			// eslint-disable-next-line no-unused-vars
 			const customId = customNanoId( blocks, clientId );
 			setAttributes( {
@@ -39,6 +40,7 @@ export default function Edit( {
 			<BlockSidebar { ...{ attributes, setAttributes, openType } } />
 			<OuterShell
 				{ ...useBlockProps( wrapperClass( attributes, popupsOpen ) ) }
+				isModal={ modalityType === 'modal' }
 				innerBlocks={ useInnerBlocksProps }
 				anchor={ anchor }
 				hasCloseButton={ hasCloseButton }

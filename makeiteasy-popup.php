@@ -14,6 +14,7 @@
  * Text Domain:       makeiteasy-popup
  */
 
+require __DIR__ . '/auxiliary.php';
 
 function makeiteasy_popup_block_init() {
 	register_block_type( __DIR__ . '/build' );

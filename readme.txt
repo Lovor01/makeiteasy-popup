@@ -14,23 +14,19 @@ Pop-up
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
 1. Upload the plugin files to the `/wp-content/plugins/makeiteasy-popup` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+2. Activate the plugin through the 'Plugins' screen in WordPress
 
+== Known bugs ==
+
+Opening several modal popups one over another may result in user being unable to close popup. I am working to fix this
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Waiting for your questions =
 
-An answer to that question.
+I'll answer them here.
 
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 == Screenshots ==
 
@@ -38,7 +34,7 @@ Answer to foo bar dilemma.
 the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
 directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
 (or jpg, jpeg, gif).
-2. This is the second screen shot
+1. This is the second screen shot
 
 == Changelog ==
 
