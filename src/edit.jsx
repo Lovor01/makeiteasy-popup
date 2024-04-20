@@ -1,5 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import { default as OuterShell, wrapperClass } from './components/OuterShell';
+import { default as BlockBody, wrapperClass } from './components/BlockBody.jsx';
 import { useEffect } from '@wordpress/element';
 import BlockSidebar from './components/BlockSidebar';
 import { idExists, customNanoId } from './helpers/custom-id.js';
@@ -38,7 +38,7 @@ export default function Edit( {
 	return (
 		<>
 			<BlockSidebar { ...{ attributes, setAttributes, openType } } />
-			<OuterShell
+			<BlockBody
 				{ ...useBlockProps( wrapperClass( attributes, popupsOpen ) ) }
 				isModal={ modalityType === 'modal' }
 				innerBlocks={ useInnerBlocksProps }

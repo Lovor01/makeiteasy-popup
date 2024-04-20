@@ -5,6 +5,10 @@
  */
 
 .wp-block-makeiteasy-popup {
+	&.disabled {
+		filter: saturate(35%) brightness(35%)
+	}
+
 	&.wp-block-makeiteasy-popup {
 		visibility: visible;
 		opacity: 1;

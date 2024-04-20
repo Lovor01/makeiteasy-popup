@@ -1,5 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import { default as OuterShell, wrapperClass } from './components/OuterShell';
+import { default as BlockBody, wrapperClass } from './components/BlockBody';
 
 /* eslint-disable camelcase */
 export default function save( {
@@ -10,15 +10,17 @@ export default function save( {
 		anchor,
 		hasCloseButton,
 		modalityType,
+		closeButtonColor,
 	},
 } ) {
 	return (
-		<OuterShell
+		<BlockBody
 			{ ...useBlockProps.save( wrapperClass( attributes ) ) }
 			isModal={ modalityType === 'modal' }
 			innerBlocks={ useInnerBlocksProps.save }
 			anchor={ anchor }
 			hasCloseButton={ hasCloseButton }
+			closeButtonColor={ closeButtonColor }
 		/>
 	);
 }

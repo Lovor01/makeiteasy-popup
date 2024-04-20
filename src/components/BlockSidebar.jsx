@@ -210,7 +210,8 @@ export default ( {
 						label="Popup is enabled"
 						checked={ enabled }
 						onChange={ ( enabled ) => setAttributes( { enabled } ) }
-						help="Whether popup will show at all."
+						help="Disabled block is saved for later showing."
+						title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
 					/>
 				</PanelRow>
 			</PanelBody>
