@@ -11,7 +11,7 @@ import './editor.scss';
 /* eslint-disable camelcase */
 export default function Edit( {
 	attributes,
-	attributes: { openType, hasCloseButton, anchor },
+	attributes: { openType, hasCloseButton, anchor, closeButtonColor },
 	setAttributes,
 	clientId,
 	modalityType,
@@ -44,6 +44,7 @@ export default function Edit( {
 				innerBlocks={ useInnerBlocksProps }
 				anchor={ anchor }
 				hasCloseButton={ hasCloseButton }
+				closeButtonColor={ closeButtonColor }
 			/>
 		</>
 	);

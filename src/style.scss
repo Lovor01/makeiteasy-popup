@@ -28,6 +28,7 @@
 		align-items: center;
 		padding: 2px 2px;
 		margin: 0 0 0 1ch;
+		align-self: flex-start;
 
 		svg {
 			fill: var(--wp--preset--color--black, #000);
@@ -61,14 +62,11 @@
 	}
 
 	.makeiteasy-popup-content-wrapper {
-		display: flex;
 		align-items: center;
-
 	}
 
 	.makeiteasy-popup-wrapper {
 		position: relative;
-		background: #d6d6d6;
 		display: flex;
 		padding: 3px 4px 3px 8px;
 

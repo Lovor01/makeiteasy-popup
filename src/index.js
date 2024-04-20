@@ -22,7 +22,7 @@ import './store.js';
 /**
  * Sidebar extension to show or hide popups
  */
-import './plugin-sidebar.jsx';
+import './components/plugin-sidebar.jsx';
 
 /**
  * Internal dependencies

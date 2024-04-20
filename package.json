@@ -1,6 +1,6 @@
 {
 	"name": "makeiteasy-popup",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
@@ -16,11 +16,11 @@
 		"start:hot": "wp-scripts start --hot"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.6.0",
-		"dotenv": "^16.3.2"
+		"@wordpress/scripts": "^27.7.0",
+		"dotenv": "^16.4.5"
 	},
 	"dependencies": {
 		"micromodal": "^0.4.10",
-		"nanoid": "^5.0.3"
+		"nanoid": "^5.0.7"
 	}
 }

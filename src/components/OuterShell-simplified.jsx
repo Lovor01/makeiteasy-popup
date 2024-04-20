@@ -5,7 +5,6 @@
 /* eslint-disable camelcase */
 import { ReactComponent as CloseX } from '../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
-import { applyFilters } from '@wordpress/hooks';
 
 export default forwardRef( ( props, ref ) => {
 	const {
@@ -13,38 +12,8 @@ export default forwardRef( ( props, ref ) => {
 		anchor,
 		hasCloseButton = true,
 		isModal,
-		style,
-		closeButtonColor,
 		...restProps
 	} = props;
-
-	/* move has- classses (block editor built-in classes) lower, on popup, while retaining the other stuff on most outer element */
-	// pick has- properties from classes
-	const classes = restProps.className.split( ' ' );
-	const classesWithoutHas = [],
-		classesWithHas = [];
-	const CloseButtonIcon = applyFilters(
-		'makeiteasy/popup/closeButtonIconElement',
-		CloseX
-	);
-	for ( const singleClass of classes ) {
-		if (
-			singleClass.substring( 0, 4 ) === 'has-' ||
-			singleClass.substring( 0, 5 ) === 'align'
-		)
-			classesWithHas.push( singleClass );
-		else classesWithoutHas.push( singleClass );
-	}
-
-	const getClasses = ( classArray ) =>
-		Array.isArray( classArray ) ? classArray.join( ' ' ) : classArray;
-
-	const classesWithHasString = () => {
-		// add class to wrapper
-		classesWithHas.push( 'makeiteasy-popup-wrapper' );
-		const classesString = getClasses( classesWithHas );
-		return classesString !== '' ? { className: classesString } : null;
-	};
 
 	const dataModalCloseAttr = anchor
 		? { [ 'data-micromodal-close-' + anchor ]: true }
@@ -56,16 +25,12 @@ export default forwardRef( ( props, ref ) => {
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
 		>
-			<CloseButtonIcon style={ { fill: closeButtonColor } } />
+			<CloseX />
 		</button>
 	) : null;
 
 	return (
-		<div
-			aria-hidden="true"
-			{ ...{ ...restProps, className: getClasses( classesWithoutHas ) } }
-			ref={ ref }
-		>
+		<div aria-hidden="true" { ...{ ...restProps, anchor } } ref={ ref }>
 			<div
 				className="makeiteasy-popup-overlay"
 				tabIndex="-1"
@@ -75,7 +40,7 @@ export default forwardRef( ( props, ref ) => {
 					role="dialog"
 					aria-modal={ isModal }
 					aria-labelledby="modal-1-title"
-					{ ...{ ...classesWithHasString(), style } }
+					className="makeiteasy-popup-wrapper"
 				>
 					<div
 						{ ...innerBlocks( {

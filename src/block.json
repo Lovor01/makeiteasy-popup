@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "makeiteasy/popup",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"title": "Makeiteasy Popup",
 	"category": "widgets",
 	"icon": "edit-page",
@@ -26,10 +26,6 @@
 			"allowJustification": true
 		},
 		"anchor": true
-	},
-	"selectors": {
-		"root": ".makeiteasy-popup-wrapper",
-		"color": ".makeiteasy-popup-wrapper"
 	},
 	"attributes": {
 		"openType": {
@@ -77,6 +73,9 @@
 		"enabled": {
 			"type": "boolean",
 			"default": true
+		},
+		"closeButtonColor": {
+			"type": "string"
 		}
 	}
 }

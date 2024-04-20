@@ -1,9 +1,9 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/edit-post';
-import { ReactComponent as Icon } from './assets/block-icon.svg';
+import { ReactComponent as Icon } from '../assets/block-icon.svg';
 import { ToggleControl, PanelBody, PanelRow } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
-import popupStore from './store';
+import popupStore from '../store';
 
 // @see https://github.com/WordPress/gutenberg/tree/trunk/packages/components/src/panel#panelbody
 
