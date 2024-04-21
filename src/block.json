@@ -14,18 +14,31 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./makeiteasy-popup-helpers.js",
 	"supports": {
+		"align": true,
+		"anchor": true,
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true
+		},
 		"color": {
 			"background": true,
 			"text": true
 		},
-		"align": true,
 		"layout": {
 			"default": {
 				"type": "constrained"
 			},
 			"allowJustification": true
 		},
-		"anchor": true
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true
+		}
 	},
 	"attributes": {
 		"openType": {
@@ -77,5 +90,9 @@
 		"closeButtonColor": {
 			"type": "string"
 		}
+	},
+	"selectors": {
+		"root": ".wp-block-makeiteasy-popup .makeiteasy-popup-content-wrapper",
+		"color": ".wp-block-makeiteasy-popup .makeiteasy-popup-content-wrapper"
 	}
 }

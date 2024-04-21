@@ -1,25 +1,34 @@
 === Makeiteasy Popup ===
 Contributors:      lovor
-Tags:              popup, pop-up
-Tested up to:      6.4.3
-Stable tag:        0.1.0
+Tags:              popup, pop-up, modal, dialog
+Tested up to:      6.5.2
+Stable tag:        1.0.0
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
-Advanced block based pop-up solution
+Advanced block based pop-up solution.
 
 == Description ==
 
-Pop-up
+Need a popups for notices for your users? Marketing call to actions opening on scroll or timer, click on element or even on hover on some element? Several popups on one page?
+This plugin has it all. Styling of the block is the same or similar as block editor core blocks + more.
+
+#### There are plenty of such plugins. Why should I use this one?
+
+Incorrect. This plugin feels like having native, built-in WP block, plugin is self - sufficient, without heavy burden of having large blocks library, you can install it only there where you need it.
 
 == Installation ==
+
+You can install the plugin in usual way, however, the easiest way to get it is in block editor, by entering search phrase 'makeiteasy popup' or similar while inserting new block with '+' sign in top bar.
+
+"Usual" way:
 
 1. Upload the plugin files to the `/wp-content/plugins/makeiteasy-popup` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Known bugs ==
 
-Opening several modal popups one over another may result in user being unable to close popup. I am working to fix this
+Opening several modal popups one over another may result in user being unable to close popup. I am working to fix this.
 
 == Frequently Asked Questions ==
 

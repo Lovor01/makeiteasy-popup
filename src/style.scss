@@ -36,7 +36,7 @@
 		}
 
 		&:focus-visible {
-			outline: #000 2px outset;
+			outline: var(--wp--preset--color--contrast, #242424) 1px solid;
 		}
 	}
 
