@@ -14,7 +14,7 @@ export default function save( {
 	},
 } ) {
 	return (
-		<BlockBody
+		<BlockBody.save
 			{ ...useBlockProps.save( wrapperClass( attributes ) ) }
 			isModal={ modalityType === 'modal' }
 			innerBlocks={ useInnerBlocksProps.save }

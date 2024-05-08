@@ -5,8 +5,10 @@
  */
 
 .wp-block-makeiteasy-popup {
+	display: flex;
+
 	&.disabled {
-		filter: saturate(35%) brightness(35%)
+		filter: saturate(35%) brightness(35%);
 	}
 
 	&.wp-block-makeiteasy-popup {
@@ -18,7 +20,7 @@
 	/* block element classes */
 
 	&.is-hidden {
-		display: none;
+		display: none !important;
 	}
 
 	&.wp-block-makeiteasy-popup {
@@ -37,28 +39,42 @@
 			top: unset;
 			left: unset;
 			right: unset;
-			display: flex;
-			justify-content: center;
+			display: block;
 			background: none;
 			width: auto;
 		}
 	}
 
-	&.popup-attached .makeiteasy-popup-wrapper {
-		position: unset;
+	&.popup-fixed {
+		&.popup-fixed.popup-fixed {
+			max-width: none;
+		}
+
+		.makeiteasy-popup-overlay {
+			width: 100%;
+		}
+
+		.makeiteasy-popup-wrapper {
+			position: relative;
+		}
 	}
 
+	&.popup-attached {
+		.makeiteasy-popup-overlay {
+			position: relative;
+		}
+		.makeiteasy-popup-wrapper {
+			position: unset;
+		}
+	}
 	/* end of block element classes */
 
 	.makeiteasy-popup-close {
 		position: static;
+		cursor: default;
 	}
-
 }
 
 /*
  * Plugin Sidebar
  */
-.mie-popup-plugin-panel.is-opened {
-	padding-top: 32px;
-}

@@ -119,9 +119,7 @@ export const wrapperClass = (
 		enabled,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
-	isShown = true,
-	// detect if call is from Edit
-	isEdit
+	isShown = true
 ) => ( {
 	className:
 		{
@@ -132,7 +130,7 @@ export const wrapperClass = (
 		}[ openType ] +
 		' ' +
 		{
-			floating: ! isEdit ? 'popup-floating' : '',
+			floating: 'popup-floating',
 			fixed: 'popup-floating popup-fixed',
 			attached: 'popup-attached',
 		}[ layoutType ] +

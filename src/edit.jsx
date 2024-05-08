@@ -2,6 +2,8 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import { default as BlockBody, wrapperClass } from './components/BlockBody.jsx';
 import { useEffect } from '@wordpress/element';
 import BlockSidebar from './components/BlockSidebar';
+// block toolbar is not yet needed
+// import BlockToolbar from './components/BlockToolbar.jsx';
 import { idExists, customNanoId } from './helpers/custom-id.js';
 import { useSelect } from '@wordpress/data';
 import popupStore from './store';
@@ -39,7 +41,9 @@ export default function Edit( {
 		<>
 			<BlockSidebar { ...{ attributes, setAttributes, openType } } />
 			<BlockBody
-				{ ...useBlockProps( wrapperClass( attributes, popupsOpen ) ) }
+				{ ...useBlockProps(
+					wrapperClass( attributes, popupsOpen, true )
+				) }
 				isModal={ modalityType === 'modal' }
 				innerBlocks={ useInnerBlocksProps }
 				anchor={ anchor }

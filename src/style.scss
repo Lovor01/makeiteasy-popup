@@ -1,4 +1,14 @@
 .wp-block-makeiteasy-popup {
+	.makeiteasy-popup-overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		> .alignwide {
+			max-width: var(--wp--style--global--wide-size);
+			width: 100%;
+		}
+	}
+
 	&.popup-modal {
 		position: fixed;
 		inset: 0;
@@ -8,9 +18,6 @@
 			width: 100%;
 			height: 100%;
 			background: #2227;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 		}
 	}
 
@@ -46,9 +53,6 @@
 
 		.makeiteasy-popup-overlay {
 			position: absolute;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 		}
 
 		&,
@@ -58,16 +62,12 @@
 			left: 0;
 			right: 0;
 		}
-
-	}
-
-	.makeiteasy-popup-content-wrapper {
-		align-items: center;
 	}
 
 	.makeiteasy-popup-wrapper {
 		position: relative;
 		display: flex;
+		justify-content: center;
 		padding: 3px 4px 3px 8px;
 
 		//  add chevron
@@ -85,7 +85,39 @@
 			bottom: -1.2rem;
 			transform: translateX(-50%) rotateX(180deg);
 		}
+	}
 
+	&.popup-fixed {
+		.makeiteasy-popup-wrapper {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			box-sizing: border-box;
+			justify-content: center;
+		}
+
+		.makeiteasy-popup-close {
+			flex: none;
+		}
+
+		.makeiteasy-popup-content-wrapper.is-content-justification-center + .makeiteasy-popup-close {
+			position: absolute;
+			right: 3ch;
+		}
+	}
+
+	.makeiteasy-popup-content-wrapper {
+		align-items: center;
+		width: 100%;
+
+		&.is-content-justification-left {
+			margin-left: 0;
+			margin-right: auto;
+		}
+		&.is-content-justification-right {
+			margin-right: 0;
+			margin-left: auto;
+		}
 	}
 
 	&.popup-attached {
