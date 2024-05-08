@@ -16,6 +16,8 @@ function setUp() {
 
 	// Micromodal from other projects may be used here
 	const selectors = document.querySelectorAll( '.wp-block-makeiteasy-popup' );
+	// queue for popups waiting to be opened if modal is active
+	const openQueue = [];
 
 	/**
 	 * Set up events for popups
@@ -48,13 +50,17 @@ function setUp() {
 			onShow: ( modal ) => {
 				if ( modal.classList.contains( 'popup-modal' ) )
 					document.body.classList.add( 'has-floating-popup' );
+				// refresh attached popups
 				refreshOpenPopups( 1 );
 			},
 			onClose: ( modal ) => {
 				document.body.classList.remove( 'has-floating-popup' );
 				if ( modal.classList.contains( 'open-on-hover' ) )
 					cleaner( modal );
+				// refresh attached popups
 				refreshOpenPopups( 2 );
+				// process queue
+				processQueue();
 			},
 		} );
 	}
@@ -83,11 +89,13 @@ function setUp() {
 		 * @return {void}
 		 */
 		function processEvent( event, popupElement ) {
+			//  bail out if popup is already open or if it is waiting to be opened
 			if (
 				popupElement.classList.contains( 'is-open' ) ||
 				popupElement.waitingTimerActive
 			)
 				return;
+
 			// if event is hover wait after pointer is removed before hovering again
 			if ( event.type === 'pointerover' ) {
 				popupElement.waitingTimerActive = true;
@@ -118,6 +126,13 @@ function setUp() {
 		const unitPart = timer.replace( numberPart, '' );
 		if ( unitPart === 's' ) numberPart = numberPart * 1000;
 		setTimeout( () => {
+			// if there is another modal popup open, put it in queue, only if it is timer popup
+			if ( document.querySelector( '.is-open.popup-modal' ) ) {
+				if ( element.classList.contains( 'open-on-timer' ) )
+					openQueue.push( element.id );
+				return;
+			}
+
 			showModal( element.id );
 		}, numberPart );
 	}
@@ -154,4 +169,12 @@ function setUp() {
 	}
 
 	adjustRelativePopups();
+
+	/**
+	 * check queue for popups and open from queue if there are elements
+	 */
+	function processQueue() {
+		if ( openQueue.length === 0 ) return;
+		showModal( openQueue.pop() );
+	}
 }
