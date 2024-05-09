@@ -33,23 +33,29 @@ function adjustPopups( openPopup = 0 ) {
 		for ( const popup of openedRelativePopups ) {
 			const positionAboveClass = 'popup-position-above';
 			const openerSelected = 'opener-is-selected';
-			if ( ! popup.opener ) {
+			// const popupWrapper = popup.querySelector( '.popup-wrapper' );
+			const attachedBaseElement = document.querySelector(
+				popup.dataset?.attachedBaseElement
+			);
+			if ( ! attachedBaseElement ) {
 				// eslint-disable-next-line no-console
-				console.warn( 'Make IT Easy popup: Opener element not found!' );
+				console.warn(
+					'Make IT Easy popup: Base element for attachemnt not found!'
+				);
 				return;
 			}
 
 			// give class to opener to notify that it is selected
 			switch ( openPopup ) {
 				case 1:
-					popup.opener.classList.add( openerSelected );
+					attachedBaseElement.classList.add( openerSelected );
 					break;
 				case 2:
-					popup.opener.classList.remove( openerSelected );
+					attachedBaseElement.classList.remove( openerSelected );
 					break;
 			}
 
-			const rect = popup.opener.getBoundingClientRect();
+			const rect = attachedBaseElement.getBoundingClientRect();
 
 			const windowWidth = window.innerWidth;
 			const isDesktop = windowWidth >= desktopBreakpoint;
@@ -76,7 +82,7 @@ function adjustPopups( openPopup = 0 ) {
 			// may be just related to special case
 			if ( isDesktop ) {
 				// TODO: in next iteration give option to set width of popup the same as opener element
-				popup.style.width = popup.opener.offsetWidth + 'px';
+				popup.style.width = attachedBaseElement.offsetWidth + 'px';
 				popup.style.boxSizing = 'border-box';
 				popup.style.left = rect.left + 'px';
 			} else {
@@ -104,7 +110,7 @@ function adjustPopups( openPopup = 0 ) {
 export function refreshOpenPopups( openPopup = 0 ) {
 	// filter just relative opened popups (actually just popup wrappers)
 	openedRelativePopups = document.querySelectorAll(
-		'.popup-attached.is-open .makeiteasy-popup-wrapper'
+		'.popup-attached.is-open'
 	);
 	adjustPopups( openPopup );
 }

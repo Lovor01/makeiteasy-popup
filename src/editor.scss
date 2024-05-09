@@ -7,6 +7,10 @@
 .wp-block-makeiteasy-popup {
 	display: flex;
 
+	.makeiteasy-popup-wrapper {
+		width: 100%;
+	}
+
 	&.disabled {
 		filter: saturate(35%) brightness(35%);
 	}

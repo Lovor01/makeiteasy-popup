@@ -23,7 +23,7 @@ export default ( {
 		openSelector,
 		layoutType,
 		modalityType,
-		relativeElement,
+		attachedBaseElement,
 		hasCloseButton,
 		openingTime,
 		waitingAfterClosing,
@@ -52,9 +52,9 @@ export default ( {
 			<TextControl
 				label="CSS selector"
 				help="Element to which this one is attached"
-				value={ relativeElement }
-				onChange={ ( relativeElement ) =>
-					setAttributes( { relativeElement } )
+				value={ attachedBaseElement }
+				onChange={ ( attachedBaseElement ) =>
+					setAttributes( { attachedBaseElement } )
 				}
 			/>
 		</PanelRow>

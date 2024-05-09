@@ -120,8 +120,6 @@ function setUp() {
 			if ( event.type === 'pointerover' ) {
 				popupElement.waitingTimerActive = true;
 			}
-			popupElement.querySelector( '.makeiteasy-popup-wrapper' ).opener =
-				event.currentTarget;
 			showModal( popupElement.id );
 		}
 	}
@@ -144,7 +142,8 @@ function setUp() {
 	 */
 	function setOpenOnTimer( element ) {
 		const timer = element.dataset.openingTime;
-		let numberPart = parseInt( timer );
+		// convert integer part to number
+		let numberPart = parseFloat( timer );
 		const unitPart = timer.replace( numberPart, '' );
 		if ( unitPart === 's' ) {
 			numberPart = numberPart * 1000;
@@ -157,7 +156,6 @@ function setUp() {
 				}
 				return;
 			}
-
 			showModal( element.id );
 		}, numberPart );
 	}

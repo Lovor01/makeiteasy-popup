@@ -40,8 +40,11 @@ const BlockBodyInner = ( props ) => {
 			role="dialog"
 			aria-modal={ isModal }
 			aria-labelledby="modal-1-title"
-			className="makeiteasy-popup-wrapper"
-			{ ...{ ...restProps, ...dataModalCloseAttr } }
+			{ ...{
+				...restProps,
+				className: restProps.className + ' makeiteasy-popup-wrapper',
+				...dataModalCloseAttr,
+			} }
 		>
 			<div
 				{ ...innerBlocks( {
@@ -99,7 +102,7 @@ export default BlockBody;
  * @param {string}  className
  * @param {string}  addToClassesWithHas
  * @param {string}  addToClassesWithoutHas
- * @param {boolean} separateAlign
+ * @param {boolean} isSave
  * @return {Object} classesWithHas, classesWithoutHas
  */
 const separateOnOuterAndInner = (
@@ -110,11 +113,12 @@ const separateOnOuterAndInner = (
 		isModal,
 		hasCloseButton,
 		closeButtonColor,
+		style,
 		...restProps
 	},
 	addToClassesWithHas,
 	addToClassesWithoutHas,
-	separateAlign = true
+	isSave
 ) => {
 	const getClassesString = ( classArray ) => {
 		const classesString = Array.isArray( classArray )
@@ -122,8 +126,8 @@ const separateOnOuterAndInner = (
 			: classArray;
 		return classesString !== '' ? classesString : null;
 	};
-	/* move has- classses (block editor built-in classes) lower, on popup, while retaining the other stuff on most outer element */
-	// pick has- properties from classes
+	/* move has- classes (block editor built-in classes) lower, on popup, while retaining other classes on most outer element
+	 * align is moved only in save, not in editor, to properly function */
 	const classes = className.split( ' ' );
 	const classesWithoutHas = [],
 		classesWithHas = [];
@@ -131,7 +135,7 @@ const separateOnOuterAndInner = (
 	for ( const singleClass of classes ) {
 		if (
 			singleClass.substring( 0, 4 ) === 'has-' ||
-			( separateAlign && singleClass.substring( 0, 5 ) === 'align' )
+			( isSave && singleClass.substring( 0, 5 ) === 'align' )
 		) {
 			classesWithHas.push( singleClass );
 		} else {
@@ -165,6 +169,7 @@ const separateOnOuterAndInner = (
 			isModal,
 			closeButtonColor,
 			dataModalCloseAttr,
+			style,
 		},
 	};
 };
@@ -178,6 +183,7 @@ export const wrapperClass = (
 		openingTime,
 		waitingAfterClosing,
 		enabled,
+		attachedBaseElement,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -208,4 +214,5 @@ export const wrapperClass = (
 	'data-open-selector': openSelector,
 	'data-opening-time': openingTime,
 	'data-waiting-after-closing': waitingAfterClosing,
+	'data-attached-base-element': attachedBaseElement,
 } );
