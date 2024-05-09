@@ -76,8 +76,8 @@ function adjustPopups( openPopup = 0 ) {
 			// may be just related to special case
 			if ( isDesktop ) {
 				// TODO: in next iteration give option to set width of popup the same as opener element
-				// popup.style.width = popup.opener.offsetWidth + 'px';
-				// popup.style.boxSizing = 'border-box';
+				popup.style.width = popup.opener.offsetWidth + 'px';
+				popup.style.boxSizing = 'border-box';
 				popup.style.left = rect.left + 'px';
 			} else {
 				const sideClass = ( isLeft ) =>

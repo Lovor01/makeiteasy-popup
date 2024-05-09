@@ -2,15 +2,12 @@ import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import { default as BlockBody, wrapperClass } from './components/BlockBody.jsx';
 import { useEffect } from '@wordpress/element';
 import BlockSidebar from './components/BlockSidebar';
-// block toolbar is not yet needed
-// import BlockToolbar from './components/BlockToolbar.jsx';
 import { idExists, customNanoId } from './helpers/custom-id.js';
 import { useSelect } from '@wordpress/data';
 import popupStore from './store';
 
 import './editor.scss';
 
-/* eslint-disable camelcase */
 export default function Edit( {
 	attributes,
 	attributes: { openType, hasCloseButton, anchor, closeButtonColor },

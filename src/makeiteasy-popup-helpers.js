@@ -1,18 +1,28 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import MicroModal from 'micromodal';
-// for testing purposes only
-// import MicroModal from '../test/Micromodal/lib/src/index';
+
 import {
 	default as adjustRelativePopups,
 	refreshOpenPopups,
 } from './popup-variations/open-next-to';
 
-if ( document.readyState === 'loading' )
+if ( document.readyState === 'loading' ) {
 	document.addEventListener( 'DOMContentLoaded', setUp );
-else setUp();
+} else {
+	setUp();
+}
 
 function setUp() {
-	if ( ! MicroModal ) return;
+	if ( ! MicroModal ) {
+		return;
+	}
+
+	/**
+	 * setup custom events for extenders
+	 * actions can be hooked to this events to fire on opening and closing modals
+	 */
+	const openModal = new Event( 'makeiteasy/openModal' ),
+		closeModal = new Event( 'makeiteasy/closeModal' );
 
 	// Micromodal from other projects may be used here
 	const selectors = document.querySelectorAll( '.wp-block-makeiteasy-popup' );
@@ -27,14 +37,15 @@ function setUp() {
 		// set if opens on click
 		const elementClassList = selector.classList;
 
-		if ( elementClassList.contains( 'open-on-timer' ) )
+		if ( elementClassList.contains( 'open-on-timer' ) ) {
 			setOpenOnTimer( selector );
-		else if ( elementClassList.contains( 'open-on-click' ) )
+		} else if ( elementClassList.contains( 'open-on-click' ) ) {
 			setOpenEventOnElements( selector, 'click' );
-		else if ( elementClassList.contains( 'open-on-hover' ) )
+		} else if ( elementClassList.contains( 'open-on-hover' ) ) {
 			setOpenEventOnElements( selector, 'pointerover' );
-		else if ( elementClassList.contains( 'open-on-scroll' ) )
+		} else if ( elementClassList.contains( 'open-on-scroll' ) ) {
 			setOpenOnScroll( selector );
+		}
 	}
 
 	/**
@@ -48,19 +59,25 @@ function setUp() {
 			openTrigger: 'data-micromodal-open-' + id,
 			closeTrigger: 'data-micromodal-close-' + id,
 			onShow: ( modal ) => {
-				if ( modal.classList.contains( 'popup-modal' ) )
+				if ( modal.classList.contains( 'popup-modal' ) ) {
 					document.body.classList.add( 'has-floating-popup' );
+				}
 				// refresh attached popups
 				refreshOpenPopups( 1 );
+				// raise event for extenders
+				modal.dispatchEvent( openModal );
 			},
 			onClose: ( modal ) => {
 				document.body.classList.remove( 'has-floating-popup' );
-				if ( modal.classList.contains( 'open-on-hover' ) )
+				if ( modal.classList.contains( 'open-on-hover' ) ) {
 					cleaner( modal );
+				}
 				// refresh attached popups
 				refreshOpenPopups( 2 );
 				// process queue
 				processQueue();
+				// raise event for extenders
+				modal.dispatchEvent( closeModal );
 			},
 		} );
 	}
@@ -72,7 +89,9 @@ function setUp() {
 	 * @param {string}      eventType
 	 */
 	function setOpenEventOnElements( element, eventType ) {
-		if ( ! element.dataset.openSelector ) return;
+		if ( ! element.dataset.openSelector ) {
+			return;
+		}
 		for ( const opener of document.querySelectorAll(
 			element.dataset.openSelector
 		) ) {
@@ -93,8 +112,9 @@ function setUp() {
 			if (
 				popupElement.classList.contains( 'is-open' ) ||
 				popupElement.waitingTimerActive
-			)
+			) {
 				return;
+			}
 
 			// if event is hover wait after pointer is removed before hovering again
 			if ( event.type === 'pointerover' ) {
@@ -107,7 +127,9 @@ function setUp() {
 	}
 
 	function cleaner( popupElement ) {
-		if ( popupElement.dataset.waitingAfterClosing === '-1s' ) return;
+		if ( popupElement.dataset.waitingAfterClosing === '-1s' ) {
+			return;
+		}
 		setTimeout(
 			() => {
 				popupElement.waitingTimerActive = false;
@@ -124,12 +146,15 @@ function setUp() {
 		const timer = element.dataset.openingTime;
 		let numberPart = parseInt( timer );
 		const unitPart = timer.replace( numberPart, '' );
-		if ( unitPart === 's' ) numberPart = numberPart * 1000;
+		if ( unitPart === 's' ) {
+			numberPart = numberPart * 1000;
+		}
 		setTimeout( () => {
 			// if there is another modal popup open, put it in queue, only if it is timer popup
 			if ( document.querySelector( '.is-open.popup-modal' ) ) {
-				if ( element.classList.contains( 'open-on-timer' ) )
+				if ( element.classList.contains( 'open-on-timer' ) ) {
 					openQueue.push( element.id );
+				}
 				return;
 			}
 
@@ -142,7 +167,9 @@ function setUp() {
 	 * @param {HTMLElement} element
 	 */
 	function setOpenOnScroll( element ) {
-		if ( ! element.dataset.openSelector ) return;
+		if ( ! element.dataset.openSelector ) {
+			return;
+		}
 		const elementsToObserve = document.querySelectorAll(
 			element.dataset.openSelector
 		);
@@ -174,7 +201,9 @@ function setUp() {
 	 * check queue for popups and open from queue if there are elements
 	 */
 	function processQueue() {
-		if ( openQueue.length === 0 ) return;
+		if ( openQueue.length === 0 ) {
+			return;
+		}
 		showModal( openQueue.pop() );
 	}
 }

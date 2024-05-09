@@ -36,19 +36,20 @@ const BlockBody = forwardRef( ( props, ref ) => {
 	) : null;
 
 	return (
-		<div
-			role="dialog"
-			aria-modal={ isModal }
-			aria-labelledby="modal-1-title"
-			{ ...restProps }
-			ref={ ref }
-		>
+		<div { ...{ ...restProps, ...dataModalCloseAttr } } ref={ ref }>
 			<div
-				{ ...innerBlocks( {
-					className: 'makeiteasy-popup-content-wrapper',
-				} ) }
-			/>
-			{ closeButton }
+				role="dialog"
+				aria-modal={ isModal }
+				aria-labelledby="modal-1-title"
+				className="makeiteasy-popup-wrapper"
+			>
+				<div
+					{ ...innerBlocks( {
+						className: 'makeiteasy-popup-content-wrapper',
+					} ) }
+				/>
+				{ closeButton }
+			</div>
 		</div>
 	);
 } );
@@ -65,17 +66,19 @@ BlockBody.save = ( props ) => {
 		if (
 			singleClass.substring( 0, 4 ) === 'has-' ||
 			singleClass.substring( 0, 5 ) === 'align'
-		)
+		) {
 			classesWithHas.push( singleClass );
-		else classesWithoutHas.push( singleClass );
+		} else {
+			classesWithoutHas.push( singleClass );
+		}
 	}
+	//  add "makeiteasy-popup-overlay" class to the overlay
+	classesWithHas.push( 'makeiteasy-popup-overlay' );
 
 	const getClasses = ( classArray ) =>
 		Array.isArray( classArray ) ? classArray.join( ' ' ) : classArray;
 
 	const classesWithHasString = () => {
-		// add class to wrapper
-		classesWithHas.push( 'makeiteasy-popup-wrapper' );
 		const classesString = getClasses( classesWithHas );
 		return classesString !== '' ? classesString : null;
 	};
@@ -89,19 +92,14 @@ BlockBody.save = ( props ) => {
 			aria-hidden="true"
 			{ ...{ ...restProps, className: getClasses( classesWithoutHas ) } }
 		>
-			<div
-				className="makeiteasy-popup-overlay"
-				tabIndex="-1"
-				{ ...dataModalCloseAttr }
-			>
-				<BlockBody
-					{ ...{
-						...restProps,
-						dataModalCloseAttr,
-						className: classesWithHasString(),
-					} }
-				/>
-			</div>
+			<BlockBody
+				{ ...{
+					...restProps,
+					...dataModalCloseAttr,
+					tabIndex: '-1',
+					className: classesWithHasString(),
+				} }
+			/>
 		</div>
 	);
 };
