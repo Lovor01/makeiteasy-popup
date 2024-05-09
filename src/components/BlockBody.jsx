@@ -10,10 +10,10 @@ import { ReactComponent as CloseX } from '../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 
-const BlockBody = forwardRef( ( props, ref ) => {
+const BlockBodyInner = ( props ) => {
 	const {
 		innerBlocks,
-		hasCloseButton = true,
+		hasCloseButton,
 		isModal,
 		closeButtonColor,
 		dataModalCloseAttr,
@@ -36,75 +36,138 @@ const BlockBody = forwardRef( ( props, ref ) => {
 	) : null;
 
 	return (
-		<div { ...{ ...restProps, ...dataModalCloseAttr } } ref={ ref }>
+		<div
+			role="dialog"
+			aria-modal={ isModal }
+			aria-labelledby="modal-1-title"
+			className="makeiteasy-popup-wrapper"
+			{ ...{ ...restProps, ...dataModalCloseAttr } }
+		>
 			<div
-				role="dialog"
-				aria-modal={ isModal }
-				aria-labelledby="modal-1-title"
-				className="makeiteasy-popup-wrapper"
-			>
-				<div
-					{ ...innerBlocks( {
-						className: 'makeiteasy-popup-content-wrapper',
-					} ) }
-				/>
-				{ closeButton }
-			</div>
+				{ ...innerBlocks( {
+					className: 'makeiteasy-popup-content-wrapper',
+				} ) }
+			/>
+			{ closeButton }
+		</div>
+	);
+};
+
+const BlockBody = forwardRef( ( props, ref ) => {
+	const { innerProps, outerProps } = separateOnOuterAndInner(
+		props,
+		undefined,
+		undefined,
+		false
+	);
+
+	return (
+		<div { ...outerProps } ref={ ref }>
+			<BlockBodyInner { ...innerProps } />
 		</div>
 	);
 } );
 
 BlockBody.save = ( props ) => {
-	const { anchor, ...restProps } = props;
+	const { innerProps, outerProps, dataModalCloseAttr } =
+		separateOnOuterAndInner(
+			props,
+			undefined,
+			'makeiteasy-popup-overlay',
+			true
+		);
+
+	return (
+		<div aria-hidden="true" { ...outerProps }>
+			<div
+				className="makeiteasy-popup-overlay"
+				tabIndex="-1"
+				{ ...dataModalCloseAttr }
+			>
+				<BlockBodyInner { ...innerProps } />
+			</div>
+		</div>
+	);
+};
+
+export default BlockBody;
+
+/**
+ * Separate on outer and inner props
+ * classes with "has-" and align prefix are also separated from the rest
+ * add additional class
+ * @param {string}  className
+ * @param {string}  addToClassesWithHas
+ * @param {string}  addToClassesWithoutHas
+ * @param {boolean} separateAlign
+ * @return {Object} classesWithHas, classesWithoutHas
+ */
+const separateOnOuterAndInner = (
+	{
+		className,
+		anchor,
+		innerBlocks,
+		isModal,
+		hasCloseButton,
+		closeButtonColor,
+		...restProps
+	},
+	addToClassesWithHas,
+	addToClassesWithoutHas,
+	separateAlign = true
+) => {
+	const getClassesString = ( classArray ) => {
+		const classesString = Array.isArray( classArray )
+			? classArray.join( ' ' )
+			: classArray;
+		return classesString !== '' ? classesString : null;
+	};
 	/* move has- classses (block editor built-in classes) lower, on popup, while retaining the other stuff on most outer element */
 	// pick has- properties from classes
-	const classes = restProps.className.split( ' ' );
+	const classes = className.split( ' ' );
 	const classesWithoutHas = [],
 		classesWithHas = [];
 
 	for ( const singleClass of classes ) {
 		if (
 			singleClass.substring( 0, 4 ) === 'has-' ||
-			singleClass.substring( 0, 5 ) === 'align'
+			( separateAlign && singleClass.substring( 0, 5 ) === 'align' )
 		) {
 			classesWithHas.push( singleClass );
 		} else {
 			classesWithoutHas.push( singleClass );
 		}
 	}
-	//  add "makeiteasy-popup-overlay" class to the overlay
-	classesWithHas.push( 'makeiteasy-popup-overlay' );
-
-	const getClasses = ( classArray ) =>
-		Array.isArray( classArray ) ? classArray.join( ' ' ) : classArray;
-
-	const classesWithHasString = () => {
-		const classesString = getClasses( classesWithHas );
-		return classesString !== '' ? classesString : null;
-	};
+	// add classes to classesWithHas
+	if ( addToClassesWithHas ) {
+		classesWithHas.push( addToClassesWithHas );
+	}
+	// add classes to classesWithoutHas
+	if ( addToClassesWithoutHas ) {
+		classesWithoutHas.push( addToClassesWithoutHas );
+	}
 
 	const dataModalCloseAttr = anchor
 		? { [ 'data-micromodal-close-' + anchor ]: true }
 		: null;
 
-	return (
-		<div
-			aria-hidden="true"
-			{ ...{ ...restProps, className: getClasses( classesWithoutHas ) } }
-		>
-			<BlockBody
-				{ ...{
-					...restProps,
-					...dataModalCloseAttr,
-					tabIndex: '-1',
-					className: classesWithHasString(),
-				} }
-			/>
-		</div>
-	);
+	return {
+		dataModalCloseAttr,
+		outerProps: {
+			...restProps,
+			className: getClassesString( classesWithoutHas ),
+			'aria-hidden': isModal ? 'true' : null,
+		},
+		innerProps: {
+			className: getClassesString( classesWithHas ),
+			innerBlocks,
+			hasCloseButton,
+			isModal,
+			closeButtonColor,
+			dataModalCloseAttr,
+		},
+	};
 };
-
-export default BlockBody;
 
 export const wrapperClass = (
 	{

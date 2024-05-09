@@ -1,0 +1,13 @@
+# Set the default behavior, of eol
+* text=auto
+
+# set line endings
+*.jsx text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.scss text eol=lf
+*.css text eol=lf
+*.svg text eol=lf
+*.php text eol=lf
+*.json text eol=lf
