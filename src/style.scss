@@ -80,7 +80,7 @@
 		// 	transform: translateX(-50%);
 		// }
 
-		&.popup-position-above::before {
+		.popup-position-above::before {
 			top: auto;
 			bottom: -1.2rem;
 			transform: translateX(-50%) rotateX(180deg);
@@ -123,6 +123,7 @@
 	&.popup-attached {
 		margin-top: 0;
 		position: fixed;
+		inset: 0;
 		margin: 0 !important;
 		max-width: none;
 
@@ -136,7 +137,7 @@
 			top: 0;
 		}
 
-		&.popup-position-above .makeiteasy-popup-wrapper {
+		.popup-position-above .makeiteasy-popup-wrapper {
 			top: auto;
 			bottom: 0;
 		}
