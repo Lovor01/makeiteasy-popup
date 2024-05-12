@@ -42,6 +42,7 @@
 			pointer-events: none;
 		}
 
+		&:focus,
 		&:focus-visible {
 			outline: var(--wp--preset--color--contrast, #242424) 1px solid;
 		}
@@ -69,6 +70,7 @@
 		display: flex;
 		justify-content: center;
 		padding: 3px 4px 3px 8px;
+		background: var(--wp--preset--color--white, #fff);
 
 		//  add chevron
 		// &::before {
