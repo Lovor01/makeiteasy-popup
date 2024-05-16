@@ -29,6 +29,7 @@ export default ( {
 		waitingAfterClosing,
 		enabled,
 		closeButtonColor,
+		closeButtonPosition,
 	},
 	setAttributes,
 } ) => {
@@ -253,6 +254,23 @@ export default ( {
 							onChange={ ( closeButtonColor ) => {
 								setAttributes( { closeButtonColor } );
 							} }
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody title="Close button position">
+					<PanelRow className="mie-span-2">
+						<ToggleControl
+							label="Button beside content"
+							checked={ closeButtonPosition === 'beside' }
+							onChange={ ( isBeside ) =>
+								setAttributes( {
+									closeButtonPosition: isBeside
+										? 'beside'
+										: 'above',
+								} )
+							}
+							help="Normally close button floats above content to not affect ."
+							title="If enabled, close button will be on the right side of content."
 						/>
 					</PanelRow>
 				</PanelBody>

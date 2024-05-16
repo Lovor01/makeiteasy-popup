@@ -4,7 +4,17 @@ import { default as BlockBody, wrapperClass } from './components/BlockBody';
 /* eslint-disable camelcase */
 export default function save( {
 	attributes,
-	attributes: { anchor, hasCloseButton, modalityType, closeButtonColor },
+	attributes: {
+		anchor,
+		hasCloseButton,
+		modalityType,
+		closeButtonColor,
+		style: {
+			spacing: {
+				padding: { top, bottom },
+			},
+		} = { spacing: { padding: { top: undefined, bottom: undefined } } },
+	},
 } ) {
 	return (
 		<BlockBody.save
@@ -14,6 +24,8 @@ export default function save( {
 			anchor={ anchor }
 			hasCloseButton={ hasCloseButton }
 			closeButtonColor={ closeButtonColor }
+			closeTop={ top }
+			closeRight={ bottom }
 		/>
 	);
 }

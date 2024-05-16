@@ -57,6 +57,9 @@
 		padding: 2px 2px;
 		margin: 0 0 0 1ch;
 		align-self: flex-start;
+		position: absolute;
+		top: 0;
+		right: 0;
 
 		svg {
 			fill: var(--wp--preset--color--black, #000);

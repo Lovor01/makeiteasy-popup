@@ -10,7 +10,17 @@ import './editor.scss';
 
 export default function Edit( {
 	attributes,
-	attributes: { openType, hasCloseButton, anchor, closeButtonColor },
+	attributes: {
+		openType,
+		hasCloseButton,
+		anchor,
+		closeButtonColor,
+		style: {
+			spacing: {
+				padding: { top, right },
+			},
+		} = { spacing: { padding: { top: undefined, right: undefined } } },
+	},
 	setAttributes,
 	clientId,
 	modalityType,
@@ -46,6 +56,8 @@ export default function Edit( {
 				anchor={ anchor }
 				hasCloseButton={ hasCloseButton }
 				closeButtonColor={ closeButtonColor }
+				closeTop={ top }
+				closeRight={ right }
 			/>
 		</>
 	);

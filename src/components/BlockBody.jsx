@@ -17,6 +17,8 @@ const BlockBodyInner = ( props ) => {
 		isModal,
 		closeButtonColor,
 		dataModalCloseAttr,
+		closeTop,
+		closeRight,
 		...restProps
 	} = props;
 
@@ -25,13 +27,27 @@ const BlockBodyInner = ( props ) => {
 		CloseX
 	);
 
+	const decypherStyle = ( style ) =>
+		style?.substring( 0, 4 ) === 'var:'
+			? `var(--wp--${ style.substring( 4 ).replaceAll( '|', '--' ) })`
+			: style;
+
+	// use style attribute to position close button correctly
 	const closeButton = hasCloseButton ? (
 		<button
 			aria-label="Close modal"
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
+			style={ {
+				top: decypherStyle( closeTop ),
+				right: decypherStyle( closeRight ),
+			} }
 		>
-			<CloseButtonIcon style={ { fill: closeButtonColor } } />
+			<CloseButtonIcon
+				style={ {
+					fill: closeButtonColor,
+				} }
+			/>
 		</button>
 	) : null;
 
@@ -113,6 +129,8 @@ const separateOnOuterAndInner = (
 		isModal,
 		hasCloseButton,
 		closeButtonColor,
+		closeTop,
+		closeRight,
 		style,
 		...restProps
 	},
@@ -170,6 +188,8 @@ const separateOnOuterAndInner = (
 			closeButtonColor,
 			dataModalCloseAttr,
 			style,
+			closeTop,
+			closeRight,
 		},
 	};
 };

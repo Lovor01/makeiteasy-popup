@@ -84,6 +84,10 @@
 		},
 		"closeButtonColor": {
 			"type": "string"
+		},
+		"closeButtonPosition": {
+			"enum": ["above", "beside"],
+			"default": "above"
 		}
 	}
 }

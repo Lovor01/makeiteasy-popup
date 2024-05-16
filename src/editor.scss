@@ -7,6 +7,14 @@
 .wp-block-makeiteasy-popup {
 	display: flex;
 
+	&.alignwide,
+	&.alignfull {
+		.is-content-justification-center + .makeiteasy-popup-close {
+			position: absolute;
+			right: 0;
+		}
+	}
+
 	.makeiteasy-popup-wrapper {
 		width: 100%;
 	}
@@ -79,7 +87,6 @@
 	/* end of block element classes */
 
 	.makeiteasy-popup-close {
-		position: static;
 		cursor: default;
 	}
 }
