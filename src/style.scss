@@ -3,10 +3,31 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		> .alignwide {
-			max-width: var(--wp--style--global--wide-size);
-			width: 100%;
-		}
+
+		//  align wide and align full are not automatically working since align classes are moved to wrapper
+
+		// > .makeiteasy-popup-wrapper.alignwide {
+		// 	max-width: var(--wp--style--global--wide-size);
+		// }
+
+		// > .makeiteasy-popup-wrapper.alignfull {
+		// 	max-width: none;
+		// }
+
+		// > .makeiteasy-popup-wrapper.alignwide,
+		// > .makeiteasy-popup-wrapper.alignfull {
+		// 	width: 100%;
+		// }
+
+		// > .makeiteasy-popup-wrapper.is-content-justification-center {
+		// 	&.alignwide,
+		// 	&.alignfull {
+		// 		.makeiteasy-popup-close {
+		// 			position: absolute;
+		// 			right: 0;
+		// 		}
+		// 	}
+		// }
 	}
 
 	&.popup-modal {
