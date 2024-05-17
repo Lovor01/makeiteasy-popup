@@ -19,6 +19,7 @@ const BlockBodyInner = ( props ) => {
 		dataModalCloseAttr,
 		closeTop,
 		closeRight,
+		closeButtonPosition,
 		...restProps
 	} = props;
 
@@ -41,6 +42,7 @@ const BlockBodyInner = ( props ) => {
 			style={ {
 				top: decypherStyle( closeTop ),
 				right: decypherStyle( closeRight ),
+				position: closeButtonPosition === 'beside' ? 'static' : null,
 			} }
 		>
 			<CloseButtonIcon
@@ -129,6 +131,7 @@ const separateOnOuterAndInner = (
 		isModal,
 		hasCloseButton,
 		closeButtonColor,
+		closeButtonPosition,
 		closeTop,
 		closeRight,
 		style,
@@ -186,6 +189,7 @@ const separateOnOuterAndInner = (
 			hasCloseButton,
 			isModal,
 			closeButtonColor,
+			closeButtonPosition,
 			dataModalCloseAttr,
 			style,
 			closeTop,

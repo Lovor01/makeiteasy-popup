@@ -9,6 +9,7 @@ export default function save( {
 		hasCloseButton,
 		modalityType,
 		closeButtonColor,
+		closeButtonPosition,
 		style: {
 			spacing: {
 				padding: { top, bottom },
@@ -24,6 +25,7 @@ export default function save( {
 			anchor={ anchor }
 			hasCloseButton={ hasCloseButton }
 			closeButtonColor={ closeButtonColor }
+			closeButtonPosition={ closeButtonPosition }
 			closeTop={ top }
 			closeRight={ bottom }
 		/>

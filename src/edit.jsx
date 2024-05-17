@@ -15,6 +15,7 @@ export default function Edit( {
 		hasCloseButton,
 		anchor,
 		closeButtonColor,
+		closeButtonPosition,
 		style: {
 			spacing: {
 				padding: { top, right },
@@ -56,6 +57,7 @@ export default function Edit( {
 				anchor={ anchor }
 				hasCloseButton={ hasCloseButton }
 				closeButtonColor={ closeButtonColor }
+				closeButtonPosition={ closeButtonPosition }
 				closeTop={ top }
 				closeRight={ right }
 			/>

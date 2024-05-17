@@ -269,7 +269,11 @@ export default ( {
 										: 'above',
 								} )
 							}
-							help="Normally close button floats above content to not affect ."
+							help={
+								closeButtonPosition === 'above'
+									? 'Close button floats above content to not affect content positioning.'
+									: 'Close button is to the right content, to avoid intersecting content'
+							}
 							title="If enabled, close button will be on the right side of content."
 						/>
 					</PanelRow>
