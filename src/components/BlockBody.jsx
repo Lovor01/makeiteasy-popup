@@ -63,7 +63,6 @@ const BlockBodyInner = ( props ) => {
 			{ ...{
 				...restProps,
 				className: restProps.className + ' makeiteasy-popup-wrapper',
-				...dataModalCloseAttr,
 				style: {
 					...restProps.style,
 					width: popupWidth,
