@@ -12,9 +12,13 @@ export default function save( {
 		closeButtonPosition,
 		style: {
 			spacing: {
-				padding: { top, bottom },
-			},
-		} = { spacing: { padding: { top: undefined, bottom: undefined } } },
+				padding: { top = null, right = null } = {
+					top: null,
+					right: null,
+				},
+			} = { padding: { top: null, right: null } },
+		} = { spacing: { padding: { top: null, right: null } } },
+		popupWidth,
 	},
 } ) {
 	return (
@@ -27,7 +31,8 @@ export default function save( {
 			closeButtonColor={ closeButtonColor }
 			closeButtonPosition={ closeButtonPosition }
 			closeTop={ top }
-			closeRight={ bottom }
+			closeRight={ right }
+			popupWidth={ popupWidth }
 		/>
 	);
 }

@@ -2,7 +2,11 @@
 /* eslint-disable no-shadow */
 // @see https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inspector-controls
 
-import { InspectorControls, useSettings } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	useSettings,
+	ColorPalette,
+} from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -12,7 +16,8 @@ import {
 	TextControl,
 	ToggleControl,
 	__experimentalUnitControl as UnitControl,
-	ColorPalette,
+	__experimentalUseCustomUnits as useCustomUnits,
+	// ColorPalette,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
@@ -30,6 +35,7 @@ export default ( {
 		enabled,
 		closeButtonColor,
 		closeButtonPosition,
+		popupWidth,
 	},
 	setAttributes,
 } ) => {
@@ -60,6 +66,11 @@ export default ( {
 			/>
 		</PanelRow>
 	);
+
+	const [ availableUnits ] = useSettings( 'spacing.units' );
+	const units = useCustomUnits( {
+		availableUnits: availableUnits || [ '%', 'px', 'em', 'rem', 'vw' ],
+	} );
 
 	return (
 		<>
@@ -244,11 +255,11 @@ export default ( {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<PanelBody title="Close button color">
+				<PanelBody title="Close button appearance">
 					<PanelRow className="mie-span-2">
 						<ColorPalette
 							clearable
-							colors={ useSettings( 'color.palette' )[ 0 ] }
+							// not needed if ColorPalette is from block/editor colors={ useSettings( 'color.palette' )[ 0 ] }
 							enableAlpha
 							value={ closeButtonColor }
 							onChange={ ( closeButtonColor ) => {
@@ -256,8 +267,6 @@ export default ( {
 							} }
 						/>
 					</PanelRow>
-				</PanelBody>
-				<PanelBody title="Close button position">
 					<PanelRow className="mie-span-2">
 						<ToggleControl
 							label="Button beside content"
@@ -271,13 +280,32 @@ export default ( {
 							}
 							help={
 								closeButtonPosition === 'above'
-									? 'Close button floats above content to not affect content positioning.'
-									: 'Close button is to the right content, to avoid intersecting content'
+									? __(
+											'Close button floats above content to not affect content positioning.'
+									  )
+									: __(
+											'Close button is to the right content, to avoid intersecting content'
+									  )
 							}
-							title="If enabled, close button will be on the right side of content."
+							title={ __(
+								'If enabled, close button will be on the right side of content.'
+							) }
 						/>
 					</PanelRow>
 				</PanelBody>
+			</InspectorControls>
+			<InspectorControls group="dimensions">
+				<PanelRow>
+					<UnitControl
+						onChange={ ( popupWidth ) => {
+							setAttributes( { popupWidth } );
+						} }
+						value={ popupWidth || 'Auto' }
+						__unstableInputWidth="14ch"
+						label="Popup width"
+						units={ units }
+					></UnitControl>
+				</PanelRow>
 			</InspectorControls>
 		</>
 	);

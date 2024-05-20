@@ -14,24 +14,38 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./makeiteasy-popup-helpers.js",
 	"supports": {
-		"align": ["wide", "full"],
+		"align": [
+			"wide",
+			"full"
+		],
 		"anchor": true,
 		"background": {
 			"backgroundImage": true,
+			"backgroundPosition": "50% 50%",
 			"backgroundSize": true
 		},
 		"color": {
 			"background": true,
-			"text": true
+			"text": true,
+			"gradients": true,
+			"enableContrastChecker": true,
+			"button": true,
+			"heading": true,
+			"link": true
+		},
+		"dimensions": {
+			"minHeight": true
 		},
 		"layout": {
 			"default": {
 				"type": "constrained"
 			}
 		},
+		"shadow": true,
 		"spacing": {
 			"margin": true,
-			"padding": true
+			"padding": true,
+			"blockGap": true
 		},
 		"typography": {
 			"fontSize": true,
@@ -61,7 +75,11 @@
 			"default": "-1s"
 		},
 		"layoutType": {
-			"enum": ["floating", "fixed", "attached"],
+			"enum": [
+				"floating",
+				"fixed",
+				"attached"
+			],
 			"default": "floating"
 		},
 		"modalityType": {
@@ -86,8 +104,18 @@
 			"type": "string"
 		},
 		"closeButtonPosition": {
-			"enum": ["above", "beside"],
+			"enum": [
+				"above",
+				"beside"
+			],
 			"default": "above"
+		},
+		"popupWidth": {
+			"type": "string",
+			"default": null
 		}
+	},
+	"selectors": {
+		"root": ".makeiteasy-popup-wrapper"
 	}
 }

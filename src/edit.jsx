@@ -18,9 +18,14 @@ export default function Edit( {
 		closeButtonPosition,
 		style: {
 			spacing: {
-				padding: { top, right },
-			},
-		} = { spacing: { padding: { top: undefined, right: undefined } } },
+				padding: { top = null, right = null } = {
+					top: null,
+					right: null,
+				},
+			} = { padding: { top: null, right: null } },
+		} = { spacing: { padding: { top: null, right: null } } },
+		popupWidth,
+		align,
 	},
 	setAttributes,
 	clientId,
@@ -34,6 +39,7 @@ export default function Edit( {
 		select( popupStore ).getPopupsOpen()
 	);
 
+	// set unique id if anchor is not set
 	useEffect( () => {
 		if ( ! anchor || idExists( anchor, blocks, clientId ) ) {
 			// eslint-disable-next-line no-unused-vars
@@ -45,6 +51,26 @@ export default function Edit( {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [] );
+
+	// reset popupWidth if align changes
+	useEffect( () => {
+		if ( align && ! popupWidth ) {
+			setAttributes( {
+				popupWidth: undefined,
+			} );
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ align ] );
+	// reset align if popupWidth changes
+	useEffect( () => {
+		if ( popupWidth && ! align ) {
+			setAttributes( {
+				align: undefined,
+			} );
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ popupWidth ] );
+
 	return (
 		<>
 			<BlockSidebar { ...{ attributes, setAttributes, openType } } />
@@ -60,6 +86,7 @@ export default function Edit( {
 				closeButtonPosition={ closeButtonPosition }
 				closeTop={ top }
 				closeRight={ right }
+				popupWidth={ popupWidth }
 			/>
 		</>
 	);

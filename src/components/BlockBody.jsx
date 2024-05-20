@@ -20,6 +20,7 @@ const BlockBodyInner = ( props ) => {
 		closeTop,
 		closeRight,
 		closeButtonPosition,
+		popupWidth,
 		...restProps
 	} = props;
 
@@ -53,6 +54,7 @@ const BlockBodyInner = ( props ) => {
 		</button>
 	) : null;
 
+	// set max-width to none to prevent alignments if custom size is given
 	return (
 		<div
 			role="dialog"
@@ -62,6 +64,10 @@ const BlockBodyInner = ( props ) => {
 				...restProps,
 				className: restProps.className + ' makeiteasy-popup-wrapper',
 				...dataModalCloseAttr,
+				style: {
+					...restProps.style,
+					width: popupWidth,
+				},
 			} }
 		>
 			<div
@@ -83,7 +89,11 @@ const BlockBody = forwardRef( ( props, ref ) => {
 	);
 
 	return (
-		<div { ...outerProps } ref={ ref }>
+		<div
+			{ ...outerProps }
+			ref={ ref }
+			style={ { maxWidth: props.popupWidth ? '100%' : null } }
+		>
 			<BlockBodyInner { ...innerProps } />
 		</div>
 	);
@@ -93,8 +103,8 @@ BlockBody.save = ( props ) => {
 	const { innerProps, outerProps, dataModalCloseAttr } =
 		separateOnOuterAndInner(
 			props,
+			'makeiteasy-popup-outermost',
 			undefined,
-			'makeiteasy-popup-overlay',
 			true
 		);
 
@@ -118,8 +128,8 @@ export default BlockBody;
  * classes with "has-" and align prefix are also separated from the rest
  * add additional class
  * @param {string}  className
- * @param {string}  addToClassesWithHas
  * @param {string}  addToClassesWithoutHas
+ * @param {string}  addToClassesWithHas
  * @param {boolean} isSave
  * @return {Object} classesWithHas, classesWithoutHas
  */
@@ -135,10 +145,11 @@ const separateOnOuterAndInner = (
 		closeTop,
 		closeRight,
 		style,
+		popupWidth,
 		...restProps
 	},
-	addToClassesWithHas,
 	addToClassesWithoutHas,
+	addToClassesWithHas,
 	isSave
 ) => {
 	const getClassesString = ( classArray ) => {
@@ -194,6 +205,7 @@ const separateOnOuterAndInner = (
 			style,
 			closeTop,
 			closeRight,
+			popupWidth,
 		},
 	};
 };

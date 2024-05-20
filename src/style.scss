@@ -1,3 +1,6 @@
+$default-padding-vertical: 0.7rem;
+$default-padding-horizontal: 1.1rem;
+
 .wp-block-makeiteasy-popup {
 	.makeiteasy-popup-overlay {
 		display: flex;
@@ -58,15 +61,14 @@
 		margin: 0 0 0 1ch;
 		align-self: flex-start;
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: $default-padding-vertical;
+		right: $default-padding-horizontal;
 
 		svg {
 			fill: var(--wp--preset--color--black, #000);
 			pointer-events: none;
 		}
 
-		&:focus,
 		&:focus-visible {
 			outline: var(--wp--preset--color--contrast, #242424) 1px solid;
 		}
@@ -93,7 +95,7 @@
 		position: relative;
 		display: flex;
 		justify-content: center;
-		padding: 3px 4px 3px 8px;
+		align-items: center;
 		background: var(--wp--preset--color--white, #fff);
 
 		//  add chevron
@@ -172,4 +174,13 @@
 
 body.has-floating-popup {
 	overflow: hidden;
+}
+
+.makeiteasy-popup-outermost {
+	margin: 0;
+}
+
+// fallback padding
+.makeiteasy-popup-wrapper {
+	padding: $default-padding-vertical $default-padding-horizontal;
 }
