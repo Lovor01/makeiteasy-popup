@@ -42,7 +42,7 @@ function adjustPopups( openPopup = 0 ) {
 			if ( ! attachedBaseElement ) {
 				// eslint-disable-next-line no-console
 				console.warn(
-					'Make IT Easy popup: Base element for attachemnt not found!'
+					'Make IT Easy popup: Base element for attachment not found!'
 				);
 				return;
 			}

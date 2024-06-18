@@ -219,6 +219,7 @@ export const wrapperClass = (
 		waitingAfterClosing,
 		enabled,
 		attachedBaseElement,
+		fixedPopupPosition,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -244,7 +245,8 @@ export const wrapperClass = (
 			modeless: 'popup-modeless',
 		}[ modalityType ] +
 		( isShown ? '' : ' is-hidden' ) +
-		( enabled ? '' : ' disabled' ),
+		( enabled ? '' : ' disabled' ) +
+		( layoutType === 'fixed' ? ' position-' + fixedPopupPosition : '' ),
 	// id: save_id, - deprecated
 	'data-open-selector': openSelector,
 	'data-opening-time': openingTime,

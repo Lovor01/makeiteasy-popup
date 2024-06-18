@@ -92,6 +92,15 @@
 		"attachedBaseElement": {
 			"type": "string"
 		},
+		"fixedPopupPosition": {
+			"enum": [
+				"top",
+				"bottom",
+				"left",
+				"right"
+			],
+			"default": "bottom"
+		},
 		"hasCloseButton": {
 			"type": "boolean",
 			"default": true

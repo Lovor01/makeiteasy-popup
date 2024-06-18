@@ -118,7 +118,6 @@ $default-padding-horizontal: 1.1rem;
 	&.popup-fixed {
 		.makeiteasy-popup-wrapper {
 			position: absolute;
-			bottom: 0;
 			width: 100%;
 			box-sizing: border-box;
 			justify-content: center;
@@ -131,6 +130,13 @@ $default-padding-horizontal: 1.1rem;
 		.makeiteasy-popup-content-wrapper.is-content-justification-center + .makeiteasy-popup-close {
 			position: absolute;
 			right: 3ch;
+		}
+
+		// left and right panned popups
+		&.position-left .makeiteasy-popup-wrapper,
+		&.position-right .makeiteasy-popup-wrapper {
+			width: 10%;
+			height: 100%;
 		}
 	}
 
@@ -169,6 +175,27 @@ $default-padding-horizontal: 1.1rem;
 			top: auto;
 			bottom: 0;
 		}
+	}
+
+	&.position-top .makeiteasy-popup-wrapper {
+		top: 0;
+	}
+	@media screen and (min-width: 601px) {
+		@at-root .admin-bar &.position-top .makeiteasy-popup-wrapper {
+			top: 32px;
+			@media screen and (max-width: 782px) {
+				top: 46px;
+			}
+		}
+	}
+	&.position-left .makeiteasy-popup-wrapper {
+		left: 0;
+	}
+	&.position-bottom .makeiteasy-popup-wrapper {
+		bottom: 0;
+	}
+	&.position-right .makeiteasy-popup-wrapper {
+		right: 0;
 	}
 }
 

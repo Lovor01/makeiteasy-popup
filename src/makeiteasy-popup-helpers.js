@@ -54,6 +54,8 @@ function setUp() {
 	 * @param {string} id popup id
 	 */
 	function showModal( id ) {
+		// close other popup if any
+		closeOtherPopup();
 		MicroModal.show( id, {
 			// we have customized openers and closers
 			openTrigger: 'data-micromodal-open-' + id,
@@ -156,6 +158,7 @@ function setUp() {
 				}
 				return;
 			}
+
 			showModal( element.id );
 		}, numberPart );
 	}
@@ -194,6 +197,18 @@ function setUp() {
 	}
 
 	adjustRelativePopups();
+
+	/**
+	 * close other popups
+	 */
+	function closeOtherPopup() {
+		const otherPopup = document.querySelector(
+			'.is-open.wp-block-makeiteasy-popup'
+		);
+		if ( otherPopup ) {
+			MicroModal.close( otherPopup.id );
+		}
+	}
 
 	/**
 	 * check queue for popups and open from queue if there are elements

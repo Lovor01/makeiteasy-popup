@@ -36,6 +36,7 @@ export default ( {
 		closeButtonColor,
 		closeButtonPosition,
 		popupWidth,
+		fixedPopupPosition,
 	},
 	setAttributes,
 } ) => {
@@ -45,20 +46,23 @@ export default ( {
 			__next40pxDefaultSize
 			isBlock
 			label="Popup is placed at:"
-			onChange={ function noRefCheck() {} }
+			value={ fixedPopupPosition }
+			onChange={ ( fixedPopupPosition ) =>
+				setAttributes( { fixedPopupPosition } )
+			}
 		>
-			<ToggleGroupControlOption label="Bottom" value="bottom" />
-			<ToggleGroupControlOption label="Top" value="top" />
-			<ToggleGroupControlOption label="Left" value="left" />
-			<ToggleGroupControlOption label="Right" value="right" />
+			<ToggleGroupControlOption label={ __( 'Bottom' ) } value="bottom" />
+			<ToggleGroupControlOption label={ __( 'Top' ) } value="top" />
+			<ToggleGroupControlOption label={ __( 'Left' ) } value="left" />
+			<ToggleGroupControlOption label={ __( 'Right' ) } value="right" />
 		</ToggleGroupControl>
 	);
 
 	const auxAttached = (
 		<PanelRow>
 			<TextControl
-				label="CSS selector"
-				help="Element to which this one is attached"
+				label={ __( 'CSS selector' ) }
+				help={ __( 'Element to which this one is attached' ) }
 				value={ attachedBaseElement }
 				onChange={ ( attachedBaseElement ) =>
 					setAttributes( { attachedBaseElement } )
