@@ -25,7 +25,7 @@ const BlockBodyInner = ( props ) => {
 	} = props;
 
 	const CloseButtonIcon = applyFilters(
-		'makeiteasy/popup/closeButtonIconElement',
+		'makeiteasy-closeButtonIcon',
 		CloseX
 	);
 
