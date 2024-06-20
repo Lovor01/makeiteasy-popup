@@ -1,5 +1,6 @@
 $default-padding-vertical: 0.7rem;
 $default-padding-horizontal: 1.1rem;
+$default-mobile-breakpoint: 48rem;
 
 .wp-block-makeiteasy-popup {
 	.makeiteasy-popup-overlay {
@@ -97,6 +98,14 @@ $default-padding-horizontal: 1.1rem;
 		justify-content: center;
 		align-items: center;
 		background: var(--wp--preset--color--white, #fff);
+
+		@media (max-width: $default-mobile-breakpoint) {
+			&.has-above-close .makeiteasy-popup-close {
+				top: -2.3rem;
+				right: 0;
+				background: #f6decd;
+			}
+		}
 
 		//  add chevron
 		// &::before {

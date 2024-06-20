@@ -90,6 +90,10 @@
 	.makeiteasy-popup-close {
 		cursor: default;
 	}
+
+	@at-root .admin-bar &.position-top .makeiteasy-popup-wrapper {
+		top: auto;
+	}
 }
 
 /*

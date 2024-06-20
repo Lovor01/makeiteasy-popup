@@ -220,6 +220,7 @@ export const wrapperClass = (
 		enabled,
 		attachedBaseElement,
 		fixedPopupPosition,
+		closeButtonPosition,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -246,7 +247,8 @@ export const wrapperClass = (
 		}[ modalityType ] +
 		( isShown ? '' : ' is-hidden' ) +
 		( enabled ? '' : ' disabled' ) +
-		( layoutType === 'fixed' ? ' position-' + fixedPopupPosition : '' ),
+		( layoutType === 'fixed' ? ' position-' + fixedPopupPosition : '' ) +
+		( closeButtonPosition === 'above' ? ' has-above-close' : '' ),
 	// id: save_id, - deprecated
 	'data-open-selector': openSelector,
 	'data-opening-time': openingTime,
