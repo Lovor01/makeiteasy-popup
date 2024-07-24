@@ -9,7 +9,7 @@
 
 	&.alignwide,
 	&.alignfull {
-		.is-content-justification-center + .makeiteasy-popup-close {
+		.is-content-justification-center+.makeiteasy-popup-close {
 			position: absolute;
 			right: 0;
 		}
@@ -81,10 +81,12 @@
 		.makeiteasy-popup-overlay {
 			position: relative;
 		}
+
 		.makeiteasy-popup-wrapper {
 			position: unset;
 		}
 	}
+
 	/* end of block element classes */
 
 	.makeiteasy-popup-close {
@@ -99,3 +101,14 @@
 /*
  * Plugin Sidebar
  */
+.makeiteasy-popup-days-to-show-again {
+	width: 100%;
+
+	.components-base-control__field>* {
+		display: block;
+	}
+
+	.components-text-control__input {
+		width: 10ch;
+	}
+}

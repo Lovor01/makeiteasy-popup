@@ -1,18 +1,4 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "makeiteasy/popup",
-	"version": "1.0.0",
-	"title": "Makeiteasy Popup",
-	"category": "widgets",
-	"icon": "edit-page",
-	"description": "Example block scaffolded with Create Block tool.",
-	"example": {},
-	"textdomain": "makeiteasy-popup",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./makeiteasy-popup-helpers.js",
 	"supports": {
 		"align": [
 			"wide",
@@ -59,8 +45,7 @@
 				"on timer",
 				"on scroll",
 				"on click",
-				"on hover",
-				"on referer"
+				"on hover"
 			],
 			"default": "on scroll"
 		},
@@ -123,13 +108,6 @@
 		"popupWidth": {
 			"type": "string",
 			"default": null
-		},
-		"daysToShowAgain": {
-			"type": "number",
-			"default": 0
-		},
-		"refererURLMatch": {
-			"type": "string"
 		}
 	},
 	"selectors": {

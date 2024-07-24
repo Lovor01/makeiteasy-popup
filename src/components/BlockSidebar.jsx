@@ -20,6 +20,7 @@ import {
 	// ColorPalette,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalNumberControl as NumberControl,
 } from '@wordpress/components';
 
 export default ( {
@@ -37,6 +38,8 @@ export default ( {
 		closeButtonPosition,
 		popupWidth,
 		fixedPopupPosition,
+		daysToShowAgain,
+		refererURLMatch,
 	},
 	setAttributes,
 } ) => {
@@ -81,7 +84,7 @@ export default ( {
 			<InspectorControls group="settings">
 				<PanelBody
 					title={ __( 'Opening', 'makeiteasy-popup' ) }
-					icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+					icon="admin-settings"
 					initialOpen={ true }
 				>
 					<PanelRow>
@@ -111,6 +114,13 @@ export default ( {
 								{
 									label: __( 'On hover', 'makeiteasy-popup' ),
 									value: 'on hover',
+								},
+								{
+									label: __(
+										'On referer',
+										'makeiteasy-popup'
+									),
+									value: 'on referer',
 								},
 							] }
 							onChange={ ( openType ) => {
@@ -195,10 +205,28 @@ export default ( {
 							/>
 						</PanelRow>
 					) }
+					{ 'on referer' === openType && (
+						<PanelRow>
+							<TextControl
+								label={ __(
+									'Open on referer URL match',
+									'makeiteasy-popup'
+								) }
+								value={ refererURLMatch }
+								onChange={ ( refererURLMatch ) =>
+									setAttributes( { refererURLMatch } )
+								}
+								help={ __(
+									'Enter part of URL to match.',
+									'makeiteasy-popup'
+								) }
+							/>
+						</PanelRow>
+					) }
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Layout', 'makeiteasy-popup' ) }
-					icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+					icon="admin-settings"
 					initialOpen={ true }
 				>
 					<PanelRow>
@@ -233,12 +261,15 @@ export default ( {
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Visibility', 'makeiteasy-popup' ) }
-					icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+					icon="admin-settings"
 					initialOpen={ true }
 				>
 					<PanelRow>
 						<ToggleControl
-							label="Has close button"
+							label={ __(
+								'Has close button',
+								'makeiteasy-popup'
+							) }
 							checked={ hasCloseButton }
 							onChange={ ( hasCloseButton ) =>
 								setAttributes( { hasCloseButton } )
@@ -247,13 +278,44 @@ export default ( {
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label="Popup is enabled"
+							label={ __(
+								'Popup is enabled',
+								'makeiteasy-popup'
+							) }
 							checked={ enabled }
 							onChange={ ( enabled ) =>
 								setAttributes( { enabled } )
 							}
 							help="Disabled block is saved for later showing."
 							title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Additional rules', 'makeiteasy-popup' ) }
+					icon="admin-settings"
+					initialOpen={ false }
+				>
+					<PanelRow>
+						<NumberControl
+							className="makeiteasy-popup-days-to-show-again"
+							label={ __(
+								'Show again after days',
+								'makeiteasy-popup'
+							) }
+							type="number"
+							onChange={ ( value ) => {
+								setAttributes( {
+									daysToShowAgain: parseInt( value ),
+								} );
+							} }
+							value={ daysToShowAgain }
+							help={ __(
+								'Set to 0 to show each time',
+								'makeiteasy-popup'
+							) }
+							pattern="^\d+$"
+							required
 						/>
 					</PanelRow>
 				</PanelBody>

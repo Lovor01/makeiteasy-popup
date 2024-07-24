@@ -1,8 +1,5 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import {
-	default as BlockBody,
-	wrapperAttributes,
-} from './components/BlockBody';
+import { default as BlockBody, wrapperClass } from './components/BlockBody';
 
 /* eslint-disable camelcase */
 export default function save( {
@@ -26,7 +23,7 @@ export default function save( {
 } ) {
 	return (
 		<BlockBody.save
-			{ ...useBlockProps.save( wrapperAttributes( attributes ) ) }
+			{ ...useBlockProps.save( wrapperClass( attributes ) ) }
 			isModal={ modalityType === 'modal' }
 			innerBlocks={ useInnerBlocksProps.save }
 			anchor={ anchor }

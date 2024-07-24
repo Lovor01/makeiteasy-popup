@@ -32,6 +32,9 @@ import save from './save';
 import metadata from './block.json';
 import { ReactComponent as icon } from './assets/block-icon.svg';
 
+// deprecations
+import v1_0 from './deprecated/1.0';
+
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -47,6 +50,13 @@ registerBlockType( metadata.name, {
 	 * @see ./save.js
 	 */
 	save,
+	deprecated: [
+		{
+			attributes: v1_0.attributes,
+			supports: v1_0.supports,
+			save: v1_0.save
+		}
+	],
 
 	icon,
 } );

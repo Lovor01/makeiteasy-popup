@@ -3,8 +3,8 @@ Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog
 Requires at least: 6.5
-Tested up to:      6.5
-Stable tag:        1.0.0
+Tested up to:      6.6
+Stable tag:        1.1.0
 Requires PHP: 7.4
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
@@ -13,10 +13,10 @@ Advanced block based pop-up solution.
 
 == Description ==
 
-Need a popups for notices for your users? Marketing call to actions opening on scroll or timer, click on element or even on hover on some element? Several popups on one page?
+Do you need popups for grabbing attention of your users? Marketing call to actions opening on scroll or timer, click on element or even on hover on some element? Several popups on one page?
 This plugin has it all. Styling of the block is the same or similar as block editor core blocks + more.
 
-#### There are plenty of such plugins. Why should I use this one?
+= There are plenty of such plugins. Why should I use this one? =
 
 ❗Incorrect. This plugin feels like having native, built-in WP block. Plugin is self - sufficient, without heavy burden of having large blocks library, you can install it only there where you need it.
  It has only one very tiny dependency - micromodal.js - together with plugin popup handling code only 10 kB of js❗
@@ -56,6 +56,11 @@ I'll answer them here.
 
 == Changelog ==
 
+= 1.1.0 =
+* Added opening once in interval per user
+* Added opening on matching URL referer
+* Small CSS fixes
+
 = 1.0.0 =
 * Initial Release
 
@@ -69,3 +74,29 @@ There are many options which block provides in block sidebar. Most of them funct
 - Opening time selector: see section below
 - Layout type: floating is centered (use css to move it around if it should not be exactly in the center), fixed is block sitting on some side of the screen, while attached is popup near to other element, one example is tooltip. This type also moves with element as you scroll.
 - Popup is enabled - perhaps you want to hide popup for a while, but keep it to show it later. Disable this toggle button.
+
+== Developers ==
+
+= Changing of close button is possible via Javascript: =
+
+`
+import { ReactComponent as CloseIcon } from '../assets/close-x.svg';
+addFilter( 'makeiteasy-closeButtonIcon', 'makeiteasy/makeiteasy-popup/close-icon', () => (<CloseIcon />) );
+`
+
+If you customize button this way and you already have posts(or pages) with popup block,
+on post reopening the message "This block contains unexpected or invalid content." will be presented.
+In such case choose "Attempt to repair block" and if it looks good, save post.
+
+= or PHP: =
+
+`
+add_action( 'render_block_makeiteasy/popup', function($content) {
+  $svg = file_get_contents( __DIR__ . '/path_to_file/close-button-dark.svg' );
+  return preg_replace(
+    '~(<button.*class="makeiteasy-popup-close".*?>).*(</button>)~m',
+    "$1$svg$2",
+    $content
+    );
+} );
+`

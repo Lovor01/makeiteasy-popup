@@ -6,7 +6,7 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+import { ReactComponent as CloseX } from '/src/assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 
@@ -209,7 +209,7 @@ const separateOnOuterAndInner = (
 	};
 };
 
-export const wrapperAttributes = (
+export const wrapperClass = (
 	{
 		openType,
 		layoutType,
@@ -221,8 +221,6 @@ export const wrapperAttributes = (
 		attachedBaseElement,
 		fixedPopupPosition,
 		closeButtonPosition,
-		daysToShowAgain,
-		refererURLMatch,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -235,7 +233,6 @@ export const wrapperAttributes = (
 			'on scroll': 'open-on-scroll',
 			'on click': 'open-on-click',
 			'on hover': 'open-on-hover',
-			'on referer': 'open-on-referer',
 		}[ openType ] +
 		' ' +
 		{
@@ -257,6 +254,4 @@ export const wrapperAttributes = (
 	'data-opening-time': openingTime,
 	'data-waiting-after-closing': waitingAfterClosing,
 	'data-attached-base-element': attachedBaseElement,
-	'data-show-again-in': daysToShowAgain ?? 0,
-	'data-referer-url-to-match': refererURLMatch,
 } );

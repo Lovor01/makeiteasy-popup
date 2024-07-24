@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import MicroModal from 'micromodal';
+import hasBeenOpened from './modules/open-once-per-user/open-once-per-user.js';
 
 import {
 	default as adjustRelativePopups,
@@ -13,7 +14,8 @@ if ( document.readyState === 'loading' ) {
 }
 
 function setUp() {
-	if ( ! MicroModal ) {
+	// eslint-disable-next-line prettier/prettier
+	if ( !MicroModal ) {
 		return;
 	}
 
@@ -25,7 +27,9 @@ function setUp() {
 		closeModal = new Event( 'makeiteasy/closeModal' );
 
 	// Micromodal from other projects may be used here
-	const selectors = document.querySelectorAll( '.wp-block-makeiteasy-popup' );
+	const popupsBlocks = document.querySelectorAll(
+		'.wp-block-makeiteasy-popup'
+	);
 	// queue for popups waiting to be opened if modal is active
 	const openQueue = [];
 
@@ -33,18 +37,29 @@ function setUp() {
 	 * Set up events for popups
 	 * @param {HTMLElement}
 	 */
-	for ( const selector of selectors ) {
+	for ( const popupBlock of popupsBlocks ) {
+		// check if popup is set to open only once in interval (0 or undefined)
+		const showAgainIn = popupBlock.dataset.showAgainIn;
+		if (
+			! [ '0', undefined ].includes( showAgainIn ) &&
+			hasBeenOpened( popupBlock.id, showAgainIn )
+		) {
+			return;
+		}
+
 		// set if opens on click
-		const elementClassList = selector.classList;
+		const elementClassList = popupBlock.classList;
 
 		if ( elementClassList.contains( 'open-on-timer' ) ) {
-			setOpenOnTimer( selector );
+			setOpenOnTimer( popupBlock );
 		} else if ( elementClassList.contains( 'open-on-click' ) ) {
-			setOpenEventOnElements( selector, 'click' );
+			setOpenEventOnElements( popupBlock, 'click' );
 		} else if ( elementClassList.contains( 'open-on-hover' ) ) {
-			setOpenEventOnElements( selector, 'pointerover' );
+			setOpenEventOnElements( popupBlock, 'pointerover' );
 		} else if ( elementClassList.contains( 'open-on-scroll' ) ) {
-			setOpenOnScroll( selector );
+			setOpenOnScroll( popupBlock );
+		} else if ( elementClassList.contains( 'open-on-referer' ) ) {
+			openOnReferer( popupBlock );
 		}
 	}
 
@@ -193,6 +208,15 @@ function setUp() {
 					observer.unobserve( entry.target );
 				}
 			}
+		}
+	}
+
+	function openOnReferer( element ) {
+		if (
+			document.referrer.indexOf( element.dataset.refererUrlToMatch ) !==
+			-1
+		) {
+			showModal( element.id );
 		}
 	}
 

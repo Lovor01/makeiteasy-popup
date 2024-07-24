@@ -16,10 +16,11 @@
 		"start:hot": "wp-scripts start --hot --webpack-devtool=eval-source-map"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0",
+		"@wordpress/scripts": "^28.3.0",
 		"dotenv": "^16.4.5"
 	},
 	"dependencies": {
+		"js-cookie": "^3.0.5",
 		"micromodal": "^0.4.10",
 		"nanoid": "^5.0.7"
 	}
