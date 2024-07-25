@@ -90,6 +90,22 @@ $default-mobile-breakpoint: 48rem;
 			left: 0;
 			right: 0;
 		}
+
+		&.position-top {
+			bottom: auto
+		}
+
+		&.position-bottom {
+			top: auto
+		}
+
+		&.position-left {
+			right: auto
+		}
+
+		&.position-right {
+			left: auto
+		}
 	}
 
 	.makeiteasy-popup-wrapper {
@@ -136,7 +152,7 @@ $default-mobile-breakpoint: 48rem;
 			flex: none;
 		}
 
-		.makeiteasy-popup-content-wrapper.is-content-justification-center + .makeiteasy-popup-close {
+		.makeiteasy-popup-content-wrapper.is-content-justification-center+.makeiteasy-popup-close {
 			position: absolute;
 			right: 3ch;
 		}
@@ -157,6 +173,7 @@ $default-mobile-breakpoint: 48rem;
 			margin-left: 0;
 			margin-right: auto;
 		}
+
 		&.is-content-justification-right {
 			margin-right: 0;
 			margin-left: auto;
@@ -189,20 +206,25 @@ $default-mobile-breakpoint: 48rem;
 	&.position-top .makeiteasy-popup-wrapper {
 		top: 0;
 	}
+
 	@media screen and (min-width: 601px) {
 		@at-root .admin-bar &.position-top .makeiteasy-popup-wrapper {
 			top: 32px;
+
 			@media screen and (max-width: 782px) {
 				top: 46px;
 			}
 		}
 	}
+
 	&.position-left .makeiteasy-popup-wrapper {
 		left: 0;
 	}
+
 	&.position-bottom .makeiteasy-popup-wrapper {
 		bottom: 0;
 	}
+
 	&.position-right .makeiteasy-popup-wrapper {
 		right: 0;
 	}
@@ -214,6 +236,10 @@ body.has-floating-popup {
 
 .makeiteasy-popup-outermost {
 	margin: 0;
+
+	&.popup-fixed.position-top {
+		margin-block-start: 0;
+	}
 }
 
 // fallback padding

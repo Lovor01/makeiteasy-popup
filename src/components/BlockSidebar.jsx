@@ -40,6 +40,7 @@ export default ( {
 		fixedPopupPosition,
 		daysToShowAgain,
 		refererURLMatch,
+		accessibleDialogLabel,
 	},
 	setAttributes,
 } ) => {
@@ -212,7 +213,7 @@ export default ( {
 									'Open on referer URL match',
 									'makeiteasy-popup'
 								) }
-								value={ refererURLMatch }
+								value={ refererURLMatch ?? '' }
 								onChange={ ( refererURLMatch ) =>
 									setAttributes( { refererURLMatch } )
 								}
@@ -245,18 +246,42 @@ export default ( {
 					</PanelRow>
 					{ layoutType === 'fixed' && auxFixed }
 					{ layoutType === 'attached' && auxAttached }
-					<PanelRow>
+					<PanelRow className="mie-modality-type">
 						<RadioControl
 							label="Modality type"
 							selected={ modalityType }
-							options={ [
-								{ label: 'modal', value: 'modal' },
-								{ label: 'modeless', value: 'modeless' },
-							] }
+							options={
+								openType !== 'on hover'
+									? [
+											{ label: 'modal', value: 'modal' },
+											{
+												label: 'modeless',
+												value: 'modeless',
+											},
+									  ]
+									: [
+											{
+												label: 'modeless',
+												value: 'modeless',
+											},
+									  ]
+							}
 							onChange={ ( modalityType ) => {
 								setAttributes( { modalityType } );
 							} }
 						/>
+						{ openType === 'on hover' && (
+							<p>
+								Due to accessibility issues, popup which
+								activates on hover cannot be modal. Also, please
+								follow good practices and do not convey any
+								important information in it.
+								<br />
+								<a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">
+									Content on Hover or Focus
+								</a>
+							</p>
+						) }
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
@@ -288,6 +313,24 @@ export default ( {
 							}
 							help="Disabled block is saved for later showing."
 							title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Accessibility', 'makeiteasy-popup' ) }
+					icon="admin-settings"
+					initialOpen={ false }
+				>
+					<PanelRow>
+						<TextControl
+							label={ __(
+								'Dialog accessible label',
+								'makeiteasy-popup'
+							) }
+							value={ accessibleDialogLabel ?? '' }
+							onChange={ ( accessibleDialogLabel ) =>
+								setAttributes( { accessibleDialogLabel } )
+							}
 						/>
 					</PanelRow>
 				</PanelBody>

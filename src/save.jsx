@@ -11,6 +11,7 @@ export default function save( {
 		anchor,
 		hasCloseButton,
 		modalityType,
+		layoutType,
 		closeButtonColor,
 		closeButtonPosition,
 		style: {
@@ -22,12 +23,14 @@ export default function save( {
 			} = { padding: { top: null, right: null } },
 		} = { spacing: { padding: { top: null, right: null } } },
 		popupWidth,
+		accessibleDialogLabel,
 	},
 } ) {
 	return (
 		<BlockBody.save
 			{ ...useBlockProps.save( wrapperAttributes( attributes ) ) }
 			isModal={ modalityType === 'modal' }
+			isFixed={ layoutType === 'fixed' }
 			innerBlocks={ useInnerBlocksProps.save }
 			anchor={ anchor }
 			hasCloseButton={ hasCloseButton }
@@ -36,6 +39,7 @@ export default function save( {
 			closeTop={ top }
 			closeRight={ right }
 			popupWidth={ popupWidth }
+			accessibleDialogLabel={ accessibleDialogLabel }
 		/>
 	);
 }

@@ -59,6 +59,7 @@ I'll answer them here.
 = 1.1.0 =
 * Added opening once in interval per user
 * Added opening on matching URL referer
+* Added accessibility label for dialog
 * Small CSS fixes
 
 = 1.0.0 =

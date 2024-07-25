@@ -124,6 +124,9 @@
 			"type": "string",
 			"default": null
 		},
+		"accessibleDialogLabel": {
+			"type": "string"
+		},
 		"daysToShowAgain": {
 			"type": "number",
 			"default": 0
