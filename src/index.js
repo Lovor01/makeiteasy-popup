@@ -54,8 +54,8 @@ registerBlockType( metadata.name, {
 		{
 			attributes: v1_0.attributes,
 			supports: v1_0.supports,
-			save: v1_0.save
-		}
+			save: v1_0.save,
+		},
 	],
 
 	icon,

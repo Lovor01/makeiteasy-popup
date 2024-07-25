@@ -6,7 +6,7 @@
 	"title": "Makeiteasy Popup",
 	"category": "widgets",
 	"icon": "edit-page",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Versatile popup block.",
 	"example": {},
 	"textdomain": "makeiteasy-popup",
 	"editorScript": "file:./index.js",
