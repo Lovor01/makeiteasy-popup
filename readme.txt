@@ -48,6 +48,11 @@ Future versions will replace this library with the native `Dialog` HTML element,
 
 == Frequently Asked Questions ==
 
+= How does the 'CSS Selector' field work? =
+
+The CSS Selector field, used in the "open on scroll," "hover," and "click" options, allows you to specify a CSS selector to identify the element that will trigger the popup. The selector can be of any complexity, but it must uniquely select an element. If multiple elements match the selector, only the first one will trigger the popup.
+To define the trigger in practice, go to the advanced section of the desired block and specify an anchor keyword or an additional CSS class. For an anchor, use `#` as the prefix, and for a class, use `.` (dot). For example, if your anchor is `myelement`, you would use `#myelement` in the CSS Selector field.
+
 = Have questions? =
 
 Post them here, and I’ll answer them.
