@@ -59,7 +59,7 @@ export default function Edit( {
 
 	// reset popupWidth if align changes
 	useEffect( () => {
-		if ( align && ! popupWidth ) {
+		if ( align && popupWidth ) {
 			setAttributes( {
 				popupWidth: undefined,
 			} );
@@ -68,7 +68,7 @@ export default function Edit( {
 	}, [ align ] );
 	// reset align if popupWidth changes
 	useEffect( () => {
-		if ( popupWidth && ! align ) {
+		if ( popupWidth && align ) {
 			setAttributes( {
 				align: undefined,
 			} );
@@ -78,7 +78,7 @@ export default function Edit( {
 
 	// if open type is 'on hover' set modality to modeless
 	useEffect( () => {
-		if ( openType === 'on hover' && modalityType !== 'modeless' ) {
+		if ( openType === 'on hover' && modalityType === 'modal' ) {
 			setAttributes( {
 				modalityType: 'modeless',
 			} );
