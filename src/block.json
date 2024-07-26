@@ -7,7 +7,34 @@
 	"category": "widgets",
 	"icon": "edit-page",
 	"description": "Versatile popup block.",
-	"example": {},
+	"example": {
+		"attributes": {
+			"openType": "on timer",
+			"openingTime": "0s",
+			"closeButtonPosition": "beside",
+			"style": {
+				"shadow": "var:preset|shadow|natural",
+				"spacing": {
+					"blockGap": "var:preset|spacing|10"
+				}
+			}
+		},
+		"innerBlocks": [
+			{
+				"name": "core/heading",
+				"attributes": {
+					"content": "Popup example"
+				}
+			},
+			{
+				"name": "core/paragraph",
+				"attributes": {
+					"content": "You can insert any blocks you like inside the popup."
+				}
+			}
+		],
+		"viewportWidth": 700
+	},
 	"textdomain": "makeiteasy-popup",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
