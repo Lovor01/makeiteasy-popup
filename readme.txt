@@ -18,17 +18,17 @@ Multiple popups on one page? This plugin has it all. It provides styling consist
 
 = Why choose Makeiteasy Popup? =
 
-❗Unlike other plugins, Makeiteasy Popup integrates seamlessly with WordPress,
+❗ Unlike other plugins, Makeiteasy Popup integrates seamlessly with WordPress,
 feeling like a native, built-in WP block. It’s lightweight and self-sufficient,
 without the heavy burden of a large blocks library.
-It relies on a single tiny dependency - micromodal.js - with a combined total of only 10 kB of JavaScript❗
+It relies on a single tiny dependency - micromodal.js - with a combined total of only 10 kB of JavaScript ❗
 
 = Key Features =
 
-- **Fully Open Source**: Including the block source code. Fork and adjust as needed.
-- **Developer friendly**: Hooks for modifications and unopinionated starting CSS.
-- **Feature-Rich** and **free**.
-- **Future-Proof Compatibility**: Guaranteed compatibility with future WordPress versions.
+- 🥇 **Feature-Rich** and **free**.
+- 🥈 **Fully Open Source**: Including the block source code. Fork and adjust as needed.
+- 🥉 **Developer friendly**: Hooks for modifications and unopinionated starting CSS.
+- ⏲️ **Future-Proof Compatibility**: Guaranteed compatibility with future WordPress versions.
 
 == Installation ==
 
