@@ -180,8 +180,12 @@ $default-mobile-breakpoint: 48rem;
 		}
 	}
 
-	&.popup-attached {
-		margin-top: 0;
+	// consider later rewriting this, putting this in separate viewStyle, without not
+	&:not(.block-editor-block-list__block) {
+		margin-block-start: 0;
+	}
+
+	&.popup-attached:not(.block-editor-block-list__block) {
 		position: fixed;
 		inset: 0;
 		margin: 0 !important;

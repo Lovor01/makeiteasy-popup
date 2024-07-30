@@ -22,6 +22,7 @@ const BlockBodyInner = ( props ) => {
 		closeRight,
 		closeButtonPosition,
 		popupWidth,
+		accessibleDialogLabel,
 		...restProps
 	} = props;
 
@@ -60,7 +61,7 @@ const BlockBodyInner = ( props ) => {
 		<div
 			role="dialog"
 			aria-modal={ isModal }
-			aria-labelledby="modal-1-title"
+			aria-label={ accessibleDialogLabel }
 			{ ...{
 				...restProps,
 				className: restProps.className + ' makeiteasy-popup-wrapper',
@@ -107,13 +108,16 @@ BlockBody.save = ( props ) => {
 			undefined,
 			true
 		);
+	const closeAttrsOnOverlay = ! innerProps.isFixed
+		? dataModalCloseAttr
+		: null;
 
 	return (
 		<div aria-hidden="true" { ...outerProps }>
 			<div
 				className="makeiteasy-popup-overlay"
 				tabIndex="-1"
-				{ ...dataModalCloseAttr }
+				{ ...closeAttrsOnOverlay }
 			>
 				<BlockBodyInner { ...innerProps } />
 			</div>
@@ -139,6 +143,7 @@ const separateOnOuterAndInner = (
 		anchor,
 		innerBlocks,
 		isModal,
+		isFixed,
 		hasCloseButton,
 		closeButtonColor,
 		closeButtonPosition,
@@ -146,6 +151,7 @@ const separateOnOuterAndInner = (
 		closeRight,
 		style,
 		popupWidth,
+		accessibleDialogLabel,
 		...restProps
 	},
 	addToClassesWithoutHas,
@@ -199,6 +205,7 @@ const separateOnOuterAndInner = (
 			innerBlocks,
 			hasCloseButton,
 			isModal,
+			isFixed,
 			closeButtonColor,
 			closeButtonPosition,
 			dataModalCloseAttr,
@@ -206,11 +213,12 @@ const separateOnOuterAndInner = (
 			closeTop,
 			closeRight,
 			popupWidth,
+			accessibleDialogLabel,
 		},
 	};
 };
 
-export const wrapperClass = (
+export const wrapperAttributes = (
 	{
 		openType,
 		layoutType,
@@ -222,6 +230,8 @@ export const wrapperClass = (
 		attachedBaseElement,
 		fixedPopupPosition,
 		closeButtonPosition,
+		daysToShowAgain,
+		refererURLMatch,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -234,6 +244,7 @@ export const wrapperClass = (
 			'on scroll': 'open-on-scroll',
 			'on click': 'open-on-click',
 			'on hover': 'open-on-hover',
+			'on referer': 'open-on-referer',
 		}[ openType ] +
 		' ' +
 		{
@@ -255,4 +266,6 @@ export const wrapperClass = (
 	'data-opening-time': openingTime,
 	'data-waiting-after-closing': waitingAfterClosing,
 	'data-attached-base-element': attachedBaseElement,
+	'data-show-again-in': daysToShowAgain ?? 0,
+	'data-referer-url-to-match': refererURLMatch,
 } );

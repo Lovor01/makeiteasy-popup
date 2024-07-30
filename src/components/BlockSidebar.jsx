@@ -37,6 +37,7 @@ export default ( {
 		closeButtonColor,
 		closeButtonPosition,
 		popupWidth,
+		popupWidthSameAsOpener,
 		fixedPopupPosition,
 		daysToShowAgain,
 		refererURLMatch,
@@ -404,6 +405,22 @@ export default ( {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="dimensions">
+				{ openType === 'on hover' && (
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Same as opener', 'makeiteasy-popup' ) }
+							checked={ popupWidthSameAsOpener }
+							onChange={ ( popupWidthSameAsOpener ) =>
+								setAttributes( { popupWidthSameAsOpener } )
+							}
+							help={ __(
+								'Set width the same as opener element',
+								'makeiteasy-popup'
+							) }
+							title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+						/>
+					</PanelRow>
+				) }
 				<PanelRow>
 					<UnitControl
 						onChange={ ( popupWidth ) => {
@@ -413,6 +430,7 @@ export default ( {
 						__unstableInputWidth="14ch"
 						label="Popup width"
 						units={ units }
+						disabled={ popupWidthSameAsOpener }
 					></UnitControl>
 				</PanelRow>
 			</InspectorControls>

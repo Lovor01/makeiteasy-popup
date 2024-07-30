@@ -15,6 +15,7 @@ const BlockBodyInner = ( props ) => {
 		innerBlocks,
 		hasCloseButton,
 		isModal,
+		isFixed,
 		closeButtonColor,
 		dataModalCloseAttr,
 		closeTop,
@@ -66,7 +67,10 @@ const BlockBodyInner = ( props ) => {
 				className: restProps.className + ' makeiteasy-popup-wrapper',
 				style: {
 					...restProps.style,
-					width: popupWidth,
+					width:
+						popupWidth === '' || popupWidth === undefined
+							? null
+							: popupWidth,
 				},
 			} }
 		>
@@ -231,6 +235,7 @@ export const wrapperAttributes = (
 		closeButtonPosition,
 		daysToShowAgain,
 		refererURLMatch,
+		popupWidthSameAsOpener,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -267,4 +272,5 @@ export const wrapperAttributes = (
 	'data-attached-base-element': attachedBaseElement,
 	'data-show-again-in': daysToShowAgain ?? 0,
 	'data-referer-url-to-match': refererURLMatch,
+	'data-width-same-as-opener': popupWidthSameAsOpener ? 'true' : undefined,
 } );

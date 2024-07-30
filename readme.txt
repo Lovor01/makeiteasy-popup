@@ -102,6 +102,10 @@ The block sidebar provides many options, most of which function similarly to oth
 
 == Developers ==
 
+= Github repository =
+
+[https://github.com/Lovor01/makeiteasy-popup](https://github.com/Lovor01/makeiteasy-popup)
+
 = Changing the Close button =
 
 Using Javascript:
