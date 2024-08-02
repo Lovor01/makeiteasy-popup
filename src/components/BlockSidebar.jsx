@@ -405,7 +405,7 @@ export default ( {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="dimensions">
-				{ openType === 'on hover' && (
+				{ layoutType === 'attached' && (
 					<PanelRow>
 						<ToggleControl
 							label={ __( 'Same as opener', 'makeiteasy-popup' ) }

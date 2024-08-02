@@ -87,7 +87,7 @@ function adjustPopups( openPopup = 0 ) {
 				popupWrapper.style.boxSizing = 'border-box';
 				popupWrapper.style.left = rect.left + 'px';
 				// if set, set the width to same width as opener
-				if ( attachedBaseElement.dataset.widthSameAsOpener ) {
+				if ( popup.dataset.widthSameAsOpener ) {
 					popupWrapper.style.width =
 						attachedBaseElement.offsetWidth + 'px';
 				}

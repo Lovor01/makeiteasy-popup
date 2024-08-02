@@ -4,7 +4,7 @@
  * Description:       Popup block solution aligned with block editor concept
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           1.1.1
+ * Version:           1.1.2
  * Author:            Lovro Hrust
  * License:           LGPLv3
  * License URI:       https://www.gnu.org/licenses/lgpl-3.0.html

@@ -1,10 +1,10 @@
-=== Makeiteasy Popup ===
+=== MakeITeasy Popup ===
 Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog
 Requires at least: 6.5
 Tested up to:      6.6
-Stable tag:        1.1.1
+Stable tag:        1.1.2
 Requires PHP: 7.4
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
@@ -70,6 +70,10 @@ Post them here, and I’ll answer them.
 
 == Changelog ==
 
+= 1.1.2 =
+* Bug fix for setting same width of popup as attached element
+* Enhancement - choosing width same as attached element for any type of block opening
+
 = 1.1.1 =
 * Introduced setting width of popup to same width as element (only for opening on hover)
 * Bug fixes
@@ -84,6 +88,9 @@ Post them here, and I’ll answer them.
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+New features and bug fixes
 
 = 1.1.1 =
 New features and fixes for css (visual) bugs.
