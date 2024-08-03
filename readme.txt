@@ -4,7 +4,7 @@ Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog
 Requires at least: 6.5
 Tested up to:      6.6
-Stable tag:        1.1.2
+Stable tag:        1.1.3
 Requires PHP: 7.4
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
@@ -18,7 +18,7 @@ Multiple popups on one page? This plugin has it all. It provides styling consist
 
 = Why choose Makeiteasy Popup? =
 
-❗ Unlike other plugins, Makeiteasy Popup integrates seamlessly with WordPress,
+❗ Unlike some other plugins, Makeiteasy Popup integrates seamlessly with WordPress,
 feeling like a native, built-in WP block. It’s lightweight and self-sufficient,
 without the heavy burden of a large blocks library.
 It relies on a single tiny dependency - micromodal.js - with a combined total of only 10 kB of JavaScript ❗
@@ -70,6 +70,9 @@ Post them here, and I’ll answer them.
 
 == Changelog ==
 
+= 1.1.3 =
+* Bug fix where attached popups did not attach.
+
 = 1.1.2 =
 * Bug fix for setting same width of popup as attached element
 * Enhancement - choosing width same as attached element for any type of block opening
@@ -88,6 +91,9 @@ Post them here, and I’ll answer them.
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+Bug fixes
 
 = 1.1.2 =
 New features and bug fixes

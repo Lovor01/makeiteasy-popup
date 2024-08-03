@@ -44,7 +44,7 @@ function setUp() {
 			! [ '0', undefined ].includes( showAgainIn ) &&
 			hasBeenOpened( popupBlock.id, showAgainIn )
 		) {
-			return;
+			continue;
 		}
 
 		// set if opens on click
