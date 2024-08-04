@@ -23,6 +23,8 @@ feeling like a native, built-in WP block. It’s lightweight and self-sufficient
 without the heavy burden of a large blocks library.
 It relies on a single tiny dependency - micromodal.js - with a combined total of only 10 kB of JavaScript ❗
 
+👆 Try demo - there is a "Live preview" button on the top of this page 👆
+
 = Key Features =
 
 - 🥇 **Feature-Rich** and **free**.
@@ -71,7 +73,7 @@ Post them here, and I’ll answer them.
 == Changelog ==
 
 = 1.1.3 =
-* Bug fix where attached popups did not attach.
+* Bug fix where if popups with time delay for repeated opening were used, some attached popups may not attach.
 
 = 1.1.2 =
 * Bug fix for setting same width of popup as attached element
@@ -93,16 +95,16 @@ Post them here, and I’ll answer them.
 == Upgrade Notice ==
 
 = 1.1.3 =
-Bug fixes
+Bug fixes.
 
 = 1.1.2 =
-New features and bug fixes
+New features and bug fixes.
 
 = 1.1.1 =
 New features and fixes for css (visual) bugs.
 
 = 1.1.0 =
-New features: open on referer and open again only after given interval in days
+New features: open on referer and open again only after given interval in days.
 
 == Block options ==
 
