@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-22T14:45:16+02:00\n"
+"POT-Creation-Date: 2024-08-22T18:24:01+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: makeiteasy-popup\n"
@@ -46,6 +46,7 @@ msgid "Show popups"
 msgstr ""
 
 #: build/index.js:1
+msgctxt "Close button aria label"
 msgid "Close modal"
 msgstr ""
 

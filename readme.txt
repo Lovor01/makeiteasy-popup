@@ -97,6 +97,9 @@ Introduced internationalization
 
 == Upgrade Notice ==
 
+= 1.1.4 =
+It is possible to use translations.
+
 = 1.1.3 =
 Bug fixes.
 

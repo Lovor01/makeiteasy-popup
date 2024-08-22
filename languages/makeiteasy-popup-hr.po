@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Makeiteasy Popup 1.1.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/makeiteasy-"
 "popup\n"
-"POT-Creation-Date: 2024-08-22T14:45:16+02:00\n"
-"PO-Revision-Date: 2024-08-22 17:18+0200\n"
+"POT-Creation-Date: 2024-08-22T18:24:01+02:00\n"
+"PO-Revision-Date: 2024-08-22 18:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -49,8 +49,9 @@ msgid "Show popups"
 msgstr "Prikaži skočni prozor"
 
 #: build/index.js:1
+msgctxt "Close button aria label"
 msgid "Close modal"
-msgstr ""
+msgstr "Zatvori skočni prozor"
 
 #: build/index.js:1
 msgid "Popup is placed at:"

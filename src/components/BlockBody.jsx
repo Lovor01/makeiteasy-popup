@@ -9,7 +9,7 @@
 import { ReactComponent as CloseX } from '../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
-import { __ } from '@wordpress/i18n';
+import { _x } from '@wordpress/i18n';
 
 const BlockBodyInner = ( props ) => {
 	const {
@@ -40,7 +40,11 @@ const BlockBodyInner = ( props ) => {
 	// use style attribute to position close button correctly
 	const closeButton = hasCloseButton ? (
 		<button
-			aria-label={ __( 'Close modal', 'makeiteasy-popup' ) }
+			aria-label={ _x(
+				'Close modal',
+				'Close button aria label',
+				'makeiteasy-popup'
+			) }
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
 			style={ {
