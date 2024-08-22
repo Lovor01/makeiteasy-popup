@@ -6,10 +6,10 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+// eslint-disable-next-line import/no-unresolved
+import { ReactComponent as CloseX } from '/src/assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
-import { __ } from '@wordpress/i18n';
 
 const BlockBodyInner = ( props ) => {
 	const {
@@ -40,7 +40,7 @@ const BlockBodyInner = ( props ) => {
 	// use style attribute to position close button correctly
 	const closeButton = hasCloseButton ? (
 		<button
-			aria-label={ __( 'Close modal', 'makeiteasy-popup' ) }
+			aria-label="Close modal"
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
 			style={ {

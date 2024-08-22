@@ -21,6 +21,7 @@ import {
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalNumberControl as NumberControl,
+	ExternalLink,
 } from '@wordpress/components';
 
 export default ( {
@@ -50,16 +51,28 @@ export default ( {
 			__nextHasNoMarginBottom
 			__next40pxDefaultSize
 			isBlock
-			label="Popup is placed at:"
+			label={ __( 'Popup is placed at:', 'makeiteasy-popup' ) }
 			value={ fixedPopupPosition }
 			onChange={ ( fixedPopupPosition ) =>
 				setAttributes( { fixedPopupPosition } )
 			}
 		>
-			<ToggleGroupControlOption label={ __( 'Bottom' ) } value="bottom" />
-			<ToggleGroupControlOption label={ __( 'Top' ) } value="top" />
-			<ToggleGroupControlOption label={ __( 'Left' ) } value="left" />
-			<ToggleGroupControlOption label={ __( 'Right' ) } value="right" />
+			<ToggleGroupControlOption
+				label={ __( 'Bottom', 'makeiteasy-popup' ) }
+				value="bottom"
+			/>
+			<ToggleGroupControlOption
+				label={ __( 'Top', 'makeiteasy-popup' ) }
+				value="top"
+			/>
+			<ToggleGroupControlOption
+				label={ __( 'Left', 'makeiteasy-popup' ) }
+				value="left"
+			/>
+			<ToggleGroupControlOption
+				label={ __( 'Right', 'makeiteasy-popup' ) }
+				value="right"
+			/>
 		</ToggleGroupControl>
 	);
 
@@ -135,8 +148,14 @@ export default ( {
 					) && (
 						<PanelRow>
 							<TextControl
-								label="CSS selector"
-								help="CSS selector of element to open popup"
+								label={ __(
+									'CSS selector',
+									'makeiteasy-popup'
+								) }
+								help={ __(
+									'CSS selector of element to open popup',
+									'makeiteasy-popup'
+								) }
 								value={ openSelector }
 								onChange={ ( openSelector ) =>
 									setAttributes( { openSelector } )
@@ -233,12 +252,21 @@ export default ( {
 				>
 					<PanelRow>
 						<RadioControl
-							label="Layout type"
+							label={ __( 'Layout type', 'makeiteasy-popup' ) }
 							selected={ layoutType }
 							options={ [
-								{ label: 'floating', value: 'floating' },
-								{ label: 'fixed', value: 'fixed' },
-								{ label: 'attached', value: 'attached' },
+								{
+									label: __( 'floating', 'makeiteasy-popup' ),
+									value: 'floating',
+								},
+								{
+									label: __( 'fixed', 'makeiteasy-popup' ),
+									value: 'fixed',
+								},
+								{
+									label: __( 'attached', 'makeiteasy-popup' ),
+									value: 'attached',
+								},
 							] }
 							onChange={ ( layoutType ) => {
 								setAttributes( { layoutType } );
@@ -249,20 +277,32 @@ export default ( {
 					{ layoutType === 'attached' && auxAttached }
 					<PanelRow className="mie-modality-type">
 						<RadioControl
-							label="Modality type"
+							label={ __( 'Modality type', 'makeiteasy-popup' ) }
 							selected={ modalityType }
 							options={
 								openType !== 'on hover'
 									? [
-											{ label: 'modal', value: 'modal' },
 											{
-												label: 'modeless',
+												label: __(
+													'modal',
+													'makeiteasy-popup'
+												),
+												value: 'modal',
+											},
+											{
+												label: __(
+													'modeless',
+													'makeiteasy-popup'
+												),
 												value: 'modeless',
 											},
 									  ]
 									: [
 											{
-												label: 'modeless',
+												label: __(
+													'modeless',
+													'makeiteasy-popup'
+												),
 												value: 'modeless',
 											},
 									  ]
@@ -278,9 +318,12 @@ export default ( {
 								follow good practices and do not convey any
 								important information in it.
 								<br />
-								<a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">
-									Content on Hover or Focus
-								</a>
+								<ExternalLink href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">
+									{ __(
+										'Content on Hover or Focus',
+										'makeiteasy-popup'
+									) }
+								</ExternalLink>
 							</p>
 						) }
 					</PanelRow>
@@ -312,8 +355,14 @@ export default ( {
 							onChange={ ( enabled ) =>
 								setAttributes( { enabled } )
 							}
-							help="Disabled block is saved for later showing."
-							title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+							help={ __(
+								'Disabled block is saved for later showing.',
+								'makeiteasy-popup'
+							) }
+							title={ __(
+								'If you disable block, it will not be shown, but you can keep it and enable it again sometimes.',
+								'makeiteasy-popup'
+							) }
 						/>
 					</PanelRow>
 				</PanelBody>
@@ -365,7 +414,12 @@ export default ( {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<PanelBody title="Close button appearance">
+				<PanelBody
+					title={ __(
+						'Close button appearance',
+						'makeiteasy-popup'
+					) }
+				>
 					<PanelRow className="mie-span-2">
 						<ColorPalette
 							clearable
@@ -379,7 +433,10 @@ export default ( {
 					</PanelRow>
 					<PanelRow className="mie-span-2">
 						<ToggleControl
-							label="Button beside content"
+							label={ __(
+								'Button beside content',
+								'makeiteasy-popup'
+							) }
 							checked={ closeButtonPosition === 'beside' }
 							onChange={ ( isBeside ) =>
 								setAttributes( {
@@ -417,7 +474,10 @@ export default ( {
 								'Set width the same as opener element',
 								'makeiteasy-popup'
 							) }
-							title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+							title={ __(
+								'If you disable block, it will not be shown, but you can keep it and enable it again sometimes.',
+								'makeiteasy-popup'
+							) }
 						/>
 					</PanelRow>
 				) }
@@ -428,7 +488,7 @@ export default ( {
 						} }
 						value={ popupWidth || 'Auto' }
 						__unstableInputWidth="14ch"
-						label="Popup width"
+						label={ __( 'Popup width', 'makeiteasy-popup' ) }
 						units={ units }
 						disabled={ popupWidthSameAsOpener }
 					></UnitControl>

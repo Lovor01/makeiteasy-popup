@@ -36,6 +36,7 @@ import { ReactComponent as icon } from './assets/block-icon.svg';
 /* eslint-disable camelcase */
 import v1_0 from './deprecated/1.0';
 import v1_1 from './deprecated/1.1';
+import v1_1_3 from './deprecated/1.1.3';
 /* eslint-enable camelcase */
 
 /**
@@ -64,6 +65,11 @@ registerBlockType( metadata.name, {
 			attributes: v1_1.attributes,
 			supports: v1_1.supports,
 			save: v1_1.save,
+		},
+		{
+			attributes: v1_1_3.attributes,
+			supports: v1_1_3.supports,
+			save: v1_1_3.save,
 		},
 	],
 	/* eslint-enable camelcase */

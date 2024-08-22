@@ -4,7 +4,7 @@ Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog
 Requires at least: 6.5
 Tested up to:      6.6
-Stable tag:        1.1.3
+Stable tag:        1.1.4
 Requires PHP: 7.4
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
@@ -71,6 +71,9 @@ Post them here, and I’ll answer them.
 4. Modeless popup attached to element
 
 == Changelog ==
+
+= 1.1.4 =
+Introduced internationalization
 
 = 1.1.3 =
 * Bug fix where if popups with time delay for repeated opening were used, some attached popups may not attach.
