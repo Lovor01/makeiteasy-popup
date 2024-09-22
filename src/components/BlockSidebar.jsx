@@ -7,6 +7,7 @@ import {
 	useSettings,
 	ColorPalette,
 } from '@wordpress/block-editor';
+import { useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -43,6 +44,7 @@ export default ( {
 		daysToShowAgain,
 		refererURLMatch,
 		accessibleDialogLabel,
+		align
 	},
 	setAttributes,
 } ) => {
@@ -94,6 +96,8 @@ export default ( {
 		availableUnits: availableUnits || [ '%', 'px', 'em', 'rem', 'vw' ],
 	} );
 
+	const openTypeRef = useRef(undefined);
+
 	return (
 		<>
 			<InspectorControls group="settings">
@@ -140,6 +144,19 @@ export default ( {
 							] }
 							onChange={ ( openType ) => {
 								setAttributes( { openType } );
+								// set modalitytype as modeless if opentype is on hover
+								// restore previous modality if opentype is changed - that's ref is for
+								if ( openType === 'on hover' && modalityType === 'modal' ) {
+									openTypeRef.current = modalityType;
+									setAttributes( {
+										modalityType: 'modeless',
+									} );
+								} else if ( openTypeRef.current ) {
+									setAttributes( {
+										modalityType: openTypeRef.current,
+									} );
+									openTypeRef.current = undefined;
+								}
 							} }
 						/>
 					</PanelRow>
@@ -485,6 +502,12 @@ export default ( {
 					<UnitControl
 						onChange={ ( popupWidth ) => {
 							setAttributes( { popupWidth } );
+							// reset align if popupWidth changes
+							if ( popupWidth && align ) {
+								setAttributes( {
+									align: undefined,
+								} );
+							}
 						} }
 						value={ popupWidth || 'Auto' }
 						__unstableInputWidth="14ch"

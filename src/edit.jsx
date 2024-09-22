@@ -1,3 +1,9 @@
+/**
+ * for more concise code, uses three components:
+ * BlockBody creates content of block
+ * BlockToolbar creates toolbar ** not used currently
+ * BlockSidebar creates sidebar
+ */
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 import {
 	default as BlockBody,
@@ -44,6 +50,10 @@ export default function Edit( {
 		select( popupStore ).getPopupsOpen()
 	);
 
+	/**
+	 * Use useEffect-s here to do various stuff not possible with events
+	 */
+
 	// set unique id if anchor is not set
 	useEffect( () => {
 		if ( ! anchor || idExists( anchor, blocks, clientId ) ) {
@@ -57,7 +67,7 @@ export default function Edit( {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [] );
 
-	// reset popupWidth if align changes
+	// reset popupWidth if align changes - I have no possibility to hook in align setting event, so this is placed in useEffect
 	useEffect( () => {
 		if ( align && popupWidth ) {
 			setAttributes( {
@@ -66,17 +76,8 @@ export default function Edit( {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ align ] );
-	// reset align if popupWidth changes
-	useEffect( () => {
-		if ( popupWidth && align ) {
-			setAttributes( {
-				align: undefined,
-			} );
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ popupWidth ] );
 
-	// if open type is 'on hover' set modality to modeless
+	// if open type is 'on hover' set modality to modeless - avoid any possibility of modalityType being modal while on hover is opening type
 	useEffect( () => {
 		if ( openType === 'on hover' && modalityType === 'modal' ) {
 			setAttributes( {
@@ -84,7 +85,7 @@ export default function Edit( {
 			} );
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ openType ] );
+	}, [] );
 
 	return (
 		<>
