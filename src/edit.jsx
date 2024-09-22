@@ -1,5 +1,8 @@
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
-import { default as BlockBody, wrapperClass } from './components/BlockBody.jsx';
+import {
+	default as BlockBody,
+	wrapperAttributes,
+} from './components/BlockBody.jsx';
 import { useEffect } from '@wordpress/element';
 import BlockSidebar from './components/BlockSidebar';
 import { idExists, customNanoId } from './helpers/custom-id.js';
@@ -26,10 +29,12 @@ export default function Edit( {
 		} = { spacing: { padding: { top: null, right: null } } },
 		popupWidth,
 		align,
+		accessibleDialogLabel,
 	},
 	setAttributes,
 	clientId,
 	modalityType,
+	layoutType,
 } ) {
 	// Get all blocks
 	const blocks = useSelect( ( select ) =>
@@ -54,7 +59,7 @@ export default function Edit( {
 
 	// reset popupWidth if align changes
 	useEffect( () => {
-		if ( align && ! popupWidth ) {
+		if ( align && popupWidth ) {
 			setAttributes( {
 				popupWidth: undefined,
 			} );
@@ -63,7 +68,7 @@ export default function Edit( {
 	}, [ align ] );
 	// reset align if popupWidth changes
 	useEffect( () => {
-		if ( popupWidth && ! align ) {
+		if ( popupWidth && align ) {
 			setAttributes( {
 				align: undefined,
 			} );
@@ -71,14 +76,25 @@ export default function Edit( {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ popupWidth ] );
 
+	// if open type is 'on hover' set modality to modeless
+	useEffect( () => {
+		if ( openType === 'on hover' && modalityType === 'modal' ) {
+			setAttributes( {
+				modalityType: 'modeless',
+			} );
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ openType ] );
+
 	return (
 		<>
 			<BlockSidebar { ...{ attributes, setAttributes, openType } } />
 			<BlockBody
 				{ ...useBlockProps(
-					wrapperClass( attributes, popupsOpen, true )
+					wrapperAttributes( attributes, popupsOpen, true )
 				) }
 				isModal={ modalityType === 'modal' }
+				isFixed={ layoutType === 'fixed' }
 				innerBlocks={ useInnerBlocksProps }
 				anchor={ anchor }
 				hasCloseButton={ hasCloseButton }
@@ -87,6 +103,7 @@ export default function Edit( {
 				closeTop={ top }
 				closeRight={ right }
 				popupWidth={ popupWidth }
+				accessibleDialogLabel={ accessibleDialogLabel }
 			/>
 		</>
 	);

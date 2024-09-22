@@ -84,11 +84,13 @@ function adjustPopups( openPopup = 0 ) {
 			// there is a cached opener property, use it to adjust popup width
 			// may be just related to special case
 			if ( isDesktop ) {
-				// TODO: in next iteration give option to set width of popup the same as opener element
-				popupWrapper.style.width =
-					attachedBaseElement.offsetWidth + 'px';
 				popupWrapper.style.boxSizing = 'border-box';
 				popupWrapper.style.left = rect.left + 'px';
+				// if set, set the width to same width as opener
+				if ( popup.dataset.widthSameAsOpener ) {
+					popupWrapper.style.width =
+						attachedBaseElement.offsetWidth + 'px';
+				}
 			} else {
 				const sideClass = ( isLeft ) =>
 					isLeft ? 'opener-is-left' : 'opener-is-right';

@@ -6,24 +6,22 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+// eslint-disable-next-line import/no-unresolved
+import { ReactComponent as CloseX } from '/src/assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
-import { _x } from '@wordpress/i18n';
 
 const BlockBodyInner = ( props ) => {
 	const {
 		innerBlocks,
 		hasCloseButton,
 		isModal,
-		isFixed,
 		closeButtonColor,
 		dataModalCloseAttr,
 		closeTop,
 		closeRight,
 		closeButtonPosition,
 		popupWidth,
-		accessibleDialogLabel,
 		...restProps
 	} = props;
 
@@ -40,11 +38,7 @@ const BlockBodyInner = ( props ) => {
 	// use style attribute to position close button correctly
 	const closeButton = hasCloseButton ? (
 		<button
-			aria-label={ _x(
-				'Close modal',
-				'Close button aria label',
-				'makeiteasy-popup'
-			) }
+			aria-label="Close modal"
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
 			style={ {
@@ -66,16 +60,13 @@ const BlockBodyInner = ( props ) => {
 		<div
 			role="dialog"
 			aria-modal={ isModal }
-			aria-label={ accessibleDialogLabel }
+			aria-labelledby="modal-1-title"
 			{ ...{
 				...restProps,
 				className: restProps.className + ' makeiteasy-popup-wrapper',
 				style: {
 					...restProps.style,
-					width:
-						popupWidth === '' || popupWidth === undefined
-							? null
-							: popupWidth,
+					width: popupWidth,
 				},
 			} }
 		>
@@ -116,16 +107,13 @@ BlockBody.save = ( props ) => {
 			undefined,
 			true
 		);
-	const closeAttrsOnOverlay = ! innerProps.isFixed
-		? dataModalCloseAttr
-		: null;
 
 	return (
 		<div aria-hidden="true" { ...outerProps }>
 			<div
 				className="makeiteasy-popup-overlay"
 				tabIndex="-1"
-				{ ...closeAttrsOnOverlay }
+				{ ...dataModalCloseAttr }
 			>
 				<BlockBodyInner { ...innerProps } />
 			</div>
@@ -151,7 +139,6 @@ const separateOnOuterAndInner = (
 		anchor,
 		innerBlocks,
 		isModal,
-		isFixed,
 		hasCloseButton,
 		closeButtonColor,
 		closeButtonPosition,
@@ -159,7 +146,6 @@ const separateOnOuterAndInner = (
 		closeRight,
 		style,
 		popupWidth,
-		accessibleDialogLabel,
 		...restProps
 	},
 	addToClassesWithoutHas,
@@ -213,7 +199,6 @@ const separateOnOuterAndInner = (
 			innerBlocks,
 			hasCloseButton,
 			isModal,
-			isFixed,
 			closeButtonColor,
 			closeButtonPosition,
 			dataModalCloseAttr,
@@ -221,12 +206,11 @@ const separateOnOuterAndInner = (
 			closeTop,
 			closeRight,
 			popupWidth,
-			accessibleDialogLabel,
 		},
 	};
 };
 
-export const wrapperAttributes = (
+export const wrapperClass = (
 	{
 		openType,
 		layoutType,
@@ -238,9 +222,6 @@ export const wrapperAttributes = (
 		attachedBaseElement,
 		fixedPopupPosition,
 		closeButtonPosition,
-		daysToShowAgain,
-		refererURLMatch,
-		popupWidthSameAsOpener,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -253,7 +234,6 @@ export const wrapperAttributes = (
 			'on scroll': 'open-on-scroll',
 			'on click': 'open-on-click',
 			'on hover': 'open-on-hover',
-			'on referer': 'open-on-referer',
 		}[ openType ] +
 		' ' +
 		{
@@ -275,7 +255,4 @@ export const wrapperAttributes = (
 	'data-opening-time': openingTime,
 	'data-waiting-after-closing': waitingAfterClosing,
 	'data-attached-base-element': attachedBaseElement,
-	'data-show-again-in': daysToShowAgain ?? 0,
-	'data-referer-url-to-match': refererURLMatch,
-	'data-width-same-as-opener': popupWidthSameAsOpener ? 'true' : undefined,
 } );

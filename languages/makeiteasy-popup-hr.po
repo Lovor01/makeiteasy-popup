@@ -1,0 +1,240 @@
+# Copyright (C) 2024 Lovro Hrust
+# This file is distributed under the LGPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Makeiteasy Popup 1.1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/makeiteasy-"
+"popup\n"
+"POT-Creation-Date: 2024-08-22T18:24:01+02:00\n"
+"PO-Revision-Date: 2024-08-23 00:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Domain: makeiteasy-popup\n"
+
+#. Plugin Name of the plugin
+#: makeiteasy-popup.php
+msgid "Makeiteasy Popup"
+msgstr "Makeiteasy Popup"
+
+#. Description of the plugin
+#: makeiteasy-popup.php
+msgid "Popup block solution aligned with block editor concept"
+msgstr ""
+"Rješenje blokova skočnih prozora usklađeno s konceptom uređivača blokova"
+
+#. Author of the plugin
+#: makeiteasy-popup.php
+msgid "Lovro Hrust"
+msgstr "Lovro Hrust"
+
+#: build/index.js:1
+msgid "Show popup control"
+msgstr "Prikaži kontrole skočnog prozora"
+
+#: build/index.js:1
+msgid "MakeITeasy popup"
+msgstr "MakeITeasy popup"
+
+#: build/index.js:1
+msgid "Editor visibility"
+msgstr "Vidljivost u editoru"
+
+#: build/index.js:1
+msgid "Show popups"
+msgstr "Prikaži skočni prozor"
+
+#: build/index.js:1
+msgctxt "Close button aria label"
+msgid "Close modal"
+msgstr "Zatvori skočni prozor"
+
+#: build/index.js:1
+msgid "Popup is placed at:"
+msgstr "Skočni prozor je postavljen:"
+
+#: build/index.js:1
+msgid "Bottom"
+msgstr "Dno"
+
+#: build/index.js:1
+msgid "Top"
+msgstr "Vrh"
+
+#: build/index.js:1
+msgid "Left"
+msgstr "Lijevo"
+
+#: build/index.js:1
+msgid "Right"
+msgstr "Desno"
+
+#: build/index.js:1
+msgid "Opening"
+msgstr "Otvaranje"
+
+#: build/index.js:1
+msgid "Opens on:"
+msgstr "Otvara se:"
+
+#: build/index.js:1
+msgid "What triggers opening."
+msgstr "Što pokreće otvaranje."
+
+#: build/index.js:1
+msgid "On timer"
+msgstr "Na kronometar"
+
+#: build/index.js:1
+msgid "On scroll"
+msgstr "Na scroll"
+
+#: build/index.js:1
+msgid "On click"
+msgstr "Na klik"
+
+#: build/index.js:1
+msgid "On hover"
+msgstr "Na hover"
+
+#: build/index.js:1
+msgid "On referer"
+msgstr "Na referer"
+
+#: build/index.js:1
+msgid "CSS selector"
+msgstr "CSS selector"
+
+#: build/index.js:1
+msgid "CSS selector of element to open popup"
+msgstr "CSS selector elementa koji otvara skočni prozor"
+
+#: build/index.js:1
+msgid "Open after"
+msgstr "Otvori nakon"
+
+#: build/index.js:1
+msgid "Time to open again"
+msgstr "Vrijeme nakon kojeg se ponovno otvara"
+
+#: build/index.js:1
+msgid "Open on referer URL match"
+msgstr "Otvori na slaganje s referer URL-om"
+
+#: build/index.js:1
+msgid "Enter part of URL to match."
+msgstr "Unesi dio URL-a s kojim želiš slaganje."
+
+#: build/index.js:1
+msgid "Layout"
+msgstr "Razmještaj"
+
+#: build/index.js:1
+msgid "Layout type"
+msgstr "Vrsta rasporeda"
+
+#: build/index.js:1
+msgid "floating"
+msgstr "plutajući"
+
+#: build/index.js:1
+msgid "fixed"
+msgstr "fiksiran"
+
+#: build/index.js:1
+msgid "attached"
+msgstr "prikvačen"
+
+#: build/index.js:1
+msgid "Modality type"
+msgstr "Tip modaliteta"
+
+#: build/index.js:1
+msgid "modal"
+msgstr "modalni"
+
+#: build/index.js:1
+msgid "modeless"
+msgstr "bez modaliteta"
+
+#: build/index.js:1
+msgid "Content on Hover or Focus"
+msgstr "Sadržaj na hover ili fokus"
+
+#: build/index.js:1
+msgid "Visibility"
+msgstr "Vidljivost"
+
+#: build/index.js:1
+msgid "Has close button"
+msgstr "Ima gumb za zatvaranje"
+
+#: build/index.js:1
+msgid "Popup is enabled"
+msgstr "Skočni prozor je omogućen"
+
+#: build/index.js:1
+msgid "Disabled block is saved for later showing."
+msgstr "Onemogućeni blok se sprema za kasnije prikazivanje."
+
+#: build/index.js:1
+msgid ""
+"If you disable block, it will not be shown, but you can keep it and enable "
+"it again sometimes."
+msgstr ""
+"Ako onemogućite blok, on neće biti prikazan, ali ga možete zadržati i "
+"ponekad ponovno omogućiti."
+
+#: build/index.js:1
+msgid "Accessibility"
+msgstr "Pristupačnost"
+
+#: build/index.js:1
+msgid "Dialog accessible label"
+msgstr "Pristupačna oznaka dijaloga"
+
+#: build/index.js:1
+msgid "Additional rules"
+msgstr "Dodatna pravila"
+
+#: build/index.js:1
+msgid "Show again after days"
+msgstr "Prikaži ponovno nakon broja dana"
+
+#: build/index.js:1
+msgid "Set to 0 to show each time"
+msgstr "Namjesti na 0 da se prikaže svaki put"
+
+#: build/index.js:1
+msgid "Close button appearance"
+msgstr ""
+
+#: build/index.js:1
+msgid "Button beside content"
+msgstr "Gumb pokraj sadržaja"
+
+#: build/index.js:1
+msgid "Same as opener"
+msgstr "Isto kao element koji otvara"
+
+#: build/index.js:1
+msgid "Set width the same as opener element"
+msgstr "Postavi širinu jednaku kao element koji otvara"
+
+#: build/index.js:1
+msgid "Popup width"
+msgstr "Širina skočnog prozora"
+
+#: build/block.json
+msgctxt "block title"
+msgid "Makeiteasy Popup"
+msgstr "Makeiteasy Popup"
+
+#: build/block.json
+msgctxt "block description"
+msgid "Versatile popup block."
+msgstr "Svestrani blok skočnih prozora."

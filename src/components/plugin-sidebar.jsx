@@ -1,5 +1,5 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/edit-post';
+import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/editor';
 import { ReactComponent as Icon } from '../assets/block-icon.svg';
 import {
 	ToggleControl,
@@ -10,6 +10,7 @@ import {
 } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import popupStore from '../store';
+import { __ } from '@wordpress/i18n';
 
 // @see https://github.com/WordPress/gutenberg/tree/trunk/packages/components/src/panel#panelbody
 
@@ -28,20 +29,22 @@ const PluginSidebarTest = () => {
 				target="mie-popup-sidebar"
 				icon="admin-plugins"
 			>
-				Show popup control
+				{ __( 'Show popup control', 'makeiteasy-popup' ) }
 			</PluginSidebarMoreMenuItem>
 			<PluginSidebar
 				name="mie-popup-sidebar"
-				title="MakeITeasy popup"
+				title={ __( 'MakeITeasy popup', 'makeiteasy-popup' ) }
 				icon={ Icon }
 			>
 				<PanelBody className="mie-popup-plugin-panel">
 					<PanelRow>
-						<Text weight={ 600 }>Editor visibility</Text>
+						<Text weight={ 600 }>
+							{ __( 'Editor visibility', 'makeiteasy-popup' ) }
+						</Text>
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label="Show popups"
+							label={ __( 'Show popups', 'makeiteasy-popup' ) }
 							checked={ popupsOpen }
 							onChange={ ( value ) => {
 								setPopupsOpen( value );

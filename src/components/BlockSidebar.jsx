@@ -20,6 +20,8 @@ import {
 	// ColorPalette,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+	__experimentalNumberControl as NumberControl,
+	ExternalLink,
 } from '@wordpress/components';
 
 export default ( {
@@ -36,7 +38,11 @@ export default ( {
 		closeButtonColor,
 		closeButtonPosition,
 		popupWidth,
+		popupWidthSameAsOpener,
 		fixedPopupPosition,
+		daysToShowAgain,
+		refererURLMatch,
+		accessibleDialogLabel,
 	},
 	setAttributes,
 } ) => {
@@ -45,16 +51,28 @@ export default ( {
 			__nextHasNoMarginBottom
 			__next40pxDefaultSize
 			isBlock
-			label="Popup is placed at:"
+			label={ __( 'Popup is placed at:', 'makeiteasy-popup' ) }
 			value={ fixedPopupPosition }
 			onChange={ ( fixedPopupPosition ) =>
 				setAttributes( { fixedPopupPosition } )
 			}
 		>
-			<ToggleGroupControlOption label={ __( 'Bottom' ) } value="bottom" />
-			<ToggleGroupControlOption label={ __( 'Top' ) } value="top" />
-			<ToggleGroupControlOption label={ __( 'Left' ) } value="left" />
-			<ToggleGroupControlOption label={ __( 'Right' ) } value="right" />
+			<ToggleGroupControlOption
+				label={ __( 'Bottom', 'makeiteasy-popup' ) }
+				value="bottom"
+			/>
+			<ToggleGroupControlOption
+				label={ __( 'Top', 'makeiteasy-popup' ) }
+				value="top"
+			/>
+			<ToggleGroupControlOption
+				label={ __( 'Left', 'makeiteasy-popup' ) }
+				value="left"
+			/>
+			<ToggleGroupControlOption
+				label={ __( 'Right', 'makeiteasy-popup' ) }
+				value="right"
+			/>
 		</ToggleGroupControl>
 	);
 
@@ -81,7 +99,7 @@ export default ( {
 			<InspectorControls group="settings">
 				<PanelBody
 					title={ __( 'Opening', 'makeiteasy-popup' ) }
-					icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+					icon="admin-settings"
 					initialOpen={ true }
 				>
 					<PanelRow>
@@ -112,6 +130,13 @@ export default ( {
 									label: __( 'On hover', 'makeiteasy-popup' ),
 									value: 'on hover',
 								},
+								{
+									label: __(
+										'On referer',
+										'makeiteasy-popup'
+									),
+									value: 'on referer',
+								},
 							] }
 							onChange={ ( openType ) => {
 								setAttributes( { openType } );
@@ -123,8 +148,14 @@ export default ( {
 					) && (
 						<PanelRow>
 							<TextControl
-								label="CSS selector"
-								help="CSS selector of element to open popup"
+								label={ __(
+									'CSS selector',
+									'makeiteasy-popup'
+								) }
+								help={ __(
+									'CSS selector of element to open popup',
+									'makeiteasy-popup'
+								) }
 								value={ openSelector }
 								onChange={ ( openSelector ) =>
 									setAttributes( { openSelector } )
@@ -195,20 +226,47 @@ export default ( {
 							/>
 						</PanelRow>
 					) }
+					{ 'on referer' === openType && (
+						<PanelRow>
+							<TextControl
+								label={ __(
+									'Open on referer URL match',
+									'makeiteasy-popup'
+								) }
+								value={ refererURLMatch ?? '' }
+								onChange={ ( refererURLMatch ) =>
+									setAttributes( { refererURLMatch } )
+								}
+								help={ __(
+									'Enter part of URL to match.',
+									'makeiteasy-popup'
+								) }
+							/>
+						</PanelRow>
+					) }
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Layout', 'makeiteasy-popup' ) }
-					icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+					icon="admin-settings"
 					initialOpen={ true }
 				>
 					<PanelRow>
 						<RadioControl
-							label="Layout type"
+							label={ __( 'Layout type', 'makeiteasy-popup' ) }
 							selected={ layoutType }
 							options={ [
-								{ label: 'floating', value: 'floating' },
-								{ label: 'fixed', value: 'fixed' },
-								{ label: 'attached', value: 'attached' },
+								{
+									label: __( 'floating', 'makeiteasy-popup' ),
+									value: 'floating',
+								},
+								{
+									label: __( 'fixed', 'makeiteasy-popup' ),
+									value: 'fixed',
+								},
+								{
+									label: __( 'attached', 'makeiteasy-popup' ),
+									value: 'attached',
+								},
 							] }
 							onChange={ ( layoutType ) => {
 								setAttributes( { layoutType } );
@@ -217,28 +275,70 @@ export default ( {
 					</PanelRow>
 					{ layoutType === 'fixed' && auxFixed }
 					{ layoutType === 'attached' && auxAttached }
-					<PanelRow>
+					<PanelRow className="mie-modality-type">
 						<RadioControl
-							label="Modality type"
+							label={ __( 'Modality type', 'makeiteasy-popup' ) }
 							selected={ modalityType }
-							options={ [
-								{ label: 'modal', value: 'modal' },
-								{ label: 'modeless', value: 'modeless' },
-							] }
+							options={
+								openType !== 'on hover'
+									? [
+											{
+												label: __(
+													'modal',
+													'makeiteasy-popup'
+												),
+												value: 'modal',
+											},
+											{
+												label: __(
+													'modeless',
+													'makeiteasy-popup'
+												),
+												value: 'modeless',
+											},
+									  ]
+									: [
+											{
+												label: __(
+													'modeless',
+													'makeiteasy-popup'
+												),
+												value: 'modeless',
+											},
+									  ]
+							}
 							onChange={ ( modalityType ) => {
 								setAttributes( { modalityType } );
 							} }
 						/>
+						{ openType === 'on hover' && (
+							<p>
+								Due to accessibility issues, popup which
+								activates on hover cannot be modal. Also, please
+								follow good practices and do not convey any
+								important information in it.
+								<br />
+								<ExternalLink href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">
+									{ __(
+										'Content on Hover or Focus',
+										'makeiteasy-popup'
+									) }
+								</ExternalLink>
+							</p>
+						) }
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Visibility', 'makeiteasy-popup' ) }
-					icon={ __( 'admin-settings', 'makeiteasy-popup' ) }
+					icon="admin-settings"
 					initialOpen={ true }
 				>
 					<PanelRow>
 						<ToggleControl
-							label="Has close button"
+							label={ __(
+								'Has close button',
+								'makeiteasy-popup'
+							) }
 							checked={ hasCloseButton }
 							onChange={ ( hasCloseButton ) =>
 								setAttributes( { hasCloseButton } )
@@ -247,19 +347,79 @@ export default ( {
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label="Popup is enabled"
+							label={ __(
+								'Popup is enabled',
+								'makeiteasy-popup'
+							) }
 							checked={ enabled }
 							onChange={ ( enabled ) =>
 								setAttributes( { enabled } )
 							}
-							help="Disabled block is saved for later showing."
-							title="If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+							help={ __(
+								'Disabled block is saved for later showing.',
+								'makeiteasy-popup'
+							) }
+							title={ __(
+								'If you disable block, it will not be shown, but you can keep it and enable it again sometimes.',
+								'makeiteasy-popup'
+							) }
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Accessibility', 'makeiteasy-popup' ) }
+					icon="admin-settings"
+					initialOpen={ false }
+				>
+					<PanelRow>
+						<TextControl
+							label={ __(
+								'Dialog accessible label',
+								'makeiteasy-popup'
+							) }
+							value={ accessibleDialogLabel ?? '' }
+							onChange={ ( accessibleDialogLabel ) =>
+								setAttributes( { accessibleDialogLabel } )
+							}
+						/>
+					</PanelRow>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Additional rules', 'makeiteasy-popup' ) }
+					icon="admin-settings"
+					initialOpen={ false }
+				>
+					<PanelRow>
+						<NumberControl
+							className="makeiteasy-popup-days-to-show-again"
+							label={ __(
+								'Show again after days',
+								'makeiteasy-popup'
+							) }
+							type="number"
+							onChange={ ( value ) => {
+								setAttributes( {
+									daysToShowAgain: parseInt( value ),
+								} );
+							} }
+							value={ daysToShowAgain }
+							help={ __(
+								'Set to 0 to show each time',
+								'makeiteasy-popup'
+							) }
+							pattern="^\d+$"
+							required
 						/>
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<PanelBody title="Close button appearance">
+				<PanelBody
+					title={ __(
+						'Close button appearance',
+						'makeiteasy-popup'
+					) }
+				>
 					<PanelRow className="mie-span-2">
 						<ColorPalette
 							clearable
@@ -273,7 +433,10 @@ export default ( {
 					</PanelRow>
 					<PanelRow className="mie-span-2">
 						<ToggleControl
-							label="Button beside content"
+							label={ __(
+								'Button beside content',
+								'makeiteasy-popup'
+							) }
 							checked={ closeButtonPosition === 'beside' }
 							onChange={ ( isBeside ) =>
 								setAttributes( {
@@ -299,6 +462,25 @@ export default ( {
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="dimensions">
+				{ layoutType === 'attached' && (
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Same as opener', 'makeiteasy-popup' ) }
+							checked={ popupWidthSameAsOpener }
+							onChange={ ( popupWidthSameAsOpener ) =>
+								setAttributes( { popupWidthSameAsOpener } )
+							}
+							help={ __(
+								'Set width the same as opener element',
+								'makeiteasy-popup'
+							) }
+							title={ __(
+								'If you disable block, it will not be shown, but you can keep it and enable it again sometimes.',
+								'makeiteasy-popup'
+							) }
+						/>
+					</PanelRow>
+				) }
 				<PanelRow>
 					<UnitControl
 						onChange={ ( popupWidth ) => {
@@ -306,8 +488,9 @@ export default ( {
 						} }
 						value={ popupWidth || 'Auto' }
 						__unstableInputWidth="14ch"
-						label="Popup width"
+						label={ __( 'Popup width', 'makeiteasy-popup' ) }
 						units={ units }
+						disabled={ popupWidthSameAsOpener }
 					></UnitControl>
 				</PanelRow>
 			</InspectorControls>

@@ -6,17 +6,16 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+// eslint-disable-next-line import/no-unresolved
+import { ReactComponent as CloseX } from '/src/assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
-import { _x } from '@wordpress/i18n';
 
 const BlockBodyInner = ( props ) => {
 	const {
 		innerBlocks,
 		hasCloseButton,
 		isModal,
-		isFixed,
 		closeButtonColor,
 		dataModalCloseAttr,
 		closeTop,
@@ -40,11 +39,7 @@ const BlockBodyInner = ( props ) => {
 	// use style attribute to position close button correctly
 	const closeButton = hasCloseButton ? (
 		<button
-			aria-label={ _x(
-				'Close modal',
-				'Close button aria label',
-				'makeiteasy-popup'
-			) }
+			aria-label="Close modal"
 			className="makeiteasy-popup-close"
 			{ ...dataModalCloseAttr }
 			style={ {
@@ -72,10 +67,7 @@ const BlockBodyInner = ( props ) => {
 				className: restProps.className + ' makeiteasy-popup-wrapper',
 				style: {
 					...restProps.style,
-					width:
-						popupWidth === '' || popupWidth === undefined
-							? null
-							: popupWidth,
+					width: popupWidth,
 				},
 			} }
 		>
@@ -240,7 +232,6 @@ export const wrapperAttributes = (
 		closeButtonPosition,
 		daysToShowAgain,
 		refererURLMatch,
-		popupWidthSameAsOpener,
 	},
 	// just for editor - class to hide popups (handled with editor plugin and separate store)
 	isShown = true,
@@ -277,5 +268,4 @@ export const wrapperAttributes = (
 	'data-attached-base-element': attachedBaseElement,
 	'data-show-again-in': daysToShowAgain ?? 0,
 	'data-referer-url-to-match': refererURLMatch,
-	'data-width-same-as-opener': popupWidthSameAsOpener ? 'true' : undefined,
 } );

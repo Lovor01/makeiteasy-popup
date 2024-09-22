@@ -1,8 +1,8 @@
 {
 	"name": "makeiteasy-popup",
-	"version": "1.0.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"version": "1.1.4",
+	"description": "Popup block solution aligned with block editor concept",
+	"author": "Lovro Hrust",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
@@ -20,6 +20,7 @@
 		"dotenv": "^16.4.5"
 	},
 	"dependencies": {
+		"js-cookie": "^3.0.5",
 		"micromodal": "^0.4.10",
 		"nanoid": "^5.0.7"
 	}
