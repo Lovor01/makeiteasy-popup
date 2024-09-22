@@ -1,7 +1,5 @@
 /**
  * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
  */
 
 .wp-block-makeiteasy-popup {
@@ -9,7 +7,7 @@
 
 	&.alignwide,
 	&.alignfull {
-		.is-content-justification-center+.makeiteasy-popup-close {
+		.is-content-justification-center + .makeiteasy-popup-close {
 			position: absolute;
 			right: 0;
 		}
@@ -21,8 +19,15 @@
 	}
 
 	&.disabled {
+		// TODO: rework this, repeating linear gradient works well only with transparent background
+		.makeiteasy-popup-wrapper::after {
+			content: '';
+			display: block;
+			position: absolute;
+			inset: 0;
+			background: repeating-linear-gradient(-45deg, #38383878, #38383878 15px, #5c5c5cb0 15px, #5c5c5cb0 18px);
+		}
 		// filter: saturate(35%) brightness(35%);
-		background: repeating-linear-gradient(-45deg, #38383878, #38383878 15px, #5c5c5cb0 15px, #5c5c5cb0 18px);
 
 		.makeiteasy-popup-wrapper {
 			background: none;
@@ -104,7 +109,7 @@
 .makeiteasy-popup-days-to-show-again {
 	width: 100%;
 
-	.components-base-control__field>* {
+	.components-base-control__field > * {
 		display: block;
 	}
 

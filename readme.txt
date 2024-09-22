@@ -99,6 +99,7 @@ Introduced internationalization
 
 = 1.1.4 =
 It is possible to use translations. Some minor fixes to UI logic.
+Better layout for disabled popup.
 
 = 1.1.3 =
 Bug fixes.
