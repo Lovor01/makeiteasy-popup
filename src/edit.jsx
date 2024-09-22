@@ -68,6 +68,7 @@ export default function Edit( {
 	}, [] );
 
 	// reset popupWidth if align changes - I have no possibility to hook in align setting event, so this is placed in useEffect
+	// popupWidth changes are handled in event
 	useEffect( () => {
 		if ( align && popupWidth ) {
 			setAttributes( {
