@@ -13,8 +13,9 @@ export const idExists = ( saveIdNeedle, initialBlocks, clientId ) => {
 				block.clientId !== clientId
 			) {
 				blockExists = true;
-			} else if ( block.innerBlocks )
+			} else if ( block.innerBlocks ) {
 				recursiveSearch( block.innerBlocks );
+			}
 		} );
 	};
 
