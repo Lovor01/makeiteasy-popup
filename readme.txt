@@ -74,6 +74,7 @@ Post them here, and I’ll answer them.
 
 = 1.1.4 =
 Introduced internationalization. Fixed positioning above all elements for overlay popups which incorrectly could be below some elements.
+Improved layout for disabled popup. Improved restoring modality type when choosing hover and then different opening type.
 
 = 1.1.3 =
 * Bug fix where if popups with time delay for repeated opening were used, some attached popups may not attach.
