@@ -44,7 +44,7 @@ export default ( {
 		daysToShowAgain,
 		refererURLMatch,
 		accessibleDialogLabel,
-		align
+		align,
 	},
 	setAttributes,
 } ) => {
@@ -96,7 +96,7 @@ export default ( {
 		availableUnits: availableUnits || [ '%', 'px', 'em', 'rem', 'vw' ],
 	} );
 
-	const openTypeRef = useRef(undefined);
+	const openTypeRef = useRef( undefined );
 
 	return (
 		<>
@@ -146,7 +146,10 @@ export default ( {
 								setAttributes( { openType } );
 								// set modalitytype as modeless if opentype is on hover
 								// restore previous modality if opentype is changed - that's ref is for
-								if ( openType === 'on hover' && modalityType === 'modal' ) {
+								if (
+									openType === 'on hover' &&
+									modalityType === 'modal'
+								) {
 									openTypeRef.current = modalityType;
 									setAttributes( {
 										modalityType: 'modeless',
