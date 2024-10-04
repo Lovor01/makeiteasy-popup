@@ -73,7 +73,7 @@ Post them here, and I’ll answer them.
 == Changelog ==
 
 = 1.1.4 =
-Introduced internationalization
+Introduced internationalization. Fixed positioning above all elements for overlay popups which incorrectly could be below some elements.
 
 = 1.1.3 =
 * Bug fix where if popups with time delay for repeated opening were used, some attached popups may not attach.
