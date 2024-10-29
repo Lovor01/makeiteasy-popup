@@ -4,7 +4,7 @@ Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog
 Requires at least: 6.5
 Tested up to:      6.6
-Stable tag:        1.1.4
+Stable tag:        1.1.5
 Requires PHP: 7.4
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
@@ -71,6 +71,9 @@ Post them here, and I’ll answer them.
 4. Modeless popup attached to element
 
 == Changelog ==
+
+= 1.1.5 =
+Small fix for incorrect button background on mobile device.
 
 = 1.1.4 =
 Introduced internationalization. Fixed positioning above all elements for overlay popups which incorrectly could be below some elements.

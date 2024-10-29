@@ -1,6 +1,6 @@
 {
 	"name": "makeiteasy-popup",
-	"version": "1.1.4",
+	"version": "1.1.5",
 	"description": "Popup block solution aligned with block editor concept",
 	"author": "Lovro Hrust",
 	"license": "GPL-2.0-or-later",
@@ -16,11 +16,11 @@
 		"start:hot": "wp-scripts start --hot --webpack-devtool=eval-source-map"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0",
+		"@wordpress/scripts": "^30.3.0",
 		"dotenv": "^16.4.5"
 	},
 	"dependencies": {
-		"@wordpress/prettier-config": "^4.9.0",
+		"@wordpress/prettier-config": "^4.10.0",
 		"js-cookie": "^3.0.5",
 		"micromodal": "^0.4.10",
 		"nanoid": "^5.0.7"

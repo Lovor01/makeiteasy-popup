@@ -93,19 +93,19 @@ $default-mobile-breakpoint: 48rem;
 		}
 
 		&.position-top {
-			bottom: auto
+			bottom: auto;
 		}
 
 		&.position-bottom {
-			top: auto
+			top: auto;
 		}
 
 		&.position-left {
-			right: auto
+			right: auto;
 		}
 
 		&.position-right {
-			left: auto
+			left: auto;
 		}
 	}
 
@@ -120,19 +120,8 @@ $default-mobile-breakpoint: 48rem;
 			&.has-above-close .makeiteasy-popup-close {
 				top: -2.3rem;
 				right: 0;
-				background: #f6decd;
 			}
 		}
-
-		//  add chevron
-		// &::before {
-		// 	content: url("./assets/chevron.svg");
-		// 	display: block;
-		// 	position: absolute;
-		// 	top: -1.25rem;
-		// 	left: 50%;
-		// 	transform: translateX(-50%);
-		// }
 
 		.popup-position-above::before {
 			top: auto;
@@ -153,7 +142,7 @@ $default-mobile-breakpoint: 48rem;
 			flex: none;
 		}
 
-		.makeiteasy-popup-content-wrapper.is-content-justification-center+.makeiteasy-popup-close {
+		.makeiteasy-popup-content-wrapper.is-content-justification-center + .makeiteasy-popup-close {
 			position: absolute;
 			right: 3ch;
 		}
