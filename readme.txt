@@ -81,6 +81,7 @@ Improved styling when content in popup is greater in height than popup window - 
 When blocks inside (some third party blocks) have absolute positioning and when popup width is not set, popup can be too small.
 In such cases, an auto-detection procedure is added which sets width to default theme content width if block is too narrow and
 increases height if it is too short.
+Fixed occurrence of null in classes on wrapper.
 
 = 1.1.5 =
 Small fix for incorrect button background on mobile device.

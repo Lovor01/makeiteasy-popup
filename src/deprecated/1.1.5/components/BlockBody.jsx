@@ -6,7 +6,7 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+import { ReactComponent as CloseX } from '../../../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { _x } from '@wordpress/i18n';
@@ -69,8 +69,7 @@ const BlockBodyInner = ( props ) => {
 			aria-label={ accessibleDialogLabel }
 			{ ...{
 				...restProps,
-				className:
-					( restProps.className ?? '' ) + ' makeiteasy-popup-wrapper',
+				className: restProps.className + ' makeiteasy-popup-wrapper',
 				style: {
 					...restProps.style,
 					width:

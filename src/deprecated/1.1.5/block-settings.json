@@ -1,0 +1,128 @@
+{
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"background": {
+			"backgroundImage": true,
+			"backgroundPosition": "50% 50%",
+			"backgroundSize": true
+		},
+		"color": {
+			"background": true,
+			"text": true,
+			"gradients": true,
+			"enableContrastChecker": true,
+			"button": true,
+			"heading": true,
+			"link": true
+		},
+		"dimensions": {
+			"minHeight": true
+		},
+		"layout": {
+			"default": {
+				"type": "constrained"
+			}
+		},
+		"shadow": true,
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true
+		}
+	},
+	"attributes": {
+		"openType": {
+			"enum": [
+				"on timer",
+				"on scroll",
+				"on click",
+				"on hover",
+				"on referer"
+			],
+			"default": "on timer"
+		},
+		"openSelector": {
+			"type": "string"
+		},
+		"openingTime": {
+			"type": "string",
+			"default": "0s"
+		},
+		"waitingAfterClosing": {
+			"type": "string",
+			"default": "-1s"
+		},
+		"layoutType": {
+			"enum": [
+				"floating",
+				"fixed",
+				"attached"
+			],
+			"default": "floating"
+		},
+		"modalityType": {
+			"enum": [
+				"modal",
+				"modeless"
+			],
+			"default": "modal"
+		},
+		"attachedBaseElement": {
+			"type": "string"
+		},
+		"fixedPopupPosition": {
+			"enum": [
+				"top",
+				"bottom",
+				"left",
+				"right"
+			],
+			"default": "bottom"
+		},
+		"hasCloseButton": {
+			"type": "boolean",
+			"default": true
+		},
+		"enabled": {
+			"type": "boolean",
+			"default": true
+		},
+		"closeButtonColor": {
+			"type": "string"
+		},
+		"closeButtonPosition": {
+			"enum": [
+				"above",
+				"beside"
+			],
+			"default": "above"
+		},
+		"popupWidth": {
+			"type": "string",
+			"default": null
+		},
+		"popupWidthSameAsOpener": {
+			"type": "boolean",
+			"default": false
+		},
+		"accessibleDialogLabel": {
+			"type": "string"
+		},
+		"daysToShowAgain": {
+			"type": "number",
+			"default": 0
+		},
+		"refererURLMatch": {
+			"type": "string"
+		}
+	}
+}
