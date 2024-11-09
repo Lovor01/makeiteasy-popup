@@ -35,6 +35,11 @@ progress indicator does not advance anymore (loading should be finished at max 3
 - 🥉 **Developer friendly**: Hooks for modifications and unopinionated starting CSS.
 - ⏲️ **Future-Proof Compatibility**: Guaranteed compatibility with future WordPress versions.
 
+🆕✨ Improved handling of long content in popups. Mobile sizing is improved as well.
+
+⚠️ This is the last version which will support WordPress 6.5 and below. I am switching to newer development environment which is WP6.6+ compatible.
+Please open ticket in support section if that's a problem.
+
 == Installation ==
 
 = From block editor: =
