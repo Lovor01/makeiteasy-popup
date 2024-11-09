@@ -4,6 +4,9 @@
 
 .wp-block-makeiteasy-popup {
 	display: flex;
+	width: fit-content;
+	min-width: 15ch;
+	min-height: 6rem;
 
 	&.alignwide,
 	&.alignfull {
@@ -16,12 +19,17 @@
 	.makeiteasy-popup-wrapper {
 		width: 100%;
 		margin: 0 auto;
+		max-height: none;
+	}
+
+	.makeiteasy-popup-content-wrapper {
+		overflow: visible;
 	}
 
 	&.disabled {
 		// TODO: rework this, repeating linear gradient works well only with transparent background
 		.makeiteasy-popup-wrapper::after {
-			content: '';
+			content: "";
 			display: block;
 			position: absolute;
 			inset: 0;
@@ -35,7 +43,6 @@
 	}
 
 	&.wp-block-makeiteasy-popup {
-		visibility: visible;
 		opacity: 1;
 		z-index: auto;
 	}
@@ -120,4 +127,10 @@
 
 .mie-modality-type {
 	display: block;
+}
+
+.mie-popup-width-control {
+	.components-base-control__help {
+		width: 40ch;
+	}
 }

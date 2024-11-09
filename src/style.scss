@@ -46,10 +46,10 @@ $default-mobile-breakpoint: 48rem;
 		}
 	}
 
-	visibility: hidden;
+	display: none;
 
 	&.is-open {
-		visibility: visible;
+		display: block;
 	}
 
 	.makeiteasy-popup-close {
@@ -109,12 +109,31 @@ $default-mobile-breakpoint: 48rem;
 		}
 	}
 
+	$popup-max-height: 95dvh;
+
 	.makeiteasy-popup-wrapper {
 		position: relative;
-		display: flex;
+		display: grid;
+		grid: 1fr / 1fr auto;
 		justify-content: center;
 		align-items: center;
 		background: var(--wp--preset--color--white, #fff);
+		max-height: $popup-max-height;
+
+		&.has-above-close {
+			display: flex;
+			flex-flow: column nowrap;
+		}
+
+		.admin-bar & {
+			max-height: calc($popup-max-height - 32px);
+			top: 16px;
+
+			@media screen and (max-width: 782px) {
+				max-height: calc($popup-max-height - 46px);
+				top: 23px;
+			}
+		}
 
 		@media (max-width: $default-mobile-breakpoint) {
 			&.has-above-close .makeiteasy-popup-close {
@@ -155,9 +174,18 @@ $default-mobile-breakpoint: 48rem;
 		}
 	}
 
+	/*** content wrapper ***/
 	.makeiteasy-popup-content-wrapper {
 		align-items: center;
+		box-sizing: border-box;
+		overflow-y: auto;
+		overflow-x: hidden;
+		position: relative;
+		height: 100%;
 		width: 100%;
+
+		// .has-above-close & {
+		// }
 
 		&.is-content-justification-left {
 			margin-left: 0;

@@ -89,14 +89,14 @@
 				"on hover",
 				"on referer"
 			],
-			"default": "on scroll"
+			"default": "on timer"
 		},
 		"openSelector": {
 			"type": "string"
 		},
 		"openingTime": {
 			"type": "string",
-			"default": "5s"
+			"default": "0s"
 		},
 		"waitingAfterClosing": {
 			"type": "string",

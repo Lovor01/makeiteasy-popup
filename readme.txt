@@ -4,7 +4,7 @@ Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog
 Requires at least: 6.5
 Tested up to:      6.6
-Stable tag:        1.1.5
+Stable tag:        1.2.0
 Requires PHP: 7.4
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
@@ -74,6 +74,13 @@ Post them here, and I’ll answer them.
 4. Modeless popup attached to element
 
 == Changelog ==
+
+= 1.2.0 =
+Improved styling when content in popup is greater in height than popup window - a scrollbar appears. To achieve that,
+*display: grid* is used when close button is beside content, while before it was *flex*.
+When blocks inside (some third party blocks) have absolute positioning and when popup width is not set, popup can be too small.
+In such cases, an auto-detection procedure is added which sets width to default theme content width if block is too narrow and
+increases height if it is too short.
 
 = 1.1.5 =
 Small fix for incorrect button background on mobile device.

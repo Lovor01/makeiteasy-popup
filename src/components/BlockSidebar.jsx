@@ -515,8 +515,13 @@ export default ( {
 						value={ popupWidth || 'Auto' }
 						__unstableInputWidth="14ch"
 						label={ __( 'Popup width', 'makeiteasy-popup' ) }
+						help={ __(
+							'For a fixed width or to correct block display issues inside the popup, set the width here.',
+							'makeiteasy-popup'
+						) }
 						units={ units }
 						disabled={ popupWidthSameAsOpener }
+						className="mie-popup-width-control"
 					></UnitControl>
 				</PanelRow>
 			</InspectorControls>
