@@ -15,7 +15,7 @@ if ( document.readyState === 'loading' ) {
 
 function setUp() {
 	// eslint-disable-next-line prettier/prettier
-	if ( !MicroModal ) {
+	if ( ! MicroModal ) {
 		return;
 	}
 
@@ -83,6 +83,8 @@ function setUp() {
 				refreshOpenPopups( 1 );
 				// raise event for extenders
 				modal.dispatchEvent( openModal );
+				// if popup is too small, adjust dimensions
+				checkPopupDimensions( modal );
 			},
 			onClose: ( modal ) => {
 				document.body.classList.remove( 'has-floating-popup' );
@@ -242,5 +244,27 @@ function setUp() {
 			return;
 		}
 		showModal( openQueue.pop() );
+	}
+
+	/**
+	 * Check if popup is to small; if it is, set default dimensions
+	 * @param {HTMLElement} popup
+	 */
+	function checkPopupDimensions( popup ) {
+		const popupWrapper = popup.querySelector( '.makeiteasy-popup-wrapper' );
+		const contentWrapper = popupWrapper.querySelector(
+			'.makeiteasy-popup-content-wrapper'
+		);
+		if ( ! popupWrapper || ! contentWrapper ) {
+			return;
+		}
+		if ( contentWrapper.clientWidth < 5 ) {
+			contentWrapper.style.width = getComputedStyle(
+				popupWrapper
+			).getPropertyValue( '--wp--style--global--content-size' );
+		}
+		if ( contentWrapper.clientHeight < 11 ) {
+			contentWrapper.style.height = '300px';
+		}
 	}
 }
