@@ -1,13 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import MicroModal from 'micromodal';
-import hasBeenOpened from './modules/open-once-per-user/open-once-per-user.js';
-
-// TODO: instead of aligning attached popup with left edge of opener, align it with center of opener or give user a choice
+import hasBeenOpened from '../../modules/open-once-per-user/open-once-per-user.js';
 
 import {
 	default as adjustRelativePopups,
 	refreshOpenPopups,
-} from './popup-variations/open-next-to.js';
+} from '../../popup-variations/open-next-to.js';
 
 if ( document.readyState === 'loading' ) {
 	document.addEventListener( 'DOMContentLoaded', setUp );
@@ -35,9 +33,6 @@ function setUp() {
 	// queue for popups waiting to be opened if modal is active
 	const openQueue = [];
 
-	// flag to prevent putting popup in queue if another is closing, but not yet removed from DOM
-	let isClosing = false;
-
 	/**
 	 * Set up events for popups
 	 * @param {HTMLElement}
@@ -52,113 +47,58 @@ function setUp() {
 			continue;
 		}
 
-		// data attributes shortcut
-		const elementDataset = popupBlock.dataset;
+		// set if opens on click
+		const elementClassList = popupBlock.classList;
 
-		/**
-		 * Legacy opening (deprecated)
-		 * check for openType, it was not present in 1.2.0 and before
-		 * TODO: remove and increase major version of plugin
-		 */
-		if ( ! elementDataset.openType ) {
-			const elementClassList = popupBlock.classList;
-
-			if ( elementClassList.contains( 'open-on-timer' ) ) {
-				setOpenOnTimer( popupBlock );
-			} else if ( elementClassList.contains( 'open-on-click' ) ) {
-				setOpenEventOnElements( popupBlock, 'click' );
-			} else if ( elementClassList.contains( 'open-on-hover' ) ) {
-				setOpenEventOnElements( popupBlock, 'pointerover' );
-			} else if ( elementClassList.contains( 'open-on-scroll' ) ) {
-				setOpenOnScroll( popupBlock );
-			} else if ( elementClassList.contains( 'open-on-referer' ) ) {
-				openOnReferer( popupBlock );
-			}
-		}
-		/**
-		 * End legacy opening
-		 */
-
-		// set up opening event - new code
-
-		switch ( elementDataset.openType ) {
-			case 'on timer':
-				if (
-					elementDataset.refererUrlMatch &&
-					elementDataset.openingTime
-				) {
-					setOpenOnTimer( popupBlock, true );
-				} else {
-					setOpenOnTimer( popupBlock );
-				}
-				break;
-			case 'on scroll':
-				setOpenOnScroll( popupBlock );
-				break;
-			case 'on click':
-				setOpenEventOnElements( popupBlock, 'click' );
-				break;
-			case 'on hover':
-				setOpenEventOnElements( popupBlock, 'pointerover' );
-				break;
+		if ( elementClassList.contains( 'open-on-timer' ) ) {
+			setOpenOnTimer( popupBlock );
+		} else if ( elementClassList.contains( 'open-on-click' ) ) {
+			setOpenEventOnElements( popupBlock, 'click' );
+		} else if ( elementClassList.contains( 'open-on-hover' ) ) {
+			setOpenEventOnElements( popupBlock, 'pointerover' );
+		} else if ( elementClassList.contains( 'open-on-scroll' ) ) {
+			setOpenOnScroll( popupBlock );
+		} else if ( elementClassList.contains( 'open-on-referer' ) ) {
+			openOnReferer( popupBlock );
 		}
 	}
 
 	/**
 	 * Hook additional actions on show/close
 	 *
-	 * @param {string}  id      popup id
-	 * @param {boolean} isHover opening type is hover
+	 * @param {string} id popup id
 	 */
-	function showModal( id, isHover = false ) {
-		function showPopupCallback() {
-			MicroModal.show( id, {
-				// we have customized openers and closers
-				openTrigger: 'data-micromodal-open-' + id,
-				closeTrigger: 'data-micromodal-close-' + id,
-				onShow: ( modal ) => {
-					if ( modal.classList.contains( 'popup-modal' ) ) {
-						document.body.classList.add( 'has-floating-popup' );
-					}
-					// refresh attached popups
-					refreshOpenPopups( 1 );
-					// raise event for extenders
-					modal.dispatchEvent( openModal );
-					// if popup is too small, adjust dimensions
-					checkPopupDimensions( modal );
-				},
-				onClose: ( modal ) => {
-					document.body.classList.remove( 'has-floating-popup' );
-					if ( modal.classList.contains( 'open-on-hover' ) ) {
-						cleaner( modal );
-					}
-					// refresh attached popups
-					refreshOpenPopups( 2 );
-					// set flag to prevent adding popup to queue if this one is closing
-					isClosing = true;
-					// process queue
-					processQueue();
-					// raise event for extenders
-					modal.dispatchEvent( closeModal );
-					isClosing = false;
-				},
-			} );
-		}
-
-		/**
-		 * check other popups if any is open
-		 */
-		const otherPopup = isClosing
-			? false
-			: document.querySelector( '.is-open.wp-block-makeiteasy-popup' );
-		if ( otherPopup ) {
-			// if other popup is already open and it is not hover, put this one in queue
-			if ( ! isHover ) {
-				addToQueue( id );
-			}
-		} else {
-			showPopupCallback( id );
-		}
+	function showModal( id ) {
+		// close other popup if any
+		closeOtherPopup();
+		MicroModal.show( id, {
+			// we have customized openers and closers
+			openTrigger: 'data-micromodal-open-' + id,
+			closeTrigger: 'data-micromodal-close-' + id,
+			onShow: ( modal ) => {
+				if ( modal.classList.contains( 'popup-modal' ) ) {
+					document.body.classList.add( 'has-floating-popup' );
+				}
+				// refresh attached popups
+				refreshOpenPopups( 1 );
+				// raise event for extenders
+				modal.dispatchEvent( openModal );
+				// if popup is too small, adjust dimensions
+				checkPopupDimensions( modal );
+			},
+			onClose: ( modal ) => {
+				document.body.classList.remove( 'has-floating-popup' );
+				if ( modal.classList.contains( 'open-on-hover' ) ) {
+					cleaner( modal );
+				}
+				// refresh attached popups
+				refreshOpenPopups( 2 );
+				// process queue
+				processQueue();
+				// raise event for extenders
+				modal.dispatchEvent( closeModal );
+			},
+		} );
 	}
 
 	/**
@@ -177,11 +117,6 @@ function setUp() {
 			opener.addEventListener( eventType, ( event ) =>
 				processEvent( event, element )
 			);
-			if ( eventType === 'pointerover' ) {
-				opener.addEventListener( 'pointerleave', () => {
-					closeModalFn( element );
-				} );
-			}
 		}
 
 		/**
@@ -200,29 +135,16 @@ function setUp() {
 				return;
 			}
 
-			// if event is hover and there are no other popups open, add flag to wait certain time before opening again
-			const isHover = event.type === 'pointerover';
-			if (
-				isHover &&
-				! document.querySelector( '.wp-block-makeiteasy-popup.is-open' )
-			) {
+			// if event is hover wait after pointer is removed before hovering again
+			if ( event.type === 'pointerover' ) {
 				popupElement.waitingTimerActive = true;
 			}
-			showModal( popupElement.id, isHover );
-		}
-
-		function closeModalFn( popupElement ) {
-			if ( popupElement.classList.contains( 'is-open' ) ) {
-				MicroModal.close( popupElement.id );
-			}
+			showModal( popupElement.id );
 		}
 	}
 
 	function cleaner( popupElement ) {
-		if (
-			! popupElement.dataset.waitingAfterClosing ||
-			popupElement.dataset.waitingAfterClosing === '-1s'
-		) {
+		if ( popupElement.dataset.waitingAfterClosing === '-1s' ) {
 			return;
 		}
 		setTimeout(
@@ -236,9 +158,8 @@ function setUp() {
 	/**
 	 * Set up opening on Timer
 	 * @param {HTMLElement} element
-	 * @param {boolean}     triggerOpenOnReferer
 	 */
-	function setOpenOnTimer( element, triggerOpenOnReferer = false ) {
+	function setOpenOnTimer( element ) {
 		const timer = element.dataset.openingTime;
 		// convert integer part to number
 		let numberPart = parseFloat( timer );
@@ -250,16 +171,12 @@ function setUp() {
 			// if there is another modal popup open, put it in queue, only if it is timer popup
 			if ( document.querySelector( '.is-open.popup-modal' ) ) {
 				if ( element.classList.contains( 'open-on-timer' ) ) {
-					addToQueue( element.id );
+					openQueue.push( element.id );
 				}
 				return;
 			}
 
-			if ( triggerOpenOnReferer ) {
-				openOnReferer( element );
-			} else {
-				showModal( element.id );
-			}
+			showModal( element.id );
 		}, numberPart );
 	}
 
@@ -297,14 +214,10 @@ function setUp() {
 	}
 
 	function openOnReferer( element ) {
-		const refererUrl =
-			element.dataset.refererUrlMatch ??
-			// legacy name
-			element.dataset.refererUrlToMatch;
-		if ( ! refererUrl ) {
-			return;
-		}
-		if ( document.referrer.indexOf( refererUrl ) !== -1 ) {
+		if (
+			document.referrer.indexOf( element.dataset.refererUrlToMatch ) !==
+			-1
+		) {
 			showModal( element.id );
 		}
 	}
@@ -312,13 +225,14 @@ function setUp() {
 	adjustRelativePopups();
 
 	/**
-	 * add to queue
-	 * @param {string} id
+	 * close other popups
 	 */
-	function addToQueue( id ) {
-		// add to queue if not already there and queue is not too long
-		if ( ! openQueue.includes( id ) && openQueue.length < 100 ) {
-			openQueue.push( id );
+	function closeOtherPopup() {
+		const otherPopup = document.querySelector(
+			'.is-open.wp-block-makeiteasy-popup'
+		);
+		if ( otherPopup ) {
+			MicroModal.close( otherPopup.id );
 		}
 	}
 

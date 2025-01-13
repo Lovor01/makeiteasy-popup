@@ -3,12 +3,16 @@ $default-padding-horizontal: 1.1rem;
 $default-mobile-breakpoint: 48rem;
 
 @mixin admin-bar-height-control($given-height) {
-	max-height: calc($given-height - 32px);
-	top: 16px;
+	top: 32px;
+	.makeiteasy-popup-wrapper {
+		max-height: calc($given-height - 32px);
+	}
 
 	@media screen and (max-width: 782px) {
-		max-height: calc($given-height - 46px);
-		top: 23px;
+		top: 46px;
+		.makeiteasy-popup-wrapper {
+			max-height: calc($given-height - 46px);
+		}
 	}
 }
 
@@ -17,31 +21,18 @@ $default-mobile-breakpoint: 48rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
 
-		//  align wide and align full are not automatically working since align classes are moved to wrapper
+	/* Max popup height on mobile */
+	$popup-max-height: calc(100dvh - 8px);
+	$popup-above-close-max-height: calc($popup-max-height - (28px * 2 + 10px)); // 28 is close button height
 
-		// > .makeiteasy-popup-wrapper.alignwide {
-		// 	max-width: var(--wp--style--global--wide-size);
-		// }
+	.admin-bar &.position-top {
+		@include admin-bar-height-control($popup-max-height);
+	}
 
-		// > .makeiteasy-popup-wrapper.alignfull {
-		// 	max-width: none;
-		// }
-
-		// > .makeiteasy-popup-wrapper.alignwide,
-		// > .makeiteasy-popup-wrapper.alignfull {
-		// 	width: 100%;
-		// }
-
-		// > .makeiteasy-popup-wrapper.is-content-justification-center {
-		// 	&.alignwide,
-		// 	&.alignfull {
-		// 		.makeiteasy-popup-close {
-		// 			position: absolute;
-		// 			right: 0;
-		// 		}
-		// 	}
-		// }
+	.admin-bar &:is(.position-left, .position-right) {
+		@include admin-bar-height-control(100%);
 	}
 
 	&.popup-modal {
@@ -53,6 +44,11 @@ $default-mobile-breakpoint: 48rem;
 			width: 100%;
 			height: 100%;
 			background: #2227;
+		}
+
+		//
+		.makeiteasy-popup-wrapper {
+			position: absolute;
 		}
 	}
 
@@ -102,26 +98,20 @@ $default-mobile-breakpoint: 48rem;
 			right: 0;
 		}
 
-		&.position-top {
+		// if modeless overlay should be the size of the content
+		&.popup-modeless .makeiteasy-popup-overlay {
+			position: static;
+		}
+
+		// if popup is modeless and not fixed to screen corener, remove overlay
+		&.popup-modeless:not(.popup-fixed) {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 			bottom: auto;
-		}
-
-		&.position-bottom {
-			top: auto;
-		}
-
-		&.position-left {
 			right: auto;
 		}
-
-		&.position-right {
-			left: auto;
-		}
 	}
-
-	/* Max popup height on mobile */
-	$popup-max-height: calc(100dvh - 8px);
-	$popup-above-close-max-height: calc($popup-max-height - (28px * 2 + 10px)); // 28 is close button height
 
 	.makeiteasy-popup-wrapper {
 		position: relative;
@@ -134,18 +124,18 @@ $default-mobile-breakpoint: 48rem;
 		max-width: calc(100dvw - 4px);
 		box-sizing: border-box;
 
+		&.alignfull {
+			width: 100dvw;
+		}
+
+		&.alignwide {
+			max-width: var(--wp--style--global--wide-size);
+		}
+
 		&.has-above-close {
 			display: flex;
 			flex-flow: column nowrap;
 			max-height: $popup-above-close-max-height;
-		}
-
-		.admin-bar & {
-			@include admin-bar-height-control($popup-max-height);
-
-			&.has-above-close {
-				@include admin-bar-height-control($popup-above-close-max-height);
-			}
 		}
 
 		@media (max-width: $default-mobile-breakpoint) {
@@ -163,9 +153,29 @@ $default-mobile-breakpoint: 48rem;
 	}
 
 	&.popup-fixed {
+		.makeiteasy-popup-overlay {
+			position: static;
+		}
+
+		&.popup-modeless {
+			&.position-top {
+				bottom: auto;
+			}
+
+			&.position-bottom {
+				top: auto;
+			}
+
+			&.position-left {
+				right: auto;
+			}
+
+			&.position-right {
+				left: auto;
+			}
+		}
+
 		.makeiteasy-popup-wrapper {
-			position: absolute;
-			width: 100%;
 			box-sizing: border-box;
 			justify-content: center;
 		}
@@ -179,11 +189,28 @@ $default-mobile-breakpoint: 48rem;
 			right: 3ch;
 		}
 
+		&.position-top,
+		&.position-bottom {
+			.makeiteasy-popup-overlay,
+			.makeiteasy-popup-wrapper {
+				width: 100%;
+			}
+		}
+
 		// left and right panned popups
-		&.position-left .makeiteasy-popup-wrapper,
-		&.position-right .makeiteasy-popup-wrapper {
-			width: 10%;
-			height: 100%;
+		&.position-left,
+		&.position-right {
+			.makeiteasy-popup-overlay,
+			.makeiteasy-popup-wrapper {
+				height: 100%;
+			}
+		}
+
+		&.position-left,
+		&.position-right {
+			.makeiteasy-popup-wrapper {
+				max-height: none;
+			}
 		}
 	}
 
@@ -194,11 +221,13 @@ $default-mobile-breakpoint: 48rem;
 		overflow-y: auto;
 		overflow-x: hidden;
 		position: relative;
-		height: 100%;
+		// TODO: not clear if following line is needed
+		// height: 100%;
 		width: 100%;
-
-		// .has-above-close & {
-		// }
+		// limit to global size if full width is not set
+		.is-layout-constrained.wp-block-post-content &:not(.is-layout-constrained) {
+			max-width: var(--wp--style--global--content-size);
+		}
 
 		&.is-content-justification-left {
 			margin-left: 0;
@@ -218,38 +247,11 @@ $default-mobile-breakpoint: 48rem;
 
 	&.popup-attached:not(.block-editor-block-list__block) {
 		position: fixed;
-		inset: 0;
-		margin: 0 !important;
 		max-width: none;
-
-		.makeiteasy-popup-overlay {
-			position: absolute;
-			inset: 0;
-		}
-
-		.makeiteasy-popup-wrapper {
-			position: absolute;
-			top: 0;
-		}
-
-		.popup-position-above .makeiteasy-popup-wrapper {
-			top: auto;
-			bottom: 0;
-		}
 	}
 
 	&.position-top .makeiteasy-popup-wrapper {
 		top: 0;
-	}
-
-	@media screen and (min-width: 601px) {
-		@at-root .admin-bar &.position-top .makeiteasy-popup-wrapper {
-			top: 32px;
-
-			@media screen and (max-width: 782px) {
-				top: 46px;
-			}
-		}
 	}
 
 	&.position-left .makeiteasy-popup-wrapper {

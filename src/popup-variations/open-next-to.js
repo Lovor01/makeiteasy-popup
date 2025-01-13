@@ -66,26 +66,25 @@ function adjustPopups( openPopup = 0 ) {
 
 			// is available space enough to show popup below selection?
 			const isEnoughSpaceBelow =
-				rect.bottom + 16 + popupWrapper.offsetHeight <
-				window.innerHeight;
+				rect.bottom + 16 + popup.offsetHeight < window.innerHeight;
 			const isEnoughSpaceAbove =
-				rect.top - 16 - popupWrapper.offsetHeight - topMenuHeight > 0;
+				rect.top - 16 - popup.offsetHeight - topMenuHeight > 0;
 			const verticalGap = isDesktop ? 16 : 8;
 
 			if ( isEnoughSpaceBelow || ! isEnoughSpaceAbove ) {
-				popupWrapper.style.top = rect.bottom + verticalGap + 'px';
-				popupWrapper.classList.remove( positionAboveClass );
+				popup.style.top = rect.bottom + verticalGap + 'px';
+				popup.classList.remove( positionAboveClass );
 			} else {
-				popupWrapper.style.top =
-					rect.top - verticalGap - popupWrapper.offsetHeight + 'px';
-				popupWrapper.classList.add( positionAboveClass );
+				popup.style.top =
+					rect.top - verticalGap - popup.offsetHeight + 'px';
+				popup.classList.add( positionAboveClass );
 			}
 
 			// there is a cached opener property, use it to adjust popup width
 			// may be just related to special case
 			if ( isDesktop ) {
-				popupWrapper.style.boxSizing = 'border-box';
-				popupWrapper.style.left = rect.left + 'px';
+				popup.style.boxSizing = 'border-box';
+				popup.style.left = rect.left + 'px';
 				// if set, set the width to same width as opener
 				if ( popup.dataset.widthSameAsOpener ) {
 					popupWrapper.style.width =
@@ -94,18 +93,18 @@ function adjustPopups( openPopup = 0 ) {
 			} else {
 				const sideClass = ( isLeft ) =>
 					isLeft ? 'opener-is-left' : 'opener-is-right';
-				popupWrapper.style.width = null;
+				popup.style.width = null;
 				// add class for mobile to know if it is left or right opener
 				const isLeft = rect.left < windowWidth / 2;
-				popupWrapper.classList.add( sideClass( isLeft ) );
-				popupWrapper.classList.remove( sideClass( ! isLeft ) );
+				popup.classList.add( sideClass( isLeft ) );
+				popup.classList.remove( sideClass( ! isLeft ) );
 
 				if ( isLeft ) {
-					popupWrapper.style.left = rect.left + 'px';
-					popupWrapper.style.right = null;
+					popup.style.left = rect.left + 'px';
+					popup.style.right = null;
 				} else {
-					popupWrapper.style.right = windowWidth - rect.right + 'px';
-					popupWrapper.style.left = null;
+					popup.style.right = windowWidth - rect.right + 'px';
+					popup.style.left = null;
 				}
 			}
 		}

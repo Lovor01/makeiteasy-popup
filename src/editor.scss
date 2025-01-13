@@ -6,7 +6,7 @@
 	display: flex;
 	width: fit-content;
 	min-width: 15ch;
-	min-height: 6rem;
+	min-height: 4rem;
 
 	&.alignwide,
 	&.alignfull {
@@ -16,10 +16,20 @@
 		}
 	}
 
+	&.alignfull {
+		width: calc(100% + var(--wp--style--root--padding-left) + var(--wp--style--root--padding-right));
+		margin-right: calc(var(--wp--style--root--padding-right) * -1);
+		margin-left: calc(var(--wp--style--root--padding-left) * -1);
+	}
+
 	.makeiteasy-popup-wrapper {
 		width: 100%;
 		margin: 0 auto;
 		max-height: none;
+
+		&.makeiteasy-popup-wrapper {
+			position: static;
+		}
 	}
 
 	.makeiteasy-popup-content-wrapper {
@@ -113,24 +123,80 @@
 /*
  * Plugin Sidebar
  */
-.makeiteasy-popup-days-to-show-again {
-	width: 100%;
 
-	.components-base-control__field > * {
+.editor-sidebar__panel {
+	.makeiteasy-popup-days-to-show-again {
+		width: 100%;
+
+		.components-base-control__field > * {
+			display: block;
+		}
+
+		.components-text-control__input {
+			width: 10ch;
+		}
+	}
+
+	.mie-modality-type {
 		display: block;
 	}
 
-	.components-text-control__input {
-		width: 10ch;
+	.mie-popup-width-control {
+		.components-base-control__help {
+			width: 40ch;
+		}
+	}
+
+	// space in panel between controls
+	.mie-editor-panel-space {
+		margin-top: 1rem;
+	}
+
+	.mie-editor-panel-space-2 {
+		margin-top: 2rem;
+	}
+
+	.mie-editor-panel-space-after {
+		margin-bottom: 1.5rem;
+	}
+
+	.mie-short-input {
+		.components-input-control__container {
+			width: 15ch;
+		}
+	}
+
+	.mie-small-font {
+		.components-base-control__label,
+		.components-base-control__help {
+			font-size: 0.65rem;
+		}
+		.components-text-control__input {
+			font-size: 0.7rem;
+			padding: 4px 6px;
+			height: auto;
+		}
+	}
+
+	.mie-full-grid-width {
+		grid-column: 1 / -1;
+	}
+
+	// welcome guide
+
+	.mie-welcome-guide-button-container {
+		display: flex;
+		justify-content: flex-start;
+		padding: 0.5em 16px;
+	}
+
+	.mie-welcome-guide-button.mie-welcome-guide-button.mie-welcome-guide-button {
+		background-color: #49829e;
 	}
 }
 
-.mie-modality-type {
-	display: block;
-}
+// welcome guide
 
-.mie-popup-width-control {
-	.components-base-control__help {
-		width: 40ch;
-	}
+.components-modal__frame.components-guide {
+	max-height: 685px;
 }

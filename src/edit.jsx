@@ -80,7 +80,10 @@ export default function Edit( {
 
 	// if open type is 'on hover' set modality to modeless - avoid any possibility of modalityType being modal while on hover is opening type
 	useEffect( () => {
-		if ( openType === 'on hover' && modalityType === 'modal' ) {
+		if (
+			( openType === 'on hover' || layoutType === 'attached' ) &&
+			modalityType === 'modal'
+		) {
 			setAttributes( {
 				modalityType: 'modeless',
 			} );

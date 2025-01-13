@@ -1,47 +1,6 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "makeiteasy/popup",
-	"version": "1.0.0",
-	"title": "MakeITeasy Popup",
-	"category": "widgets",
-	"icon": "edit-page",
-	"description": "Versatile popup block.",
-	"example": {
-		"attributes": {
-			"openType": "on timer",
-			"openingTime": "0s",
-			"closeButtonPosition": "beside",
-			"style": {
-				"shadow": "var:preset|shadow|natural",
-				"spacing": {
-					"blockGap": "var:preset|spacing|10"
-				}
-			}
-		},
-		"innerBlocks": [
-			{
-				"name": "core/heading",
-				"attributes": {
-					"content": "Popup example"
-				}
-			},
-			{
-				"name": "core/paragraph",
-				"attributes": {
-					"content": "You can insert any blocks you like inside the popup."
-				}
-			}
-		],
-		"viewportWidth": 700
-	},
-	"textdomain": "makeiteasy-popup",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./makeiteasy-popup-helpers.js",
 	"supports": {
-		"align": [ "full", "wide" ],
+		"align": [ "wide", "full" ],
 		"anchor": true,
 		"background": {
 			"backgroundImage": true,
@@ -63,8 +22,7 @@
 		"layout": {
 			"default": {
 				"type": "constrained"
-			},
-			"allowJustification": false
+			}
 		},
 		"shadow": true,
 		"spacing": {
@@ -80,7 +38,13 @@
 	},
 	"attributes": {
 		"openType": {
-			"enum": [ "on timer", "on scroll", "on click", "on hover" ],
+			"enum": [
+				"on timer",
+				"on scroll",
+				"on click",
+				"on hover",
+				"on referer"
+			],
 			"default": "on timer"
 		},
 		"openSelector": {
@@ -142,8 +106,5 @@
 		"refererURLMatch": {
 			"type": "string"
 		}
-	},
-	"selectors": {
-		"root": ".makeiteasy-popup-wrapper"
 	}
 }

@@ -1,0 +1,13 @@
+<svg width="312" height="240" fill="none" version="1.1" viewBox="0 0 312 240" xmlns="http://www.w3.org/2000/svg">
+ <path d="m0 0h312v240h-312z" fill="#00a0d2"/>
+ <rect x="72.04" y="53.98" width="167.92" height="132.04" style="fill:#b3b3b3"/>
+ <path d="m239.25 53.117h-166.5c-1.7045 0-3.0837 1.4247-3.0837 3.1844v127.39c0 1.7606 1.3793 3.1852 3.0837 3.1852h166.5c1.7045 0 3.0837-1.4247 3.0837-3.1852v-127.39c0-1.7598-1.3792-3.1844-3.0837-3.1844zm-3.0861 127.4h-160.34v-121.03h160.34z" style="fill:#000;stroke-width:.80423"/>
+ <rect x="96.902" y="77.4" width="118.2" height="85.197" rx="2" ry="2" style="fill:#fff;stroke-linejoin:round;stroke-width:6.224;stroke:#000"/>
+ <g transform="translate(1.8771 4.3178)">
+  <path transform="translate(3.4756 10.923)" d="m140.84 121.31-33.848-7.6006 23.506-25.513z" style="fill:#808080"/>
+  <path d="m157.06 104.01h20.357" style="fill:#808080;stroke-linejoin:round;stroke-width:3.324;stroke:#000"/>
+  <path d="m157.06 112.01h40.714" style="fill:#808080;stroke-linejoin:round;stroke-width:3.324;stroke:#000"/>
+  <path d="m157.06 120.01h40.714" style="fill:#808080;stroke-linejoin:round;stroke-width:3.324;stroke:#000"/>
+  <path d="m157.06 128.01h40.714" style="fill:#808080;stroke-linejoin:round;stroke-width:3.324;stroke:#000"/>
+ </g>
+</svg>

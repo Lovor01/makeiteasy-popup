@@ -1,11 +1,9 @@
 === MakeITeasy Popup ===
 Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
-Tags:              popup, pop-up, modal, dialog
-Requires at least: 6.5
-Tested up to:      6.6
-Stable tag:        1.2.0
-Requires PHP: 7.4
+Tags:              popup, pop-up, modal, dialog, block
+Tested up to:      6.7
+Stable tag:        1.3.0
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
 
@@ -39,6 +37,9 @@ progress indicator does not advance anymore (loading should be finished at max 3
 
 ⚠️ This is the last version which will support WordPress 6.5 and below. I am switching to newer development environment which is WP6.6+ compatible.
 Please open ticket in support section if that's a problem.
+
+🆕 Added roadmap section in development tab
+⏱️❗**Queue** if another popup is opened, popup is placed in queue and opened upon closing the former.
 
 == Installation ==
 
@@ -80,6 +81,18 @@ Post them here, and I’ll answer them.
 
 == Changelog ==
 
+= 1.3.0 =
+"Open on referer" condition can be combined with other opening conditions.
+Popup which is opened on hover closes when element is not hovered anymore.
+Added **Welcome guide**.
+Fixed bug in code with duplicating block, which had same anchor.
+Fixed some spacing issues in block sidebar.
+Fixed some layout issues in editor.
+Changed css issued related to modeless popup.
+Removed option for attached popup to be modal.
+Fixed adding in queue which did not function for all popups.
+Fixed some inconsistencies between modal and modeless popups.
+
 = 1.2.0 =
 Improved styling when content in popup is greater in height than popup window - a scrollbar appears. To achieve that,
 *display: grid* is used when close button is beside content, while before it was *flex*.
@@ -115,7 +128,17 @@ Improved layout for disabled popup. Improved restoring modality type when choosi
 = 1.0.0 =
 * Initial Release
 
+= Roadmap =
+
+1. Add features according to requests on support
+2. Introduce new popup HTML: relatively new `<dialog>` element with appropriate javascript for handling this element.
+3. Add integration with some of more popular marketing tools.
+
 == Upgrade Notice ==
+
+= 1.3.0 =
+
+Many problems fixed.
 
 = 1.1.4 =
 It is possible to use translations. Some minor fixes to UI logic.
@@ -147,6 +170,11 @@ The block sidebar provides many options, most of which function similarly to oth
 - **Floating**: popup floats above content. Clicking on area outside popup closes it.
 - **Fixed**: popup is "fixed" to one of sides of screen -- top, bottom, right, left
 - **Attached**: popup is attached to element on screen. When user scrolls, it moves with it.
+
+= Modality =
+
+- **Modal**: popup blocks everything else on screen, scrolling is not possible, popup can be closed by clicking outside of popup
+- **Modeless**: popup is non-blocking, user can scroll, popup can't be closed by clicking outside of popup
 
 == Developers ==
 
@@ -182,4 +210,5 @@ add_action( 'render_block_makeiteasy/popup', function($content) {
 
 = Attaching Code to Modal Events =
 
-Custom events 'makeiteasy/openModal' and 'makeiteasy/closeModal' are fired on modal open and close.
+Custom events 'makeiteasy/openModal' and 'makeiteasy/closeModal' are fired on modal open and close. Events fire on modal itself, DOM element
+with class `.wp-block-makeiteasy-popup`.

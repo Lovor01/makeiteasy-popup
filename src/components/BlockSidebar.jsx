@@ -9,6 +9,8 @@ import {
 } from '@wordpress/block-editor';
 import { useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+// new user experience
+import WelcomeGuide, { init, showGuideNow } from '../nux/tips';
 
 import {
 	PanelBody,
@@ -23,7 +25,11 @@ import {
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalNumberControl as NumberControl,
 	ExternalLink,
+	Button,
 } from '@wordpress/components';
+
+// initialize the new user experience
+init();
 
 export default ( {
 	attributes: {
@@ -49,40 +55,42 @@ export default ( {
 	setAttributes,
 } ) => {
 	const auxFixed = (
-		<ToggleGroupControl
-			__nextHasNoMarginBottom
-			__next40pxDefaultSize
-			isBlock
-			label={ __( 'Popup is placed at:', 'makeiteasy-popup' ) }
-			value={ fixedPopupPosition }
-			onChange={ ( fixedPopupPosition ) =>
-				setAttributes( { fixedPopupPosition } )
-			}
-		>
-			<ToggleGroupControlOption
-				label={ __( 'Bottom', 'makeiteasy-popup' ) }
-				value="bottom"
-			/>
-			<ToggleGroupControlOption
-				label={ __( 'Top', 'makeiteasy-popup' ) }
-				value="top"
-			/>
-			<ToggleGroupControlOption
-				label={ __( 'Left', 'makeiteasy-popup' ) }
-				value="left"
-			/>
-			<ToggleGroupControlOption
-				label={ __( 'Right', 'makeiteasy-popup' ) }
-				value="right"
-			/>
-		</ToggleGroupControl>
+		<PanelRow className="mie-editor-panel-space">
+			<ToggleGroupControl
+				__nextHasNoMarginBottom
+				__next40pxDefaultSize
+				isBlock
+				label={ __( 'Popup is placed at:', 'makeiteasy-popup' ) }
+				value={ fixedPopupPosition }
+				onChange={ ( fixedPopupPosition ) =>
+					setAttributes( { fixedPopupPosition } )
+				}
+			>
+				<ToggleGroupControlOption
+					label={ __( 'Top', 'makeiteasy-popup' ) }
+					value="top"
+				/>
+				<ToggleGroupControlOption
+					label={ __( 'Bottom', 'makeiteasy-popup' ) }
+					value="bottom"
+				/>
+				<ToggleGroupControlOption
+					label={ __( 'Left', 'makeiteasy-popup' ) }
+					value="left"
+				/>
+				<ToggleGroupControlOption
+					label={ __( 'Right', 'makeiteasy-popup' ) }
+					value="right"
+				/>
+			</ToggleGroupControl>
+		</PanelRow>
 	);
 
 	const auxAttached = (
-		<PanelRow>
+		<PanelRow className="mie-editor-panel-space">
 			<TextControl
 				label={ __( 'CSS selector' ) }
-				help={ __( 'Element to which this one is attached' ) }
+				help={ __( 'Element to which popup is attached' ) }
 				value={ attachedBaseElement }
 				onChange={ ( attachedBaseElement ) =>
 					setAttributes( { attachedBaseElement } )
@@ -101,12 +109,15 @@ export default ( {
 	return (
 		<>
 			<InspectorControls group="settings">
+				{ /* NUX */ }
+				<WelcomeGuide />
+
 				<PanelBody
 					title={ __( 'Opening', 'makeiteasy-popup' ) }
 					icon="admin-settings"
 					initialOpen={ true }
 				>
-					<PanelRow>
+					<PanelRow className="mie-editor-panel-space-after">
 						<RadioControl
 							label={ __( 'Opens on:', 'makeiteasy-popup' ) }
 							help={ __(
@@ -134,13 +145,6 @@ export default ( {
 									label: __( 'On hover', 'makeiteasy-popup' ),
 									value: 'on hover',
 								},
-								{
-									label: __(
-										'On referer',
-										'makeiteasy-popup'
-									),
-									value: 'on referer',
-								},
 							] }
 							onChange={ ( openType ) => {
 								setAttributes( { openType } );
@@ -166,7 +170,7 @@ export default ( {
 					{ [ 'on click', 'on scroll', 'on hover' ].includes(
 						openType
 					) && (
-						<PanelRow>
+						<PanelRow className="mie-editor-panel-space">
 							<TextControl
 								label={ __(
 									'CSS selector',
@@ -188,8 +192,9 @@ export default ( {
 					 * on hover set time after which popup will be opened again
 					 */ }
 					{ [ 'on timer', 'on hover' ].includes( openType ) && (
-						<PanelRow>
+						<PanelRow className="mie-editor-panel-space">
 							<UnitControl
+								className="mie-short-input"
 								onChange={ ( openingTime ) => {
 									setAttributes(
 										openType === 'on timer'
@@ -246,25 +251,27 @@ export default ( {
 							/>
 						</PanelRow>
 					) }
-					{ 'on referer' === openType && (
-						<PanelRow>
-							<TextControl
-								label={ __(
-									'Open on referer URL match',
-									'makeiteasy-popup'
-								) }
-								value={ refererURLMatch ?? '' }
-								onChange={ ( refererURLMatch ) =>
-									setAttributes( { refererURLMatch } )
-								}
-								help={ __(
-									'Enter part of URL to match.',
-									'makeiteasy-popup'
-								) }
-							/>
-						</PanelRow>
-					) }
+
+					<PanelRow className="mie-editor-panel-space-2">
+						<TextControl
+							className="mie-small-font"
+							label={ __(
+								'Only on referer URL match (optional)',
+								'makeiteasy-popup'
+							) }
+							value={ refererURLMatch ?? '' }
+							onChange={ ( refererURLMatch ) =>
+								setAttributes( { refererURLMatch } )
+							}
+							placeholder={ __( 'URL part', 'makeiteasy-popup' ) }
+							help={ __(
+								'Enter part of URL to match.',
+								'makeiteasy-popup'
+							) }
+						/>
+					</PanelRow>
 				</PanelBody>
+
 				<PanelBody
 					title={ __( 'Layout', 'makeiteasy-popup' ) }
 					icon="admin-settings"
@@ -295,12 +302,13 @@ export default ( {
 					</PanelRow>
 					{ layoutType === 'fixed' && auxFixed }
 					{ layoutType === 'attached' && auxAttached }
-					<PanelRow className="mie-modality-type">
+					<PanelRow className="mie-modality-type mie-editor-panel-space">
 						<RadioControl
 							label={ __( 'Modality type', 'makeiteasy-popup' ) }
 							selected={ modalityType }
 							options={
-								openType !== 'on hover'
+								openType !== 'on hover' &&
+								layoutType !== 'attached'
 									? [
 											{
 												label: __(
@@ -432,6 +440,16 @@ export default ( {
 						/>
 					</PanelRow>
 				</PanelBody>
+				<div className="mie-welcome-guide-button-container">
+					<Button
+						variant="primary"
+						className="mie-welcome-guide-button"
+						size="small"
+						onClick={ showGuideNow }
+					>
+						Welcome Guide
+					</Button>
+				</div>
 			</InspectorControls>
 			<InspectorControls group="styles">
 				<PanelBody
@@ -483,7 +501,7 @@ export default ( {
 			</InspectorControls>
 			<InspectorControls group="dimensions">
 				{ layoutType === 'attached' && (
-					<PanelRow>
+					<PanelRow className="mie-full-grid-width mie-editor-panel-space">
 						<ToggleControl
 							label={ __( 'Same as opener', 'makeiteasy-popup' ) }
 							checked={ popupWidthSameAsOpener }
@@ -501,7 +519,7 @@ export default ( {
 						/>
 					</PanelRow>
 				) }
-				<PanelRow>
+				<PanelRow className="mie-full-grid-width">
 					<UnitControl
 						onChange={ ( popupWidth ) => {
 							setAttributes( { popupWidth } );

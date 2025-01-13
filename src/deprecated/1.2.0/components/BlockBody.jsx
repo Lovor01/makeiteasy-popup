@@ -6,7 +6,7 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+import { ReactComponent as CloseX } from '../../../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { _x } from '@wordpress/i18n';
@@ -117,7 +117,9 @@ BlockBody.save = ( props ) => {
 			undefined,
 			true
 		);
-	const closeAttrsOnOverlay = innerProps.isModal ? dataModalCloseAttr : null;
+	const closeAttrsOnOverlay = ! innerProps.isFixed
+		? dataModalCloseAttr
+		: null;
 
 	return (
 		<div aria-hidden="true" { ...outerProps }>
@@ -246,17 +248,14 @@ export const wrapperAttributes = (
 	// detect if call is from Edit
 	isEdit
 ) => ( {
-	/**
-	 * 3.1. changed to use data- attributes instead of classes
-	 */
 	className:
 		{
+			'on timer': 'open-on-timer',
 			'on scroll': 'open-on-scroll',
 			'on click': 'open-on-click',
 			'on hover': 'open-on-hover',
-			'on timer': 'open-on-timer',
+			'on referer': 'open-on-referer',
 		}[ openType ] +
-		( refererURLMatch ? ' open-only-on-referer' : '' ) +
 		' ' +
 		{
 			floating: ! isEdit ? 'popup-floating' : '',
@@ -272,12 +271,12 @@ export const wrapperAttributes = (
 		( enabled ? '' : ' disabled' ) +
 		( layoutType === 'fixed' ? ' position-' + fixedPopupPosition : '' ) +
 		( closeButtonPosition === 'above' ? ' has-above-close' : '' ),
-	'data-open-type': openType,
+	// id: save_id, - deprecated
 	'data-open-selector': openSelector,
 	'data-opening-time': openingTime,
 	'data-waiting-after-closing': waitingAfterClosing,
 	'data-attached-base-element': attachedBaseElement,
 	'data-show-again-in': daysToShowAgain ?? 0,
-	'data-referer-url-match': refererURLMatch,
+	'data-referer-url-to-match': refererURLMatch,
 	'data-width-same-as-opener': popupWidthSameAsOpener ? 'true' : undefined,
 } );

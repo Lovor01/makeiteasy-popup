@@ -9,7 +9,7 @@ export const idExists = ( saveIdNeedle, initialBlocks, clientId ) => {
 	const recursiveSearch = ( blocks ) => {
 		blocks.forEach( ( block ) => {
 			if (
-				block.attributes.save_id === saveIdNeedle &&
+				block.attributes.anchor === saveIdNeedle &&
 				block.clientId !== clientId
 			) {
 				blockExists = true;
