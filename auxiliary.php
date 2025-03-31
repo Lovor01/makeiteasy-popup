@@ -7,9 +7,9 @@
  */
 namespace Makeiteasy\Popup;
 
-add_filter( 'render_block_makeiteasy/popup', '\Makeiteasy\Popup\hideBlock', 10, 2 );
+add_filter( 'render_block_makeiteasy/popup', '\Makeiteasy\Popup\hide_block', 10, 2 );
 
-function hideBlock( $block_content, $block ) {
+function hide_block( $block_content, $block ) {
 	if ( isset( $block['attrs']['enabled'] ) && $block['attrs']['enabled'] == false ) {
 		return '';
 	}

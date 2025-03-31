@@ -10,10 +10,19 @@
 
 	&.alignwide,
 	&.alignfull {
+		// fix when content is not supposed to be constrained, but alignwide and alignfull are set because of style.scss
+		.makeiteasy-popup-content-wrapper:not(.is-layout-constrained) {
+			max-width: none !important;
+		}
+
 		.is-content-justification-center + .makeiteasy-popup-close {
 			position: absolute;
 			right: 0;
 		}
+	}
+
+	&.alignwide .makeiteasy-popup-wrapper {
+		width: var(--wp--style--global--wide-size);
 	}
 
 	&.alignfull {

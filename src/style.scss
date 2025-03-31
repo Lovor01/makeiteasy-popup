@@ -17,6 +17,8 @@ $default-mobile-breakpoint: 48rem;
 }
 
 .wp-block-makeiteasy-popup {
+	display: none;
+
 	.makeiteasy-popup-overlay {
 		display: flex;
 		justify-content: center;
@@ -51,8 +53,6 @@ $default-mobile-breakpoint: 48rem;
 			position: absolute;
 		}
 	}
-
-	display: none;
 
 	&.is-open {
 		display: block;
@@ -129,7 +129,7 @@ $default-mobile-breakpoint: 48rem;
 		}
 
 		&.alignwide {
-			max-width: var(--wp--style--global--wide-size);
+			width: var(--wp--style--global--wide-size);
 		}
 
 		&.has-above-close {
@@ -214,6 +214,14 @@ $default-mobile-breakpoint: 48rem;
 		}
 	}
 
+	// limit to global size if not full width nor align wide set
+	.is-layout-constrained.wp-block-post-content
+		&
+		.makeiteasy-popup-wrapper:not(.alignwide, .alignfull)
+		.makeiteasy-popup-content-wrapper {
+		max-width: var(--wp--style--global--content-size);
+	}
+
 	/*** content wrapper ***/
 	.makeiteasy-popup-content-wrapper {
 		align-items: center;
@@ -224,10 +232,6 @@ $default-mobile-breakpoint: 48rem;
 		// TODO: not clear if following line is needed
 		// height: 100%;
 		width: 100%;
-		// limit to global size if full width is not set
-		.is-layout-constrained.wp-block-post-content &:not(.is-layout-constrained) {
-			max-width: var(--wp--style--global--content-size);
-		}
 
 		&.is-content-justification-left {
 			margin-left: 0;

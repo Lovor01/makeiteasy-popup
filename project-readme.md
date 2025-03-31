@@ -1,5 +1,7 @@
 # For developers
 
+First install dependencies with npm i (node and npm required).
+
 Before compiling, if you want to use https, and work with hot reload a webpack config file `webpack.config.js` is provided. It requires *`.env`* file, which is not attached, because it is machine specific.
 
 If you don't want to work with *both* hot reload feature and https you can safely delete `webpack.config.js`. Otherwise, proceed as follows:

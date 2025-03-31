@@ -3,7 +3,7 @@ Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog, block
 Tested up to:      6.7
-Stable tag:        1.3.0
+Stable tag:        1.3.1
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
 
@@ -81,6 +81,9 @@ Post them here, and I’ll answer them.
 
 == Changelog ==
 
+= 1.3.1 =
+Fixed incorrect styling for wide align.
+
 = 1.3.0 =
 "Open on referer" condition can be combined with other opening conditions.
 Popup which is opened on hover closes when element is not hovered anymore.
@@ -130,7 +133,7 @@ Improved layout for disabled popup. Improved restoring modality type when choosi
 
 = Roadmap =
 
-1. Add features according to requests on support
+1. Add features according to requests on support (on page leave trigger)
 2. Introduce new popup HTML: relatively new `<dialog>` element with appropriate javascript for handling this element.
 3. Add integration with some of more popular marketing tools.
 
