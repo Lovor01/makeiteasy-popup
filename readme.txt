@@ -83,6 +83,7 @@ Post them here, and I’ll answer them.
 
 = 1.3.1 =
 Fixed incorrect styling for wide align.
+Fixed root styling incorrect selector.
 
 = 1.3.0 =
 "Open on referer" condition can be combined with other opening conditions.

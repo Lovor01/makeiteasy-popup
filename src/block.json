@@ -144,6 +144,6 @@
 		}
 	},
 	"selectors": {
-		"root": ".makeiteasy-popup-wrapper"
+		"root": ".wp-block-makeiteasy-popup .makeiteasy-popup-wrapper"
 	}
 }
