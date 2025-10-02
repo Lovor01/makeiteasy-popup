@@ -3,7 +3,7 @@ Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog, block
 Tested up to:      6.7
-Stable tag:        1.3.1
+Stable tag:        1.3.2
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
 
@@ -80,6 +80,9 @@ Post them here, and I’ll answer them.
 4. Modeless popup attached to element
 
 == Changelog ==
+
+= 1.3.1 =
+Updated dependencies.
 
 = 1.3.1 =
 Fixed incorrect styling for wide align.
