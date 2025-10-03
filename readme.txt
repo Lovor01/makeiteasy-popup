@@ -2,7 +2,7 @@
 Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog, block
-Tested up to:      6.7
+Tested up to:      6.8
 Stable tag:        1.3.2
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
