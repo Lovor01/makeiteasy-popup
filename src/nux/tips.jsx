@@ -124,7 +124,7 @@ export default function () {
 									{
 										// eslint-disable-next-line @wordpress/i18n-no-flanking-whitespace
 										__(
-											'Popup can be opened after some time passes, on scroll, on click or on hover. All these conditions can be combined with opening referer.',
+											'Popup can be opened after some time passes, on scroll, on click, on hover, or on exit intent. All these conditions can be combined with opening referer.',
 											'makeiteasy-popup'
 										)
 									}
@@ -265,6 +265,46 @@ export default function () {
 									{ __(
 										'Changing the close button is so far possible only programmatically by using filters. It is planned to add UI in the settings for uploading custom image.',
 										'makeiteasy-popup'
+									) }
+								</p>
+								<p>
+									{ __( 'Read in the', 'makeiteasy-popup' ) }{ ' ' }
+									<ExternalLink href="https://wordpress.org/plugins/makeiteasy-popup/#description">
+										{ _x(
+											'plugin readme',
+											'external link text',
+											'makeiteasy-popup'
+										) }
+									</ExternalLink>{ ' ' }
+									{ __(
+										'how to change the close button.',
+										'makeiteasy-popup'
+									) +
+										' ' +
+										__(
+											'You can also refer to readme for other questions you might have',
+											'makeiteasy-popup'
+										) }
+									.
+								</p>
+							</div>
+						</>
+					),
+				},
+				{
+					// page 9
+					image: (
+						<ImgPage6 className="edit-post-welcome-guide__image" />
+					),
+					content: (
+						<>
+							<h1 className="edit-post-welcome-guide__heading">
+								{ __( 'Show again after x days', 'makeiteasy-popup' ) }
+							</h1>
+							<div className="edit-post-welcome-guide__text">
+								<p>
+									{ __(
+										'You can set the popup to reappear after a certain number of days once it has been dismissed. This feature is particularly useful for time-sensitive promotions or announcements, allowing you to control the frequency of the popup\'s appearance and ensure that it remains relevant to your audience.',
 									) }
 								</p>
 								<p>

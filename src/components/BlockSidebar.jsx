@@ -41,6 +41,7 @@ export default ( {
 		hasCloseButton,
 		openingTime,
 		waitingAfterClosing,
+		exitIntentDelay,
 		enabled,
 		closeButtonColor,
 		closeButtonPosition,
@@ -145,6 +146,13 @@ export default ( {
 									label: __( 'On hover', 'makeiteasy-popup' ),
 									value: 'on hover',
 								},
+								{
+									label: __(
+										'On exit intent',
+										'makeiteasy-popup'
+									),
+									value: 'on exit intent',
+								},
 							] }
 							onChange={ ( openType ) => {
 								setAttributes( { openType } );
@@ -248,6 +256,35 @@ export default ( {
 												},
 										  ]
 								}
+							/>
+						</PanelRow>
+					) }
+					{ openType === 'on exit intent' && (
+						<PanelRow className="mie-editor-panel-space">
+							<NumberControl
+								className="mie-short-input"
+								label={ __(
+									'Activate after (seconds)',
+									'makeiteasy-popup'
+								) }
+								help={ __(
+									'Set to 0 to activate immediately.',
+									'makeiteasy-popup'
+								) }
+								type="number"
+								min={ 0 }
+								step={ 1 }
+								value={ exitIntentDelay ?? 0 }
+								onChange={ ( value ) => {
+									const parsed = parseFloat( value );
+									setAttributes( {
+										exitIntentDelay: Number.isFinite(
+											parsed
+										)
+											? Math.max( 0, parsed )
+											: 0,
+									} );
+								} }
 							/>
 						</PanelRow>
 					) }

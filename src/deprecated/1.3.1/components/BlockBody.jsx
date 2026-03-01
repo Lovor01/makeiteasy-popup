@@ -6,12 +6,12 @@
  * TODO: rewrite to use __experimentalSkipSerialization instead of dividing classes
  */
 
-import { ReactComponent as CloseX } from '../assets/close-x.svg';
+import { ReactComponent as CloseX } from '../../../assets/close-x.svg';
 import { forwardRef } from '@wordpress/element';
 import { applyFilters } from '@wordpress/hooks';
 import { _x } from '@wordpress/i18n';
 
-const BlockBodyInner = (props) => {
+const BlockBodyInner = ( props ) => {
 	const {
 		innerBlocks,
 		hasCloseButton,
@@ -27,33 +27,36 @@ const BlockBodyInner = (props) => {
 		...restProps
 	} = props;
 
-	const CloseButtonIcon = applyFilters('makeiteasy-closeButtonIcon', CloseX);
+	const CloseButtonIcon = applyFilters(
+		'makeiteasy-closeButtonIcon',
+		CloseX
+	);
 
-	const decypherStyle = (style) =>
-		style?.substring(0, 4) === 'var:'
-			? `var(--wp--${style.substring(4).replaceAll('|', '--')})`
+	const decypherStyle = ( style ) =>
+		style?.substring( 0, 4 ) === 'var:'
+			? `var(--wp--${ style.substring( 4 ).replaceAll( '|', '--' ) })`
 			: style;
 
 	// use style attribute to position close button correctly
 	const closeButton = hasCloseButton ? (
 		<button
-			aria-label={_x(
+			aria-label={ _x(
 				'Close modal',
 				'Close button aria label',
 				'makeiteasy-popup'
-			)}
+			) }
 			className="makeiteasy-popup-close"
-			{...dataModalCloseAttr}
-			style={{
-				top: decypherStyle(closeTop),
-				right: decypherStyle(closeRight),
+			{ ...dataModalCloseAttr }
+			style={ {
+				top: decypherStyle( closeTop ),
+				right: decypherStyle( closeRight ),
 				position: closeButtonPosition === 'beside' ? 'static' : null,
-			}}
+			} }
 		>
 			<CloseButtonIcon
-				style={{
+				style={ {
 					fill: closeButtonColor,
-				}}
+				} }
 			/>
 		</button>
 	) : null;
@@ -62,12 +65,12 @@ const BlockBodyInner = (props) => {
 	return (
 		<div
 			role="dialog"
-			aria-modal={isModal}
-			aria-label={accessibleDialogLabel}
-			{...{
+			aria-modal={ isModal }
+			aria-label={ accessibleDialogLabel }
+			{ ...{
 				...restProps,
 				className:
-					(restProps.className ?? '') + ' makeiteasy-popup-wrapper',
+					( restProps.className ?? '' ) + ' makeiteasy-popup-wrapper',
 				style: {
 					...restProps.style,
 					width:
@@ -75,19 +78,19 @@ const BlockBodyInner = (props) => {
 							? null
 							: popupWidth,
 				},
-			}}
+			} }
 		>
 			<div
-				{...innerBlocks({
+				{ ...innerBlocks( {
 					className: 'makeiteasy-popup-content-wrapper',
-				})}
+				} ) }
 			/>
-			{closeButton}
+			{ closeButton }
 		</div>
 	);
 };
 
-const BlockBody = forwardRef((props, ref) => {
+const BlockBody = forwardRef( ( props, ref ) => {
 	const { innerProps, outerProps } = separateOnOuterAndInner(
 		props,
 		undefined,
@@ -97,16 +100,16 @@ const BlockBody = forwardRef((props, ref) => {
 
 	return (
 		<div
-			{...outerProps}
-			ref={ref}
-			style={{ maxWidth: props.popupWidth ? '100%' : null }}
+			{ ...outerProps }
+			ref={ ref }
+			style={ { maxWidth: props.popupWidth ? '100%' : null } }
 		>
-			<BlockBodyInner {...innerProps} />
+			<BlockBodyInner { ...innerProps } />
 		</div>
 	);
-});
+} );
 
-BlockBody.save = (props) => {
+BlockBody.save = ( props ) => {
 	const { innerProps, outerProps, dataModalCloseAttr } =
 		separateOnOuterAndInner(
 			props,
@@ -117,13 +120,13 @@ BlockBody.save = (props) => {
 	const closeAttrsOnOverlay = innerProps.isModal ? dataModalCloseAttr : null;
 
 	return (
-		<div aria-hidden="true" {...outerProps}>
+		<div aria-hidden="true" { ...outerProps }>
 			<div
 				className="makeiteasy-popup-overlay"
 				tabIndex="-1"
-				{...closeAttrsOnOverlay}
+				{ ...closeAttrsOnOverlay }
 			>
-				<BlockBodyInner {...innerProps} />
+				<BlockBodyInner { ...innerProps } />
 			</div>
 		</div>
 	);
@@ -162,50 +165,50 @@ const separateOnOuterAndInner = (
 	addToClassesWithHas,
 	isSave
 ) => {
-	const getClassesString = (classArray) => {
-		const classesString = Array.isArray(classArray)
-			? classArray.join(' ')
+	const getClassesString = ( classArray ) => {
+		const classesString = Array.isArray( classArray )
+			? classArray.join( ' ' )
 			: classArray;
 		return classesString !== '' ? classesString : null;
 	};
 	/* move has- classes (block editor built-in classes) lower, on popup, while retaining other classes on most outer element
 	 * align is moved only in save, not in editor, to properly function */
-	const classes = className.split(' ');
+	const classes = className.split( ' ' );
 	const classesWithoutHas = [],
 		classesWithHas = [];
 
-	for (const singleClass of classes) {
+	for ( const singleClass of classes ) {
 		if (
-			singleClass.substring(0, 4) === 'has-' ||
-			(isSave && singleClass.substring(0, 5) === 'align')
+			singleClass.substring( 0, 4 ) === 'has-' ||
+			( isSave && singleClass.substring( 0, 5 ) === 'align' )
 		) {
-			classesWithHas.push(singleClass);
+			classesWithHas.push( singleClass );
 		} else {
-			classesWithoutHas.push(singleClass);
+			classesWithoutHas.push( singleClass );
 		}
 	}
 	// add classes to classesWithHas
-	if (addToClassesWithHas) {
-		classesWithHas.push(addToClassesWithHas);
+	if ( addToClassesWithHas ) {
+		classesWithHas.push( addToClassesWithHas );
 	}
 	// add classes to classesWithoutHas
-	if (addToClassesWithoutHas) {
-		classesWithoutHas.push(addToClassesWithoutHas);
+	if ( addToClassesWithoutHas ) {
+		classesWithoutHas.push( addToClassesWithoutHas );
 	}
 
 	const dataModalCloseAttr = anchor
-		? { ['data-micromodal-close-' + anchor]: true }
+		? { [ 'data-micromodal-close-' + anchor ]: true }
 		: null;
 
 	return {
 		dataModalCloseAttr,
 		outerProps: {
 			...restProps,
-			className: getClassesString(classesWithoutHas),
+			className: getClassesString( classesWithoutHas ),
 			'aria-hidden': isModal ? 'true' : null,
 		},
 		innerProps: {
-			className: getClassesString(classesWithHas),
+			className: getClassesString( classesWithHas ),
 			innerBlocks,
 			hasCloseButton,
 			isModal,
@@ -230,7 +233,6 @@ export const wrapperAttributes = (
 		openSelector,
 		openingTime,
 		waitingAfterClosing,
-		exitIntentDelay,
 		enabled,
 		attachedBaseElement,
 		fixedPopupPosition,
@@ -243,7 +245,7 @@ export const wrapperAttributes = (
 	isShown = true,
 	// detect if call is from Edit
 	isEdit
-) => ({
+) => ( {
 	/**
 	 * 3.1. changed to use data- attributes instead of classes
 	 */
@@ -253,31 +255,29 @@ export const wrapperAttributes = (
 			'on click': 'open-on-click',
 			'on hover': 'open-on-hover',
 			'on timer': 'open-on-timer',
-			'on exit intent': 'open-on-exit-intent',
-		}[openType] +
-		(refererURLMatch ? ' open-only-on-referer' : '') +
+		}[ openType ] +
+		( refererURLMatch ? ' open-only-on-referer' : '' ) +
 		' ' +
 		{
-			floating: !isEdit ? 'popup-floating' : '',
+			floating: ! isEdit ? 'popup-floating' : '',
 			fixed: 'popup-floating popup-fixed',
 			attached: 'popup-attached',
-		}[layoutType] +
+		}[ layoutType ] +
 		' ' +
 		{
 			modal: 'popup-modal',
 			modeless: 'popup-modeless',
-		}[modalityType] +
-		(isShown ? '' : ' is-hidden') +
-		(enabled ? '' : ' disabled') +
-		(layoutType === 'fixed' ? ' position-' + fixedPopupPosition : '') +
-		(closeButtonPosition === 'above' ? ' has-above-close' : ''),
+		}[ modalityType ] +
+		( isShown ? '' : ' is-hidden' ) +
+		( enabled ? '' : ' disabled' ) +
+		( layoutType === 'fixed' ? ' position-' + fixedPopupPosition : '' ) +
+		( closeButtonPosition === 'above' ? ' has-above-close' : '' ),
 	'data-open-type': openType,
 	'data-open-selector': openSelector,
 	'data-opening-time': openingTime,
 	'data-waiting-after-closing': waitingAfterClosing,
-	'data-exit-intent-delay': exitIntentDelay ?? 0,
 	'data-attached-base-element': attachedBaseElement,
 	'data-show-again-in': daysToShowAgain ?? 0,
 	'data-referer-url-match': refererURLMatch,
 	'data-width-same-as-opener': popupWidthSameAsOpener ? 'true' : undefined,
-});
+} );

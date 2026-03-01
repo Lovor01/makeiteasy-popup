@@ -2,8 +2,8 @@
 Contributors:      lovor
 Donate link:       https://buymeacoffee.com/lovro
 Tags:              popup, pop-up, modal, dialog, block
-Tested up to:      6.8
-Stable tag:        1.3.2
+Tested up to:      6.9
+Stable tag:        1.4.0
 License:           LGPLv3
 License URI:       https://www.gnu.org/licenses/lgpl-3.0.html
 
@@ -11,7 +11,7 @@ Advanced block based pop-up solution.
 
 == Description ==
 
-Need popups to grab your users' attention? Marketing call-to-actions that open on scroll, timer, click, matched referer or even hover?
+Need popups to grab your users' attention? Marketing call-to-actions that open on scroll, timer, click, matched referer, hover, or exit intent?
 Multiple popups on one page? This plugin has it all. It provides styling consistent with core block editor blocks plus additional features.
 
 = Why choose Makeiteasy Popup? =
@@ -33,12 +33,9 @@ progress indicator does not advance anymore (loading should be finished at max 3
 - 🥉 **Developer friendly**: Hooks for modifications and unopinionated starting CSS.
 - ⏲️ **Future-Proof Compatibility**: Guaranteed compatibility with future WordPress versions.
 
-🆕✨ Improved handling of long content in popups. Mobile sizing is improved as well.
+🆕 Added "open on exit intent" feature. **It works only on desktop.** When popup is set up to open on exit intent and
+user moves mouse outside the top border of the browser inner window (screen), popup appears.
 
-⚠️ This is the last version which will support WordPress 6.5 and below. I am switching to newer development environment which is WP6.6+ compatible.
-Please open ticket in support section if that's a problem.
-
-🆕 Added roadmap section in development tab
 ⏱️❗**Queue** if another popup is opened, popup is placed in queue and opened upon closing the former.
 
 == Installation ==
@@ -80,6 +77,10 @@ Post them here, and I’ll answer them.
 4. Modeless popup attached to element
 
 == Changelog ==
+
+= 1.4.0 =
+
+Added "open on exit intent" feature. Updated dependencies.
 
 = 1.3.1 =
 Updated dependencies.
@@ -137,11 +138,15 @@ Improved layout for disabled popup. Improved restoring modality type when choosi
 
 = Roadmap =
 
-1. Add features according to requests on support (on page leave trigger)
+1. Add features according to requests on support
 2. Introduce new popup HTML: relatively new `<dialog>` element with appropriate javascript for handling this element.
 3. Add integration with some of more popular marketing tools.
 
 == Upgrade Notice ==
+
+= 1.4.0 =
+
+Additional feature. Block saving changed a bit.
 
 = 1.3.0 =
 

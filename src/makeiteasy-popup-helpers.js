@@ -71,6 +71,8 @@ function setUp() {
 				setOpenEventOnElements( popupBlock, 'pointerover' );
 			} else if ( elementClassList.contains( 'open-on-scroll' ) ) {
 				setOpenOnScroll( popupBlock );
+			} else if ( elementClassList.contains( 'open-on-exit-intent' ) ) {
+				setOpenOnExitIntent( popupBlock );
 			} else if ( elementClassList.contains( 'open-on-referer' ) ) {
 				openOnReferer( popupBlock );
 			}
@@ -100,6 +102,13 @@ function setUp() {
 				break;
 			case 'on hover':
 				setOpenEventOnElements( popupBlock, 'pointerover' );
+				break;
+			/*
+			 * New feature exit on intent introduced in 1.3.0
+			 * It works only on desktop, while user moves mouse near top edge of viewport, it is not triggered by touch devices
+			 */
+			case 'on exit intent':
+				setOpenOnExitIntent( popupBlock );
 				break;
 		}
 	}
@@ -218,6 +227,7 @@ function setUp() {
 		}
 	}
 
+	// if popup is hover type, add timer to prevent it from opening again immediately after closing
 	function cleaner( popupElement ) {
 		if (
 			! popupElement.dataset.waitingAfterClosing ||
@@ -294,6 +304,58 @@ function setUp() {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Set up opening on desktop exit intent
+	 * Opens when pointer leaves viewport near top edge
+	 * @param {HTMLElement} element
+	 */
+	function setOpenOnExitIntent( element ) {
+		if ( ! window.matchMedia( '(hover: hover)' ).matches ) {
+			return;
+		}
+
+		const parsedDelaySeconds = parseFloat(
+			element.dataset.exitIntentDelay
+		);
+		const activationDelayMs =
+			Number.isFinite( parsedDelaySeconds ) && parsedDelaySeconds > 0
+				? parsedDelaySeconds * 1000
+				: 0;
+		let isActive = activationDelayMs === 0;
+
+		if ( ! isActive ) {
+			setTimeout( () => {
+				isActive = true;
+			}, activationDelayMs );
+		}
+
+		let hasTriggered = false;
+
+		const handleMouseOut = ( event ) => {
+			if ( hasTriggered ) {
+				return;
+			}
+
+			if ( ! isActive ) {
+				return;
+			}
+
+			if ( event.relatedTarget ) {
+				return;
+			}
+
+			if ( event.clientY > 10 ) {
+				return;
+			}
+
+			hasTriggered = true;
+			document.removeEventListener( 'mouseout', handleMouseOut );
+			showModal( element.id );
+		};
+
+		document.addEventListener( 'mouseout', handleMouseOut );
 	}
 
 	function openOnReferer( element ) {

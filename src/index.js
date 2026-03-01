@@ -36,6 +36,7 @@ import v1_1 from './deprecated/1.1';
 import v1_1_3 from './deprecated/1.1.3';
 import v1_1_5 from './deprecated/1.1.5';
 import v1_2_0 from './deprecated/1.2.0';
+import v1_3_1 from './deprecated/1.3.1';
 /* eslint-enable camelcase */
 
 /**
@@ -80,6 +81,11 @@ registerBlockType( metadata.name, {
 			supports: v1_2_0.supports,
 			save: v1_2_0.save,
 			migrate: v1_2_0.migrate,
+		},
+		{
+			attributes: v1_3_1.attributes,
+			supports: v1_3_1.supports,
+			save: v1_3_1.save,
 		},
 	],
 	/* eslint-enable camelcase */

@@ -1,31 +1,22 @@
-# Copyright (C) 2024 Lovro Hrust
-# This file is distributed under the LGPLv3.
 msgid ""
 msgstr ""
 "Project-Id-Version: Makeiteasy Popup 1.1.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/makeiteasy-"
-"popup\n"
-"POT-Creation-Date: 2024-08-22T18:24:01+02:00\n"
-"PO-Revision-Date: 2024-08-23 00:10+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/makeiteasy-popup\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-08-22T18:24:01+02:00\n"
+"PO-Revision-Date: 2024-08-23 00:10+0200\n"
+"Language: hr\n"
 "X-Generator: Poedit 3.4.4\n"
 "X-Domain: makeiteasy-popup\n"
-
-#. Plugin Name of the plugin
-#: makeiteasy-popup.php
-msgid "Makeiteasy Popup"
-msgstr "Makeiteasy Popup"
 
 #. Description of the plugin
 #: makeiteasy-popup.php
 msgid "Popup block solution aligned with block editor concept"
-msgstr ""
-"Rješenje blokova skočnih prozora usklađeno s konceptom uređivača blokova"
+msgstr "Rješenje blokova skočnih prozora usklađeno s konceptom uređivača blokova"
 
 #. Author of the plugin
 #: makeiteasy-popup.php
@@ -33,208 +24,416 @@ msgid "Lovro Hrust"
 msgstr "Lovro Hrust"
 
 #: build/index.js:1
+#: src/components/plugin-sidebar.jsx:32
 msgid "Show popup control"
 msgstr "Prikaži kontrole skočnog prozora"
 
 #: build/index.js:1
+#: src/components/plugin-sidebar.jsx:36
 msgid "MakeITeasy popup"
 msgstr "MakeITeasy popup"
 
 #: build/index.js:1
+#: src/components/plugin-sidebar.jsx:42
 msgid "Editor visibility"
 msgstr "Vidljivost u editoru"
 
 #: build/index.js:1
+#: src/components/plugin-sidebar.jsx:47
 msgid "Show popups"
 msgstr "Prikaži skočni prozor"
 
 #: build/index.js:1
+#: src/components/BlockBody.jsx:40
+#: src/deprecated/1.1.5/components/BlockBody.jsx:43
+#: src/deprecated/1.2.0/components/BlockBody.jsx:43
+#: src/deprecated/1.3.1/components/BlockBody.jsx:43
 msgctxt "Close button aria label"
 msgid "Close modal"
 msgstr "Zatvori skočni prozor"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:64
 msgid "Popup is placed at:"
 msgstr "Skočni prozor je postavljen:"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:75
 msgid "Bottom"
 msgstr "Dno"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:71
 msgid "Top"
 msgstr "Vrh"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:79
 msgid "Left"
 msgstr "Lijevo"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:83
 msgid "Right"
 msgstr "Desno"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:117
 msgid "Opening"
 msgstr "Otvaranje"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:123
 msgid "Opens on:"
 msgstr "Otvara se:"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:124
 msgid "What triggers opening."
 msgstr "Što pokreće otvaranje."
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:131
 msgid "On timer"
 msgstr "Na kronometar"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:135
 msgid "On scroll"
 msgstr "Na scroll"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:142
 msgid "On click"
 msgstr "Na klik"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:146
 msgid "On hover"
 msgstr "Na hover"
 
 #: build/index.js:1
-msgid "On referer"
-msgstr "Na referer"
-
-#: build/index.js:1
+#: src/components/BlockSidebar.jsx:183
 msgid "CSS selector"
 msgstr "CSS selector"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:187
 msgid "CSS selector of element to open popup"
 msgstr "CSS selector elementa koji otvara skočni prozor"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:218
 msgid "Open after"
 msgstr "Otvori nakon"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:219
 msgid "Time to open again"
 msgstr "Vrijeme nakon kojeg se ponovno otvara"
 
 #: build/index.js:1
-msgid "Open on referer URL match"
-msgstr "Otvori na slaganje s referer URL-om"
-
-#: build/index.js:1
+#: src/components/BlockSidebar.jsx:304
 msgid "Enter part of URL to match."
 msgstr "Unesi dio URL-a s kojim želiš slaganje."
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:313
 msgid "Layout"
 msgstr "Razmještaj"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:319
 msgid "Layout type"
 msgstr "Vrsta rasporeda"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:323
 msgid "floating"
 msgstr "plutajući"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:327
 msgid "fixed"
 msgstr "fiksiran"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:331
 msgid "attached"
 msgstr "prikvačen"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:344
 msgid "Modality type"
 msgstr "Tip modaliteta"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:351
 msgid "modal"
 msgstr "modalni"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:358
+#: src/components/BlockSidebar.jsx:367
 msgid "modeless"
 msgstr "bez modaliteta"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:387
 msgid "Content on Hover or Focus"
 msgstr "Sadržaj na hover ili fokus"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:397
 msgid "Visibility"
 msgstr "Vidljivost"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:403
 msgid "Has close button"
 msgstr "Ima gumb za zatvaranje"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:415
 msgid "Popup is enabled"
 msgstr "Skočni prozor je omogućen"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:423
 msgid "Disabled block is saved for later showing."
 msgstr "Onemogućeni blok se sprema za kasnije prikazivanje."
 
 #: build/index.js:1
-msgid ""
-"If you disable block, it will not be shown, but you can keep it and enable "
-"it again sometimes."
-msgstr ""
-"Ako onemogućite blok, on neće biti prikazan, ali ga možete zadržati i "
-"ponekad ponovno omogućiti."
+#: src/components/BlockSidebar.jsx:427
+#: src/components/BlockSidebar.jsx:552
+msgid "If you disable block, it will not be shown, but you can keep it and enable it again sometimes."
+msgstr "Ako onemogućite blok, on neće biti prikazan, ali ga možete zadržati i ponekad ponovno omogućiti."
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:435
 msgid "Accessibility"
 msgstr "Pristupačnost"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:441
 msgid "Dialog accessible label"
 msgstr "Pristupačna oznaka dijaloga"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:453
+#: src/nux/tips.jsx:240
 msgid "Additional rules"
 msgstr "Dodatna pravila"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:460
 msgid "Show again after days"
 msgstr "Prikaži ponovno nakon broja dana"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:471
 msgid "Set to 0 to show each time"
 msgstr "Namjesti na 0 da se prikaže svaki put"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:493
 msgid "Close button appearance"
-msgstr ""
+msgstr "Izgled gumba za zatvaranje"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:511
 msgid "Button beside content"
 msgstr "Gumb pokraj sadržaja"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:543
 msgid "Same as opener"
 msgstr "Isto kao element koji otvara"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:548
 msgid "Set width the same as opener element"
 msgstr "Postavi širinu jednaku kao element koji otvara"
 
 #: build/index.js:1
+#: src/components/BlockSidebar.jsx:572
 msgid "Popup width"
 msgstr "Širina skočnog prozora"
 
 #: build/block.json
-msgctxt "block title"
-msgid "Makeiteasy Popup"
-msgstr "Makeiteasy Popup"
-
-#: build/block.json
+#: src/block.json
 msgctxt "block description"
 msgid "Versatile popup block."
 msgstr "Svestrani blok skočnih prozora."
+
+#. Plugin Name of the plugin
+#: makeiteasy-popup.php
+msgid "MakeITeasy Popup"
+msgstr "MakeITeasy Popup"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:68
+msgid "Welcome to Make IT easy popup!"
+msgstr ""
+
+#: build/index.js:1
+#: src/nux/tips.jsx:74
+msgid "To insert popup into the post, find 'MakeITeasy Popup' block under Widgets group."
+msgstr "Kako biste umetnuli skočni prozor u post, pronađite blok 'MakeITeasy Popup' u grupi Widgeti."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:90
+msgid "Content"
+msgstr "Sadržaj"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:94
+msgid "Inside popup block, you can insert any number of blocks, like you would normally with group, column, quote block etc."
+msgstr "Unutar bloka skočnog prozora, možete umetnuti bilo koji broj blokova, kao što biste to normalno radili s grupom, stupcem, blokom citata itd."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:111
+msgid "Opening conditions"
+msgstr "Uvjeti otvaranja"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:118
+msgid "Probably most important setting is opening condition."
+msgstr "Vjerojatno najvažnija postavka je uvjet otvaranja."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:126
+msgid "Popup can be opened after some time passes, on scroll, on click, on hover, or on exit intent. All these conditions can be combined with opening referer."
+msgstr "Pop-up se može otvoriti nakon nekog vremena, na scroll, na klik, na hover ili na namjeru izlaska. Svi ovi uvjeti mogu se kombinirati s uvjetom referera."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:144
+msgid "Selectors"
+msgstr "Selektori"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:148
+msgid "Some opening conditions, such as 'on click,' require an element to trigger the popup when interacted with."
+msgstr "Neki uvjeti otvaranja, poput 'na klik', zahtijevaju element koji će pokrenuti skočni prozor kada se s njim interagira."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:156
+msgid "To achieve this, you need to provide the CSS selector of the element that will trigger the popup, whether it's clicked, scrolled to, or hovered over."
+msgstr "Kako biste to postigli, trebate pružiti CSS selektor elementa koji će pokrenuti skočni prozor, bilo da se klikne, skrola do njega ili se pređe mišem preko njega."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:174
+msgid "What is referer?"
+msgstr "Što je referer?"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:178
+msgid "Referer is simply the URL of the page where user was before coming to current page."
+msgstr "Referer je jednostavno URL stranice na kojoj je korisnik bio prije dolaska na trenutnu stranicu."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:184
+msgid "MDN documentation:"
+msgstr "MDN dokumentacija:"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:190
+msgctxt "external link text"
+msgid "Referer"
+msgstr "Referer"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:211
+msgid "Referer condition"
+msgstr "Referer uvjet"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:218
+msgid "If referer field is left unfilled, there will be no condition for referer. Otherwise, popup will open only if any part of referer matches the string in this field."
+msgstr "Ako polje referera ostane nepopunjeno, neće postojati uvjet za referer. U suprotnom, skočni prozor će se otvoriti samo ako bilo koji dio referera odgovara nizu u ovom polju."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:223
+msgid "This condition is combined with opening condition, so popup will open only if both conditions are met."
+msgstr "Ovaj uvjet se kombinira s uvjetom otvaranja, tako da će se skočni prozor otvoriti samo ako su oba uvjeta zadovoljena."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:244
+msgid "You have possibility to set when dismissed popup will appear again. The timer's state is preserved across user sessions, ensuring a consistent reappearance interval."
+msgstr "Imate mogućnost postaviti kada će se odbijeni skočni prozor ponovno pojaviti. Stanje tajmera se čuva između korisničkih sesija, osiguravajući dosljedan interval ponovnog pojavljivanja."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:261
+msgid "Close button"
+msgstr "Gumb za zatvaranje"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:265
+msgid "Changing the close button is so far possible only programmatically by using filters. It is planned to add UI in the settings for uploading custom image."
+msgstr "Promjena gumba za zatvaranje do sada je moguća samo programatski korištenjem filtera. Planirano je dodati korisničko sučelje u postavkama za učitavanje prilagođene slike."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:271
+#: src/nux/tips.jsx:311
+msgid "Read in the"
+msgstr "Pročitaj u"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:273
+#: src/nux/tips.jsx:313
+msgctxt "external link text"
+msgid "plugin readme"
+msgstr "readme dodatka"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:279
+#: src/nux/tips.jsx:319
+msgid "how to change the close button."
+msgstr "kako promijeniti gumb za zatvaranje."
+
+#: build/index.js:1
+#: src/nux/tips.jsx:284
+#: src/nux/tips.jsx:324
+msgid "You can also refer to readme for other questions you might have"
+msgstr "Također se možete obratiti readme-u za druga pitanja koja biste mogli imati"
+
+#: build/index.js:1
+#: src/nux/tips.jsx:302
+msgid "Show again after x days"
+msgstr "Prikaži ponovno nakon x dana"
+
+#: build/index.js:1
+#: src/components/BlockSidebar.jsx:150
+msgid "On exit intent"
+msgstr "Na izlaznu namjeru"
+
+#: build/index.js:1
+#: src/components/BlockSidebar.jsx:266
+msgid "Activate after (seconds)"
+msgstr "Aktiviraj nakon (sekundi)"
+
+#: build/index.js:1
+#: src/components/BlockSidebar.jsx:270
+msgid "Set to 0 to activate immediately."
+msgstr "Postavite na 0 za odmah aktiviranje."
+
+#: build/index.js:1
+#: src/components/BlockSidebar.jsx:295
+msgid "Only on referer URL match (optional)"
+msgstr "Samo ako se URL referera podudara (opcionalno)"
+
+#: build/index.js:1
+#: src/components/BlockSidebar.jsx:303
+msgid "URL part"
+msgstr "Dio URL-a"
+
+#: build/index.js:1
+#: src/components/BlockSidebar.jsx:573
+msgid "For a fixed width or to correct block display issues inside the popup, set the width here."
+msgstr "Za fiksnu širinu ili za ispravljanje problema s prikazom bloka unutar skočnog prozora, postavite širinu ovdje."
+
+#: build/block.json
+#: src/block.json
+msgctxt "block title"
+msgid "MakeITeasy Popup"
+msgstr "MakeITeasy Popup"
