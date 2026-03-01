@@ -34,7 +34,8 @@ progress indicator does not advance anymore (loading should be finished at max 3
 - ⏲️ **Future-Proof Compatibility**: Guaranteed compatibility with future WordPress versions.
 
 🆕 Added "open on exit intent" feature. **It works only on desktop.** When popup is set up to open on exit intent and
-user moves mouse outside the top border of the browser inner window (screen), popup appears.
+user moves mouse outside the top border of the browser inner window (screen), popup appears. User can choose when feature is activated
+(after how many seconds since page was loaded), so popup can't open too early.
 
 ⏱️❗**Queue** if another popup is opened, popup is placed in queue and opened upon closing the former.
 
