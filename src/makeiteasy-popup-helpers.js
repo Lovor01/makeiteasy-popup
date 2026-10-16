@@ -406,13 +406,11 @@ function setUp() {
 		if ( ! popupWrapper || ! contentWrapper ) {
 			return;
 		}
-		if ( contentWrapper.clientWidth < 5 ) {
-			contentWrapper.style.width = getComputedStyle(
-				popupWrapper
-			).getPropertyValue( '--wp--style--global--content-size' );
+		if ( contentWrapper.clientWidth < 11 ) {
+			contentWrapper.style.width = '39px';
 		}
 		if ( contentWrapper.clientHeight < 11 ) {
-			contentWrapper.style.height = '300px';
+			contentWrapper.style.height = '39px';
 		}
 	}
 }
