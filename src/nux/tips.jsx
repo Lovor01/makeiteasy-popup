@@ -305,27 +305,8 @@ export default function () {
 								<p>
 									{ __(
 										'You can set the popup to reappear after a certain number of days once it has been dismissed. This feature is particularly useful for time-sensitive promotions or announcements, allowing you to control the frequency of the popup\'s appearance and ensure that it remains relevant to your audience.',
-									) }
-								</p>
-								<p>
-									{ __( 'Read in the', 'makeiteasy-popup' ) }{ ' ' }
-									<ExternalLink href="https://wordpress.org/plugins/makeiteasy-popup/#description">
-										{ _x(
-											'plugin readme',
-											'external link text',
-											'makeiteasy-popup'
-										) }
-									</ExternalLink>{ ' ' }
-									{ __(
-										'how to change the close button.',
 										'makeiteasy-popup'
-									) +
-										' ' +
-										__(
-											'You can also refer to readme for other questions you might have',
-											'makeiteasy-popup'
-										) }
-									.
+									) }
 								</p>
 							</div>
 						</>
